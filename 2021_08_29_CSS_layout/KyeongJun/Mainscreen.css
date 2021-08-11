@@ -1,3 +1,73 @@
 @charset "utf-8";
 
 
+.container{
+    display: flex;
+    flex-direction : row;
+}
+
+/*========================left_area=========================*/
+.left_area{
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+.home_btn{
+
+}
+*/
+
+.left_toolbar{
+    display:flex;
+    flex-direction:column;
+}
+
+/*======================center_area=========================*/
+.center_area{
+    display :flex;
+    flex-direction: column;
+}
+
+.workspace_overall
+{
+    display :flex;
+    flex-direction : row;
+}
+
+.explorer
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn_in_btn{
+    display : flex;
+    flex-direction : row;
+}
+
+.channel_lists{
+    display:flex;
+    flex-direction :column;
+}
+
+.dm_lists{
+    display: flex;
+    flex-direction :column;
+}
+/*=======================right_area=========================*/
+.right_area{
+    display : flex;
+    flex-direction : column;
+}
+
+.top_toolbar{
+    display:flex;
+    flex-direction:row;
+}
+
+.workspace_info{
+    display:flex;
+    flex-direction:row;
+}
+
