@@ -24,11 +24,13 @@
     {
         display :flex;
         flex-direction : row;
+        background-color: thistle;
     }
 
     .top_toolbar{
         display:flex;
         flex-direction:row;
+        background-color:wheat;
     }
 
 
@@ -48,6 +50,7 @@
         .left_toolbar{
             display:flex;
             flex-direction:column;
+            background-color: tomato;
         }
 
         /*======================explorer_area=========================*/
@@ -84,9 +87,28 @@
             background-color: seagreen;
         }
 
-
         .workspace_info{
             display:flex;
             flex-direction:row;
+            
+        }
+
+        .infos{
+            display:flex;
+            flex-direction:row;
+            background-color: turquoise;
+        }
+
+        .chatNidea{
+            display:flex;
+            flex-direction:row;
+            background-color: yellowgreen;
+        }
+
+        .chatting_infos
+        {
+            display: flex;
+            flex-direction: row;
+            background-color: teal;
         }
 
