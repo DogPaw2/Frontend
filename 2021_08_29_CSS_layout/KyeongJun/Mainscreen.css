@@ -1,73 +1,92 @@
 @charset "utf-8";
 
-
-.container{
-    display: flex;
-    flex-direction : row;
-}
-
-/*========================left_area=========================*/
-.left_area{
-    display: flex;
-    flex-direction: column;
-}
-
-/*
-.home_btn{
-
-}
-*/
-
-.left_toolbar{
-    display:flex;
-    flex-direction:column;
-}
-
-/*======================center_area=========================*/
-.center_area{
-    display :flex;
-    flex-direction: column;
-}
-
-.workspace_overall
+/*=====================entire_webpage=======================*/
+.entire_webpage
 {
-    display :flex;
-    flex-direction : row;
-}
-
-.explorer
-{
-    display: flex;
+    display:flex;
     flex-direction: column;
+    background-color: beige;
 }
+    /*========================nav_bar===========================*/
+    .nav_bar{
+        display : flex;
+        flex-direction : row;
+        background-color: blue;
+    }
 
-.btn_in_btn{
-    display : flex;
-    flex-direction : row;
-}
+    /*
+    .home_btn{
 
-.channel_lists{
-    display:flex;
-    flex-direction :column;
-}
+    }
+    */
 
-.dm_lists{
-    display: flex;
-    flex-direction :column;
-}
-/*=======================right_area=========================*/
-.right_area{
-    display : flex;
-    flex-direction : column;
-}
+    .workspace_overall
+    {
+        display :flex;
+        flex-direction : row;
+    }
 
-.top_toolbar{
-    display:flex;
-    flex-direction:row;
-}
+    .top_toolbar{
+        display:flex;
+        flex-direction:row;
+    }
 
-.workspace_info{
-    display:flex;
-    flex-direction:row;
-}
+
+    /*======================container===============================*/
+    .container{
+        display: flex;
+        flex-direction : row;
+    }
+        /*========================left_bar=========================*/
+        .left_bar{
+            display: flex;
+            flex-direction: column;
+            background-color: red;
+        }
+
+
+        .left_toolbar{
+            display:flex;
+            flex-direction:column;
+        }
+
+        /*======================explorer_area=========================*/
+        .explorer_area{
+            display :flex;
+            flex-direction: column;
+            background-color: saddlebrown;
+        }
+
+        .explorer
+        {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .btn_in_btn{
+            display : flex;
+            flex-direction : row;
+        }
+
+        .channel_lists{
+            display:flex;
+            flex-direction :column;
+        }
+
+        .dm_lists{
+            display: flex;
+            flex-direction :column;
+        }
+        /*=======================main_area=========================*/
+        .main_area{
+            display : flex;
+            flex-direction : column;
+            background-color: seagreen;
+        }
+
+
+        .workspace_info{
+            display:flex;
+            flex-direction:row;
+        }
 
