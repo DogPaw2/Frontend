@@ -17,10 +17,10 @@
 
                 <div class = "workspace_overall">
                     <div class = "round_square_btn_area">
-                        <div class = "round_square_btn" id = "Workspace_icon">icon</div>
+                        <div class = "big_round_square_btn" id = "Workspace_icon">icon</div>
                     </div>                
                     <div class = "workspace_name_area">
-                        <div class = "workspace_name">workspace_name</div>
+                        <div class = "workspace_name">name</div>
                     </div>
 
                     <div class = "toggle_btn_area">
@@ -48,7 +48,7 @@
                     <input type="text"></input>
 
                     <div class = "round_square_btn_area">
-                        <div class = "round_square_btn" id="User">유저</div>
+                        <div class = "big_round_square_btn" id="User">유저</div>
                     </div>
                 </div>
 
@@ -57,54 +57,98 @@
             <div class = container>
                 <div class = "left_bar">
                     <div class = "left_toolbar">
-                        <div>channel_box</div>
-                        <div>project_box</div>
+                        <div class = "round_square_btn_area">
+                            <div class = "big_round_square_btn" id="channel_box">채널</div>
+                        </div>
+                        <div class = "round_square_btn_area">
+                            <div class = "big_round_square_btn" id="project_box">프젝</div>
+                        </div>
                     </div>
 
                 </div>
 
                 <div class = "explorer_area">
-
                     <div class = "explorer">
-                        <div>explore_channels</div>
 
-                        <div class = "btn_in_btn">
-                            <div>channel</div>
-                            <div>+</div>
-                        </div>
-                        <div class = "channel_lists">
-                            <div>General</div>
-                        </div>
+                        <div class = "explorer_channels" id = "explore_channels">explore_channels</div>
 
-                        <div class = "btn_in_btn">
-                            <div>Direct_message</div>
-                            <div>+</div>
+                        <div class = "explorer_text_btn_area">
+                            <div class = "explorer_text_btn" id ="channel">channel</div>
+                            <div class = "explorer_add_btn" id = "add_channel">+</div>
+                        </div>
+                        <div class = "explorer_lists" id = "channel">
+                            <div class = "list_text_btn">General</div>
                         </div>
 
-                        <div class = "dm_lists">
-                            <div>(me)</div>
+                        <div class = "explorer_text_btn_area">
+                            <div class = "explorer_text_btn" id ="Direct_message">Direct_message</div>
+                            <div class = "explorer_add_btn" id = "add_DM">+</div>
+                        </div>
+
+                        <div class = "explorer_lists" id = "DM">
+                            <div class = "list_text_btn">(me)</div>
                         </div>
                     </div>
                 </div>
 
                 <div class = "main_area">
+
                     <div class = "workspace_info">
                         <div class = "infos">
-                            <div>*</div>
-                            <div>channel_name</div>
-                            <div>v</div>
+                            <div class = toggle_btn_area>
+                                <div class = toggle_btn id="star">*</div>
+                            </div>
+
+                            <div class ="channel_name">channel_name</div>
+                            
+                            <div class = toggle_btn_area>
+                                <div class = toggle_btn>v</div>
+                            </div>
                         </div>
 
                         <div class = "chatNidea">
-                            <div>chatting</div>
-                            <div>idea</div>
+                            <div class = "btn_with_belowtext_area" id = "chatting">
+                                <div class = "btn_with_belowtext_btn">
+                                </div>
+                                <div class = "btn_with_belowtext_text">
+                                    chat
+                                </div>
+                            </div>
+                            <div class = "btn_with_belowtext_area" id = "idea">
+                                <div class = "btn_with_belowtext_btn">
+                                </div>
+                                <div class = "btn_with_belowtext_text">
+                                    idea
+                                </div>
+                            </div>
+                            
                         </div>
 
                         <div class = "chatting_infos">
-                            <div>channel_members</div>
-                            <div>fixed_msg</div>
-                            <div>tabs</div>
-                            <div>right_panel</div>
+                            <div class = "btn_with_sidetext_area" id = "channel_members">
+                                <div class = "btn_with_sidetext_btn">
+
+                                </div>
+                                <div class = "btn_with_sidetext_text">
+                                    1
+                                </div>
+                            </div>
+                            <div class = "btn_with_sidetext_area" id = "fixed_msg">
+                                <div class = "btn_with_sidetext_btn">
+
+                                </div>
+                                <div class = "btn_with_sidetext_text">
+                                    1
+                                </div>
+                            </div>
+                            <div class = "btn_with_sidetext_area" id = "tabs">
+                                <div class = "btn_with_sidetext_btn">
+
+                                </div>
+                                <div class = "btn_with_sidetext_text">
+                                    1
+                                </div>
+                            </div>  
                         </div>
 
                     </div>
