@@ -8,33 +8,38 @@ body{
 {
     display:flex;
     flex-direction: column;
-    background-color: beige;
-    
     width : 100vw;
     height: 100vh;
 }
 
 /* ======================reusable components=================*/
 .round_square_btn_area{
+    background-color: white;
     flex:none;
-    background-color: yellow;
     width : 3rem;
     height : 3rem;
 }
-    .big_round_square_btn{
-        background-color: blueviolet;
-        width : 2rem;
-        height : 2rem;
-        margin : 0.5rem;
-    }
-    .round_square_btn{
-        background-color:tomato;
-        width : 1rem;
-        height : 1rem;
-        margin : 1rem;
-    }
+.round_btn{
+    background-color:wheat;
+    width : 2rem;
+    height : 2rem;
+    margin : 0.5rem;
+    border-radius:100%;
+}
 
+.big_round_square_btn{
+    background-color: blueviolet;
+    border-radius:20%;
+    width : 2rem;
+    height : 2rem;
+    margin : 0.5rem;
+}
 
+.round_btn:hover
+{
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
 
 .toggle_btn_area
 {
@@ -42,239 +47,279 @@ body{
     width : 1rem;
     height: 3rem;
 }
-    .toggle_btn{
-        width : 1rem;
-        height : 1rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        margin-left:0
-        margin-right:0rem;
-        background-color: tomato;
-    }
+.toggle_btn{
+    width : 1rem;
+    height : 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left:0;
+    margin-right:0rem;
+    background-color: tomato;
+}
     /*========================nav_bar===========================*/
-    .nav_bar{
-        display : flex;
-        flex-direction : row;
-        background-color : blue;
-        height: 3rem;
-        margin:0;
-    }
-        .workspace_overall
-        {
-            display :flex;
-            flex-direction : row;
-            background-color: thistle;
-        }
-            .workspace_name_area
-            {
-                flex:none;
-                width : 4rem;
-                background-color: yellow
-            }
-                .workspace_name
-                {
-                    width : 4rem;
-                    height : 2rem;
-                    margin-top:0.5rem;
-                    margin-bottom: 0.5rem;
-                    background-color:aliceblue;       
-                }
+.nav_bar{
+    display : flex;
+    flex-direction : row;
+    border-bottom: 1px solid #E4E4E9;
+    background-color :white;
+    height: 3rem;
+    margin:0;
+}
 
-        .top_toolbar{
-            margin-left: auto;
-            display:flex;
-            flex-direction:row;
-            background-color:wheat;
-        }
+#Home
+{
+    border-right : 1px solid #E4E4E9;
+    border-width: 0.5px;
+}
+
+.workspace_overall
+{
+    display :flex;
+    flex-direction : row;
+    background-color: thistle;
+}
+
+
+.workspace_name_area
+{
+    flex:none;
+    width : 5rem;
+    background-color: yellow
+}
+.workspace_name
+{
+    width : 5rem;
+    height : 2rem;
+    margin-top:0.5rem;
+    margin-bottom: 0.5rem;
+    background-color:aliceblue;       
+}
+
+.top_toolbar{
+    margin-left: auto;
+    display:flex;
+    flex-direction:row;
+}
+
     /*======================container===============================*/
-    .container{
-        display: flex;
-        flex-direction : row;
-        
-        height: 100vh;
-    }
+.container{
+    display: flex;
+    flex-direction : row;
+    
+    height: 100vh;
+}
         /*========================left_bar=========================*/
-        .left_bar{
-            display: flex;
-            flex-direction: column;
-            background-color: red;
-        }
-            .left_toolbar{
-                display:flex;
-                flex-direction:column;
-                background-color: indianred;
-                margin-top:1rem;
-            }
+.left_bar{
+    display: flex;
+    flex-direction: column;
+     
+    border-right : 1px solid #E4E4E9;
+}
+.left_toolbar{
+    display:flex;
+    flex-direction:column;
+     
+    margin-top:1rem;
+}
 
-            .left_toolbar > .round_square_btn_area{
-                margin-top: 1rem;
-                margin-bottom: 1rem;
-            }
+.left_toolbar > .round_square_btn_area{
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+}
 
         /*======================explorer_area=========================*/
-        .explorer_area{
-            display :flex;
-            flex-direction: column;
-            background-color: saddlebrown;
-            width : 13rem;
-        }
+.explorer_area{
+    display :flex;
+    flex-direction: column;
+     
+    border-right: 1px solid #E4E4E9;
+    width : 13rem;
+}
 
-            .explorer
-            {
-                display: flex;
-                flex-direction: column;
-            }
-                .explorer_channels{
-                    width : 12rem;
-                    height: 2rem;
-                    margin : 0.5rem;
-                    margin-top:1.5rem;
-                    margin-bottom:0.5rem;
-                    background-color: burlywood;
-                }
+.explorer
+{
+    display: flex;
+    flex-direction: column;
+}
+.explorer_channels{
+    width : 12rem;
+    height: 2rem;
+    margin : 0.5rem;
+    margin-top:1.5rem;
+    margin-bottom:0.5rem;
+    background-color: burlywood;
+    border-radius:5px;
+}
+.explorer_channels:hover{
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
 
-                .explorer_text_btn_area
-                {
-                    width:12rem;
-                    height:2rem;
-                    margin-top:0.5rem;
-                    margin-left: 0.5rem;
-                    margin-bottom:0.5rem;
-                    display: flex;
-                    flex-direction: row;
-                    background-color: burlywood;
-                }
-                    .explorer_text_btn{
-                        width:11rem;
-                        height:2rem;
-                        margin:0;
-                    }
+.explorer_text_btn_area
+{
+    width:12rem;
+    height:2rem;
+    margin-top:0.5rem;
+    margin-left: 0.5rem;
+    margin-bottom:0.5rem;
+    display: flex;
+    flex-direction: row;
+     
+}   
+.explorer_text_btn{
+    width:11rem;
+    height:2rem;
+    margin:0;
+}
 
-                    .explorer_add_btn
-                    {
-                        width : 1rem;
-                        height: 1rem;
-                        background-color: chocolate;
-                        margin-right: 0.5rem;
-                        margin-top:0.5rem;
-                    }
-    
 
-                .explorer_lists{
-                    background-color: powderblue;
-                    width:12rem;
-                    margin-left:0.5rem;
-    
-                    display:flex;
-                    flex-direction :column;
-                }
-                    .list_text_btn{
-                        width:11rem;
-                        height:2rem;
-                        margin:1;
-                    }
+.explorer_text_btn_area:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.explorer_add_btn:hover{
+    background-color: #f1f1f1;
+    cursor:pointer;
+}
+
+.explorer_add_btn
+{
+    width : 1rem;
+    height: 1rem;
+    background-color: chocolate;
+    margin-right: 0.5rem;
+    margin-top:0.5rem;
+    border-radius:100%;
+}
+
+
+.explorer_lists{
+    background-color: powderblue;
+    width:12rem;
+    margin-left:0.5rem;
+    border-radius: 5px;
+    display:flex;
+    flex-direction :column;
+}
+.list_text_btn{
+    width: 12rem;
+    height:2rem;
+    margin:1;
+    border-radius: 5px;
+}
+.list_text_btn:hover{
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+.list_text_btn:active{
+    background-color: #488AFC;
+}
         /*=======================main_area=========================*/
-        .main_area{
-            flex:1;
-            display : flex;
-            flex-direction : column;
-            background-color: wheat;
-        }
+.main_area{
+    flex:1;
+    display : flex;
+    flex-direction : column;
+    background-color: #f1f1f1;
+}
         
-            .workspace_info{
-                display:flex;
-                flex-direction:row;
-                height: 4rem;
-                justify-content: space-between ;
-                
-                background-color: thistle;
-                
-            }
+.workspace_info{
+    background-color: white;
+    display:flex;
+    flex-direction:row;
+    border-bottom: 1px solid #E4E4E9;
+    height: 4rem;
+    
+    justify-content: space-between ;
+    
+     
+    
+}
 
-                .infos{
-                    display:flex;
-                    flex-direction:row;
-                    background-color: turquoise;
-                }
-                    .infos > .toggle_btn_area{
-                        height : 4rem;
-                    }
-                    .infos > .toggle_btn_area > .toggle_btn{
-                        margin-top : 1.5rem;
-                    }
+.infos{
+    margin-left:1rem;
+    flex:none;
+    display:flex;
+    flex-direction:row;
+    background-color: turquoise;
+}
+.infos > .toggle_btn_area{
+    height : 4rem;
+}
+.infos > .toggle_btn_area > .toggle_btn{
+    margin-top : 1.5rem;
+}
 
+.channel_name
+{
+    background-color: blue;
+    height: 2rem;
+    margin-top : 1rem;
+    margin-bottom: 1rem;
+}
 
-                    .channel_name
-                    {
-                        background-color: blue;
-                        height:1rem;
-                        margin-top : 1.5rem;
-                        margin-bottom: 1rem;
-                    }
+.chatNidea{
+    display:flex;
+    flex-direction:row;
+    width : 8rem;
+    justify-content:space-around;
+    background-color: yellowgreen;
+}
+.btn_with_belowtext_area{
+    background-color: cadetblue;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height: 4rem;
+    width : 4rem;
+}
+.btn_with_belowtext_btn{
+    flex:none;
+    background-color: crimson;
+    margin-top : 0.25rem;
+    height: 2rem;
+    width: 2rem;
+}
 
-                .chatNidea{
-                    display:flex;
-                    flex-direction:row;
-                    width : 8rem;
-                    justify-content:space-around;
-                    background-color: yellowgreen;
-                }
-                    .btn_with_belowtext_area{
-                        background-color: cadetblue;
-                        display:flex;
-                        flex-direction: column;
-                        align-items: center;
-                        height: 4rem;
-                        width : 4rem;
-                    }
-                        .btn_with_belowtext_btn{
-                            flex:none;
-                            background-color: crimson;
-                            margin-top : 0.25rem;
-                            height: 2rem;
-                            width: 2rem;
-                        }
+.btn_with_belowtext_text
+{
+    flex:none;
+    margin-top: 0.25rem;
+    margin-bottom : 0.25rem;
+    background-color: darkred;
+    width : 2rem;
+    
+}
+.chatting_infos
+{
+    display: flex;
+    flex-direction: row;
+    background-color: teal;
+    
+    align-items: center;
 
-                        .btn_with_belowtext_text
-                        {
-                            flex:none;
-                            margin-top: 0.25rem;
-                            margin-bottom : 0.25rem;
-                            background-color: darkred;
-                            width : 2rem;
-                            
-                        }
-                .chatting_infos
-                {
-                    display: flex;
-                    flex-direction: row;
-                    background-color: teal;
-                    
-                    align-items: center;
+}
+.btn_with_sidetext_area{
+    background-color: cadetblue;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 0.2rem;
+    height:1.5rem;
+    width:4rem;
+}
+.btn_with_sidetext_btn
+{
+    flex:none;
+    background-color: crimson;
+    height:1.5rem;
+    width: 1.5rem;
+}
 
-                }
-                    .btn_with_sidetext_area{
-                        background-color: cadetblue;
-                        display:flex;
-                        flex-direction: row;
-                        align-items: center;
-                        margin-left: 0.2rem;
-                        height:1.5rem;
-                        width:4rem;
-                    }
-                        .btn_with_sidetext_btn
-                        {
-                            flex:none;
-                            background-color: crimson;
-                            height:1.5rem;
-                            width: 1.5rem;
-                        }
-
-                        .btn_with_sidetext_text
-                        {
-                            flex:none;
-                            margin-left: 0.1rem;
-                            background-color: darkred;
-                            height: 1.5rem;
-                            width:1rem;
-                        }
+.btn_with_sidetext_text
+{
+    flex:none;
+    margin-left: 0.1rem;
+    background-color: darkred;
+    height: 1.5rem;
+    width:1rem;
+}
