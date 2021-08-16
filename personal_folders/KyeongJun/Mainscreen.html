@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>MainScreen</title>
         <link href="Mainscreen.css" rel="stylesheet">
+        <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     </head>
 
 
@@ -11,43 +12,63 @@
         <div class = entire_webpage>
             <div class = "nav_bar">
                 <div class = "round_square_btn_area" id="Home">
-                    <div class = "round_btn"></div>
+                    <div class = "home_btn">
+                        <i class="fas fa-home"></i>
+                    </div>
                 </div>
 
                 <div class = "workspace_overall">
                     <div class = "round_square_btn_area">
-                        <div class = "big_round_square_btn" id = "Workspace_icon"></div>
+                        <div class = "big_round_square_btn" id = "Workspace_icon">D</div>
                     </div>                
                     <div class = "workspace_name_area">
-                        <div class = "workspace_name"></div>
+                        <div class = "workspace_name">DogPaw</div>
                     </div>
 
                     <div class = "toggle_btn_area">
-                        <div class = "toggle_btn">V</div>    
+                        <div class = "toggle_btn">
+                            <i class="fas fa-angle-down"></i>
+                        </div>    
                     </div>
                 </div>
                 
                 <div class = "top_toolbar">
-                    <div class = "round_square_btn_area">
-                        <div class = "round_btn" id="Activity"></div>
+                    <div class = "round_square_btn_area" id="Activity">
+                        <div class = "round_btn" >
+                            <i class="fas fa-bell"></i>
+                        </div>
                     </div>
-                    <div class = "round_square_btn_area">
-                        <div class = "round_btn" id="Mention"></div>
+                    <div class = "round_square_btn_area" id="Mention">
+                        <div class = "round_btn" >
+                            <i class="fas fa-at"></i>
+                        </div>
                     </div>
-                    <div class = "round_square_btn_area">
-                        <div class = "round_btn" id="Favorite"></div>
+                    <div class = "round_square_btn_area" id="Favorite">
+                        <div class = "round_btn" >
+                            <i class="fas fa-star"></i>
+                        </div>
                     </div>
-                    <div class = "round_square_btn_area">
-                        <div class = "round_btn" id="File"></div>
+                    <div class = "round_square_btn_area" id="File">
+                        <div class = "round_btn" >
+                            <i class="fas fa-file"></i>
+                        </div>
                     </div>
-                    <div class = "round_square_btn_area">
-                        <div class = "round_btn" id="Member"></div>
+                    <div class = "round_square_btn_area" id="Member">
+                        <div class = "round_btn" >
+                            <i class="fas fa-user-friends"></i>
+                        </div>
                     </div>
+                    <div class = "search_area">
+                        <div class = "search_bar_icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+    
+                        <input type="text" placeholder="DogPaw 내에서 검색"></input>
+                    </div>
+                   
 
-                    <input type="text"></input>
-
                     <div class = "round_square_btn_area">
-                        <div class = "round_btn" id="User"></div>
+                        <div class = "round_btn" id="User">DP</div>
                     </div>
                 </div>
 
@@ -57,10 +78,14 @@
                 <div class = "left_bar">
                     <div class = "left_toolbar">
                         <div class = "round_square_btn_area">
-                            <div class = "big_round_square_btn" id="channel_box">채널</div>
+                            <div class = "big_round_square_btn" id="channel_box">
+                                <i class="fas fa-comment"></i>
+                            </div>
                         </div>
                         <div class = "round_square_btn_area">
-                            <div class = "big_round_square_btn" id="project_box">프젝</div>
+                            <div class = "big_round_square_btn" id="project_box">
+                                <i class="fas fa-check-square"></i>
+                            </div>
                         </div>
                     </div>
 
@@ -69,23 +94,45 @@
                 <div class = "explorer_area">
                     <div class = "explorer">
 
-                        <div class = "explorer_channels" id = "explore_channels">explore_channels</div>
-
+                        <div class = "explorer_channels_area" id = "explore_channels">
+                            <div class = "explorer_channels_icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div class = "explorer_channels">
+                                explore_channels
+                            </div>
+                        </div>
                         <div class = "explorer_text_btn_area">
-                            <div class = "explorer_text_btn" id ="channel">channel</div>
-                            <div class = "explorer_add_btn" id = "add_channel"></div>
+                            <div class = "explorer_text_btn" id ="channel">Channel</div>
+                            <div class = "explorer_add_btn" id = "add_channel">
+                                <i class="fas fa-plus fa-xs"></i>
+                            </div>
                         </div>
                         <div class = "explorer_lists" id = "channel">
+                            <div class = "explorer_list_star">
+                                <i class="fas fa-star fa-xs"></i>
+                            </div>
                             <div class = "list_text_btn">General</div>
+                            <div class = "explorer_list_ring">
+                                <i class="fas fa-bell fa-xs"></i>
+                            </div>
                         </div>
 
                         <div class = "explorer_text_btn_area">
                             <div class = "explorer_text_btn" id ="Direct_message">Direct_message</div>
-                            <div class = "explorer_add_btn" id = "add_DM"></div>
+                            <div class = "explorer_add_btn" id = "add_DM">
+                                <i class="fas fa-plus fa-xs"></i>
+                            </div>
                         </div>
 
                         <div class = "explorer_lists" id = "DM">
+                            <div class = "explorer_list_star">
+                                <i class="fas fa-star fa-xs"></i>
+                            </div>
                             <div class = "list_text_btn">(me)</div>
+                            <div class = "explorer_list_ring">
+                                <i class="fas fa-bell fa-xs"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -94,19 +141,26 @@
 
                     <div class = "workspace_info">
                         <div class = "infos">
-                            <div class = toggle_btn_area>
-                                <div class = toggle_btn id="star">*</div>
+                            <div class = toggle_btn_area id="star">
+                                <div class = toggle_btn >
+                                    <i class="fas fa-star"></i>
+                                </div>
                             </div>
-                            <div class ="channel_name">기본</div>
+                            <div class ="channel_name_area">
+                                <div class = "channel_name">DogPaw</div>
+                            </div>
                             
                             <div class = toggle_btn_area>
-                                <div class = toggle_btn>v</div>
+                                <div class = toggle_btn>
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
                             </div>
                         </div>
 
                         <div class = "chatNidea">
                             <div class = "btn_with_belowtext_area" id = "chatting">
                                 <div class = "btn_with_belowtext_btn">
+                                    <i class="fas fa-comment fa-lg"></i>
                                 </div>
                                 <div class = "btn_with_belowtext_text">
                                     chat
@@ -114,6 +168,7 @@
                             </div>
                             <div class = "btn_with_belowtext_area" id = "idea">
                                 <div class = "btn_with_belowtext_btn">
+                                    <i class="fas fa-hockey-puck fa-lg"></i>
                                 </div>
                                 <div class = "btn_with_belowtext_text">
                                     idea
@@ -125,7 +180,7 @@
                         <div class = "chatting_infos">
                             <div class = "btn_with_sidetext_area" id = "channel_members">
                                 <div class = "btn_with_sidetext_btn">
-
+                                    <i class="fas fa-user"></i>
                                 </div>
                                 <div class = "btn_with_sidetext_text">
                                     1
@@ -133,7 +188,7 @@
                             </div>
                             <div class = "btn_with_sidetext_area" id = "fixed_msg">
                                 <div class = "btn_with_sidetext_btn">
-
+                                    <i class="fas fa-thumbtack"></i>
                                 </div>
                                 <div class = "btn_with_sidetext_text">
                                     1
@@ -141,12 +196,17 @@
                             </div>
                             <div class = "btn_with_sidetext_area" id = "tabs">
                                 <div class = "btn_with_sidetext_btn">
-
+                                    <i class="fas fa-clone"></i>
                                 </div>
                                 <div class = "btn_with_sidetext_text">
                                     1
                                 </div>
                             </div>  
+                            <div class = "right_panel_btn_area">
+                                <div class = "right_panel_btn">
+                                    <i class="fas fa-window-maximize"></i>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
