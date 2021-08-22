@@ -1,0 +1,174 @@
+.build-div {
+    width: 600px;
+    padding: 25px 50px 25px 50px;
+    margin: 75px auto;
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.step-div {
+    width: 50px;
+    height: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.step-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.blue-icon {
+    background-color: #478BFF;
+}
+
+.gray-icon {
+    background-color: #D8D8DB;
+}
+
+.step-title {
+    margin: 20px 0 50px 0;
+}
+
+.question-span {
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+
+.answer-input {
+    height: 40px;
+    border-style: double;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #D8D8DB;
+    margin: 0 0 20px 0;
+}
+
+.answer-input::placeholder {
+    color: #D8d8d8;
+}
+
+.workspace-name-input {
+    width: 600px;
+}
+
+.workspace-name-input:focus {
+    outline: none;
+    border-color: brown;
+}
+
+.url-sub-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.workspace-url-input {
+    width: 400px;
+}
+
+.workspace-url-input:focus {
+    outline: none;
+    border-color: brown;
+}
+
+.fixed-url-span {
+}
+
+.warning-direction-div {
+    display: none;
+}
+
+.default-direction-span {
+    margin: 20px 0 20px 0;
+}
+
+.btn-sub-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; 
+}
+
+.cancel-btn {
+    width: 125px;
+    height: 40px;
+    margin: 0 5px 0 0;
+    background-color: white;
+    border-style: double;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #D8D8DB;
+    color: #8b8e95;
+}
+
+.next-btn {
+    width: 125px;
+    height: 40px;
+    margin: 0 0 0 5px;
+    background-color: #D8D8DB;
+    border-width: 0px;
+    border-radius: 5px;
+    border-color: #D8D8DB;
+    color: white;
+}
+
+.invitation-icon {
+    display: inline;
+}
+
+.invitation-title {
+    display: inline;
+    margin: 0px 0px 0px 5px;
+}
+
+.invitation-direction {
+    display: block;
+    font-size: 13px;
+    margin: 20px 0px 20px 0px;
+}
+
+.email-invitation-input {
+    width: 600px;
+    height: 40px;
+    border-style: double;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #D8D8DB;
+}
+
+.email-invitation-input:focus {
+    outline: none;
+    border-color: #8b8e95;
+}
+
+.send-invitation-btn {
+    width: 125px;
+    height: 30px;
+    float: right;
+    margin: 20px 0px 20px 0px;
+
+    background-color: #D8D8DB;
+    border-width: 0px;
+    border-radius: 5px;
+    border-color: #D8D8DB;
+    color: white;
+}
+
+.link-invitation-input {
+    display: block;
+}
+
+.invite-later-span {
+    margin: 0px auto;
+    text-decoration: underline;
+}
+
+.invite-later-span:hover {
+    color: #478BFF;
+    cursor: pointer;
+}

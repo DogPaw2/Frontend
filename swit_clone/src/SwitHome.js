@@ -1,3 +1,5 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './SwitHome.css';
 
 function SwitHome() {
@@ -24,7 +26,9 @@ function SwitHome() {
             </div>
           </div>
           <div className="workspace-div">
-            <div className="build-workspace-box">+ Build a Free-plan workspace</div>
+            <div className="build-workspace-box">
+              <Link to="/build-workspace1">+ Build a Free-plan workspace</Link>
+            </div>
             <div className="workspace-box">
               <div className="workspace-photo">T</div>
               <div className="workspace-text">
