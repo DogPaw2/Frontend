@@ -1,4 +1,7 @@
 import './MainScreen.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome, faAngleDown, faBell, faAt, faStar, faFile, faUserFriends, faSearch, faComment, faCheckSquare, faLayerGroup, 
+    faPlus, faHockeyPuck, faUser, faThumbtack, faClone, faWindowMaximize,  faCaretSquareDown, faCaretSquareRight, faSmile} from "@fortawesome/free-solid-svg-icons";
 
 function MainScreen(){
     return(
@@ -6,7 +9,7 @@ function MainScreen(){
             <div className = "nav_bar">
                 <div className = "round_square_btn_area" id="Home">
                     <div className = "home_btn">
-                        <i className="fas fa-home"></i>
+                        <FontAwesomeIcon icon={faHome} className="search" />
                     </div>
                 </div>
 
@@ -20,40 +23,42 @@ function MainScreen(){
 
                     <div className = "toggle_btn_area">
                         <div className = "toggle_btn">
-                            <i className="fas fa-angle-down"></i>
-                        </div>    
+                            <FontAwesomeIcon icon={faAngleDown} className="search" />
+                        </div>
                     </div>
                 </div>
                 
                 <div className = "top_toolbar">
                     <div className = "round_square_btn_area" id="Activity">
                         <div className = "round_btn" >
-                            <i className="fas fa-bell"></i>
+                            <FontAwesomeIcon icon={faBell} className="search" />
                         </div>
                     </div>
                     <div className = "round_square_btn_area" id="Mention">
                         <div className = "round_btn" >
-                            <i className="fas fa-at"></i>
+                            <FontAwesomeIcon icon={faAt} className="search" />    
                         </div>
                     </div>
                     <div className = "round_square_btn_area" id="Favorite">
                         <div className = "round_btn" >
-                            <i className="fas fa-star"></i>
+                            <FontAwesomeIcon icon={faStar} className="search" />
                         </div>
                     </div>
                     <div className = "round_square_btn_area" id="File">
                         <div className = "round_btn">
-                            <i className="fas fa-file"></i>
+                            <FontAwesomeIcon icon={faFile} className="search" />
+                            
                         </div>
                     </div>
                     <div className = "round_square_btn_area" id="Member">
                         <div className = "round_btn" >
-                            <i className="fas fa-user-friends"></i>
+                            <FontAwesomeIcon icon={faUserFriends} className="search" />
+                            
                         </div>
                     </div>
                     <div className = "search_area">
                         <div className = "search_bar_icon">
-                            <i className="fas fa-search"></i>
+                            <FontAwesomeIcon icon={faSearch} className="search" />
                         </div>
     
                         <input type="text" placeholder="DogPaw 내에서 검색"></input>
@@ -72,12 +77,14 @@ function MainScreen(){
                     <div className = "left_toolbar">
                         <div className = "round_square_btn_area">
                             <div className = "big_round_square_btn" id="channel_box">
-                                <i className="fas fa-comment"></i>
+                                <FontAwesomeIcon icon={faComment} className="search" />
+                            
                             </div>
                         </div>
                         <div className = "round_square_btn_area">
                             <div className = "big_round_square_btn" id="project_box">
-                                <i className="fas fa-check-square"></i>
+                                <FontAwesomeIcon icon={faCheckSquare} className="search" />
+                                
                             </div>
                         </div>
                     </div>
@@ -89,7 +96,8 @@ function MainScreen(){
 
                         <div className = "explorer_channels_area" id = "explore_channels">
                             <div className = "explorer_channels_icon">
-                                <i className="fas fa-layer-group"></i>
+                                <FontAwesomeIcon icon={faLayerGroup} className="search" />
+                                
                             </div>
                             <div className = "explorer_channels">
                                 explore_channels
@@ -98,33 +106,33 @@ function MainScreen(){
                         <div className = "explorer_text_btn_area">
                             <div className = "explorer_text_btn" id ="channel">Channel</div>
                             <div className = "explorer_add_btn" id = "add_channel">
-                                <i className="fas fa-plus fa-xs"></i>
+                                <FontAwesomeIcon icon={faPlus} className="search" />
                             </div>
                         </div>
                         <div className = "explorer_lists" id = "channel">
                             <div className = "explorer_list_star">
-                                <i className="fas fa-star fa-xs"></i>
+                                <FontAwesomeIcon icon={faStar} className="search" />
                             </div>
                             <div className = "list_text_btn">General</div>
                             <div className = "explorer_list_ring">
-                                <i className="fas fa-bell fa-xs"></i>
+                                <FontAwesomeIcon icon={faBell} className="search" />    
                             </div>
                         </div>
 
                         <div className = "explorer_text_btn_area">
                             <div className = "explorer_text_btn" id ="Direct_message">Direct_message</div>
                             <div className = "explorer_add_btn" id = "add_DM">
-                                <i className="fas fa-plus fa-xs"></i>
+                                <FontAwesomeIcon icon={faPlus} className="search" />
                             </div>
                         </div>
 
                         <div className = "explorer_lists" id = "DM">
                             <div className = "explorer_list_star">
-                                <i className="fas fa-star fa-xs"></i>
+                                <FontAwesomeIcon icon={faStar} className="search" />
                             </div>
                             <div className = "list_text_btn">(me)</div>
                             <div className = "explorer_list_ring">
-                                <i className="fas fa-bell fa-xs"></i>
+                                <FontAwesomeIcon icon={faBell} className="search" />
                             </div>
                         </div>
                     </div>
@@ -136,7 +144,7 @@ function MainScreen(){
                         <div className = "infos">
                             <div className = "toggle_btn_area" id="star">
                                 <div className = "toggle_btn" >
-                                    <i className="fas fa-star"></i>
+                                    <FontAwesomeIcon icon={faStar} className="search" />
                                 </div>
                             </div>
                             <div className ="channel_name_area">
@@ -145,7 +153,7 @@ function MainScreen(){
                             
                             <div className = "toggle_btn_area">
                                 <div className = "toggle_btn">
-                                    <i className="fas fa-angle-down"></i>
+                                    <FontAwesomeIcon icon={faAngleDown} className="search" />
                                 </div>
                             </div>
                         </div>
@@ -153,7 +161,7 @@ function MainScreen(){
                         <div className = "chatNidea">
                             <div className = "btn_with_belowtext_area" id = "chatting">
                                 <div className = "btn_with_belowtext_btn">
-                                    <i className="fas fa-comment fa-lg"></i>
+                                    <FontAwesomeIcon icon={faComment} className="search" />
                                 </div>
                                 <div className = "btn_with_belowtext_text">
                                     chat
@@ -161,7 +169,7 @@ function MainScreen(){
                             </div>
                             <div className = "btn_with_belowtext_area" id = "idea">
                                 <div className = "btn_with_belowtext_btn">
-                                    <i className="fas fa-hockey-puck fa-lg"></i>
+                                    <FontAwesomeIcon icon={faHockeyPuck} className="search" />
                                 </div>
                                 <div className = "btn_with_belowtext_text">
                                     idea
@@ -173,7 +181,7 @@ function MainScreen(){
                         <div className = "chatting_infos">
                             <div className = "btn_with_sidetext_area" id = "channel_members">
                                 <div className = "btn_with_sidetext_btn">
-                                    <i className="fas fa-user"></i>
+                                    <FontAwesomeIcon icon={faUser} className="search" />
                                 </div>
                                 <div className = "btn_with_sidetext_text">
                                     1
@@ -181,7 +189,7 @@ function MainScreen(){
                             </div>
                             <div className = "btn_with_sidetext_area" id = "fixed_msg">
                                 <div className = "btn_with_sidetext_btn">
-                                    <i className="fas fa-thumbtack"></i>
+                                    <FontAwesomeIcon icon={faThumbtack} className="search" />
                                 </div>
                                 <div className = "btn_with_sidetext_text">
                                     1
@@ -189,7 +197,7 @@ function MainScreen(){
                             </div>
                             <div className = "btn_with_sidetext_area" id = "tabs">
                                 <div className = "btn_with_sidetext_btn">
-                                    <i className="fas fa-clone"></i>
+                                    <FontAwesomeIcon icon={faClone} className="search" />
                                 </div>
                                 <div className = "btn_with_sidetext_text">
                                     1
@@ -197,20 +205,86 @@ function MainScreen(){
                             </div>  
                             <div className = "right_panel_btn_area">
                                 <div className = "right_panel_btn">
-                                    <i className="fas fa-window-maximize"></i>
+                                    <FontAwesomeIcon icon={faWindowMaximize} className="search" />
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    
-                    <div className = "main_chatting">
 
+                    <div className = "main_chatting">
+                        <div className = "chatting_input_area"> 
+                            <div className = "content_add_btn_area">
+                                <FontAwesomeIcon icon={faPlus} className="search" size="2x"/>
+                            </div>
+
+                            <div className = "chat_text_input">
+                                <input type = "text" placeholder= "Send your Message"></input>
+                            </div>
+
+                            <div className = "chat_buttons" id = "Tbox">
+                                <div className = "chat_button">
+                                    <FontAwesomeIcon icon={faCaretSquareDown} className="search" />
+                                </div>
+
+                                <div className = "chat_button" id = "at">
+                                    <FontAwesomeIcon icon={faAt} className="search" />
+                                </div>
+
+                                <div className = "chat_button" id = "imogi">
+                                    <FontAwesomeIcon icon={faSmile} className="search" />
+                                </div>
+
+                                <div className = "chat_button" id = "append_chat">
+                                    <FontAwesomeIcon icon={faCaretSquareRight} className="search" size="3x"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className= "date_line_area">
+                            <div className = "d_line"></div>
+                            <div className = "date">yesterday</div>
+                            <div className = "d_line"></div>
+                        </div>
+
+                        <div className= "invite_area">
+                            <div className= "chatting_room_member">
+                                @Leekyeongjun
+                            </div>
+
+                            <div className = "invite_text">
+                                has entered
+                            </div>
+
+                            <div className = "chatting_room_name">
+                                Team DogPaw's chatting room
+                            </div>                            
+                        </div>
+
+                        <div className = "chatbox">
+                            <div className = "profile_circle">
+
+                            </div>
+
+                            <div className = "chat_area">
+                                <div className = "chatter_info_area">
+                                    <div className = "chatter_name">
+                                            LeeKyeongJun
+                                    </div>
+
+                                    <div className="wrote_time">
+                                            08:25 PM
+                                    </div>
+                                </div>
+
+                                <div className = "chat_content">
+                                    abcdefg
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     );
 }
 
