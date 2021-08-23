@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
 import './SwitHome.css';
 import './BuildWorkspace.css';
 
-function BuildWorkspace() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+function BuildWorkspace( {history} ) {
+    const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm( {mode: "onChange"});
     const onSubmit = (data) => console.log(data);
 
     return (
@@ -33,6 +31,7 @@ function BuildWorkspace() {
                             type="text"
                             placeholder=" Workspace name"
                             autoComplete="off"
+                            required
                             {...register("singleErrorInput", {
                                 required: true
                             })}>
@@ -44,10 +43,12 @@ function BuildWorkspace() {
                                 type="text"
                                 placeholder=" your-workspace-url"
                                 autoComplete="off"
+                                required
+                                pattern="^[A-Za-z0-9][A-Za-z0-9-]{2,18}[A-Za-z0-9]$"
                                 {...register("urlErrorInput", {
                                     required: true,
                                     pattern: {
-                                        value: /^[A-Za-z0-9][A-Za-z0-9-]{2,19}[A-Za-z0-9]$/,
+                                        value: /^[A-Za-z0-9][A-Za-z0-9-]{2,18}[A-Za-z0-9]$/,
                                         message: "Must be 4-20 characters and only contain alphabet letters and numbers, along with hyphens (-) not in the first or last position."
                                     }
                                 })}>
@@ -57,12 +58,8 @@ function BuildWorkspace() {
                         {errors.urlErrorInput && <p className="validation-error-message">{errors.urlErrorInput.message}</p>}
                         <span className="default-direction-span">You can rename workspace or set a new URL in the setting at any time.</span>
                         <div className="btn-sub-div">
-                            <button className="cancel-btn">
-                                <Link to="/swit-home">Cancel</Link>
-                            </button>
-                            <button className="next-btn">
-                                <Link to="/build-workspace2">Next</Link>
-                            </button>
+                            <button className="cancel-btn" onClick={()=>{history.push("/swit-home")}}>Cancel</button>
+                            <button className="next-btn" onClick={()=>{history.push("/build-workspace2")}} disabled={!isDirty || !isValid}>Next</button>
                         </div>
                     </form>
                 </div>

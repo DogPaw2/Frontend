@@ -45,20 +45,25 @@
     border-width: 1px;
     border-radius: 5px;
     border-color: #D8D8DB;
-    margin: 0 0 20px 0;
+    margin: 10px 0 20px 0;
 }
 
 .answer-input::placeholder {
     color: #D8d8d8;
 }
 
-.workspace-name-input {
-    width: 600px;
-}
-
-.workspace-name-input:focus {
+.answer-input:focus:invalid {
     outline: none;
     border-color: brown;
+}
+
+.answer-input:focus:valid {
+    outline: none;
+}
+
+
+.workspace-name-input {
+    width: 600px;
 }
 
 .url-sub-div {
@@ -95,6 +100,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center; 
+
+    margin: 20px 0 0 0
 }
 
 .cancel-btn {
@@ -109,15 +116,33 @@
     color: #8b8e95;
 }
 
+.cancel-btn:hover {
+    border-color: #8b8e95;
+    cursor: pointer;
+}
+
 .next-btn {
     width: 125px;
     height: 40px;
     margin: 0 0 0 5px;
-    background-color: #D8D8DB;
     border-width: 0px;
     border-radius: 5px;
-    border-color: #D8D8DB;
     color: white;
+
+    background-color: #478BFF;
+    border-color: #478BFF;
+
+}
+
+.next-btn:hover {
+    background-color: #1E68F6;
+    border-color: #1E68F6;
+    cursor: pointer;
+}
+
+.next-btn:disabled {
+    background-color: #D8D8DB;
+    border-color: #D8D8DB;
 }
 
 .invitation-icon {
