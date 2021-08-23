@@ -79,8 +79,11 @@
 .fixed-url-span {
 }
 
-.warning-direction-div {
-    display: none;
+.validation-error-message {
+    display: block;
+    margin: 0 0 10px 0;
+    color: brown;
+    font-size: 12.5px;
 }
 
 .default-direction-span {
