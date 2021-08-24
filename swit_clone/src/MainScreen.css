@@ -391,16 +391,27 @@ body{
     align-items: center;
     height: 4rem;
     width : 4rem;
+    color :#488AFC;
 }
-.btn_with_belowtext_area:hover{
+
+#idea:hover
+{
     cursor: pointer;
+    color:#8B8E95;
 }
+
+#idea
+{
+    color:#B9BABE;
+}
+
+
 .btn_with_belowtext_btn{
     display: flex;
     align-items: center;
     justify-content: center;
     flex:none;
-    color :#488AFC;
+    
     margin-top : 0.25rem;
     height: 2rem;
     width: 2rem;
@@ -411,7 +422,7 @@ body{
     flex:none;
     text-align: center;
     margin-bottom : 0.25rem;
-    color: #488AFC;
+
     width : 2rem;
     
 }
