@@ -1,10 +1,15 @@
-import React, { Component } from 'react';
+import React , {useState} from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup, faPlus, faStar, faBell } from "@fortawesome/free-solid-svg-icons";
-class template extends Component{
-    render(){
-        return(
-            <div className = "explorer_area">
+import { faLayerGroup, faPlus, faStar, faBell,faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+
+function MainExplorer(){
+    const [isOpen, setExplorer] = useState(false);
+    const toggle = () => {
+        setExplorer(isOpen => !isOpen);
+    }
+    return(
+        <div className = "explorer_toggle_area">
+            <div className = {isOpen ? "explorer_area_hide" : "explorer_area_show"}>
                 <div className = "explorer">
                     <div className = "explorer_channels_area" id = "explore_channels">
                         <div className = "explorer_channels_icon">
@@ -49,10 +54,15 @@ class template extends Component{
                     </div>
                 </div>
             </div>
-        );
-    }
+
+            <div className = "explorer_shrink_btn" onClick={toggle}>
+                    <FontAwesomeIcon icon={isOpen ? faAngleRight : faAngleLeft} className="search" size="0.5x"/>
+            </div>
+
+        </div>
+    );
 }
 
-export default template;
+export default MainExplorer;
 
 

@@ -208,12 +208,30 @@ body{
 }
 
         /*======================explorer_area=========================*/
-.explorer_area{
+.explorer_toggle_area{
+    display:flex;
+    flex-direction: row;
+}
+
+.explorer_area_show{
     display :flex;
     flex-direction: column;
     align-items: center;
     border-right: 1px solid #E4E4E9;
-    min-width : 13rem;
+    width : 13rem;
+    transition:0.5s;
+}
+
+.explorer_area_hide
+{
+    display:hidden;
+    width:0rem;
+    transition:0.5s;
+}
+
+.explorer_area_hide .explorer
+{
+    display:none;
 }
 
 .explorer
@@ -221,6 +239,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 .explorer_channels_area{
     display:flex;
@@ -321,6 +340,18 @@ body{
 }
 .explorer_lists:hover{
     background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.explorer_shrink_btn
+{
+    width : auto;
+    height:auto;
+    display:flex;
+    align-items: center;
+}
+
+.explorer_shrink_btn:hover{
     cursor: pointer;
 }
         /*=======================main_area=========================*/
@@ -545,7 +576,6 @@ body{
     align-items: center;
     justify-content: space-between;
     margin-left: auto;
-
 }
 
 .chat_button{
@@ -556,7 +586,11 @@ body{
     width:2rem;
     color : #E6E6E8;
 }
-
+.chat_button:hover
+{
+    color : #B9BABE;
+    cursor: pointer;
+}
 #append_chat
 {
     height:2.5rem;
