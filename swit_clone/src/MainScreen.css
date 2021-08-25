@@ -192,7 +192,6 @@ body{
 .left_bar{
     display: flex;
     flex-direction: column;
-     
     border-right : 1px solid #E4E4E9;
 }
 .left_toolbar{
@@ -214,24 +213,20 @@ body{
 }
 
 .explorer_area_show{
-    display :flex;
+    display:flex;
     flex-direction: column;
     align-items: center;
     border-right: 1px solid #E4E4E9;
     width : 13rem;
-    transition:0.5s;
+
 }
 
 .explorer_area_hide
 {
-    display:hidden;
-    width:0rem;
-    transition:0.5s;
-}
-
-.explorer_area_hide .explorer
-{
     display:none;
+    opacity:0;
+    width:0rem;
+
 }
 
 .explorer
@@ -363,6 +358,7 @@ body{
 }
         
 .workspace_info{
+    z-index: 1;
     background-color: white;
     display:flex;
     flex-direction:row;
@@ -502,28 +498,6 @@ body{
     width:1rem;
 }
 
-.right_panel_btn_area{
-    flex:none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left:0.5rem;
-    border-radius: 10%;
-    border : solid 1px #D8D8DB;
-    height: 2.5rem;
-    width: 2.5rem;
-}
-
-.right_panel_btn
-{
-    display: flex;
-    color:#393939;
-}
-.right_panel_btn_area:hover{
-    cursor:pointer;
-
-}
-
 /*============================main chatting============================*/
 .main_chatting
 {
@@ -536,6 +510,7 @@ body{
 
 .chatting_input_area
 {
+    width: 98%;
     margin : 1.5rem;
     height : 3rem;
     background-color: #FFFFFF;
@@ -543,6 +518,7 @@ body{
     display: flex;
     flex-direction : row;
     align-items: center;
+    
 }
 .content_add_btn_area
 {
@@ -562,7 +538,7 @@ body{
 
 .chat_text_input input[type="text"]{
     height: 2.5rem;
-    width: 85rem;
+    min-width: 80rem;
     margin-left : 0.5rem;
     border : none;
     background-color:white;
@@ -574,7 +550,7 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-left: auto;
 }
 
@@ -586,6 +562,7 @@ body{
     width:2rem;
     color : #E6E6E8;
 }
+
 .chat_button:hover
 {
     color : #B9BABE;
@@ -595,7 +572,6 @@ body{
 {
     height:2.5rem;
     width:2.5rem;
-    margin-left:1rem;
     margin-right:0.5rem;
 }
 
@@ -604,13 +580,13 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width:103.75rem;
+    width:100%;
     height :3rem;
 }
 
 .d_line{
     background-color: #E6E6E8;
-    min-width : 45rem;
+    min-width : 45%;
     height:1px;
 
 }
@@ -618,12 +594,12 @@ body{
 .date{
     color: black;
     text-align: center;
-    min-width : 13.75rem;
+    min-width : 10%;
 
 }
 
 .invite_area{
-    width:103.75rem;
+    width:100%;
     height: 1.8rem;
     display: flex;
     flex-direction: row;
@@ -702,3 +678,57 @@ body{
 {
     margin-top:0.5rem;
 }
+
+    /*====================right_panel========================*/
+
+.right_panel
+{
+    flex-shrink: 0;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right_panel_btn_div
+{
+    display: flex;
+    align-items: center;
+    width:2.5rem;
+    height:7.4%;
+    border-bottom: 1px solid #E6E6E8;
+}
+
+.right_panel_else_div{
+    display: flex;
+    align-items: center;
+    width:2.5rem;
+    height:100%;
+    background-color: #f8f8f8; 
+}
+
+.right_panel_btn_area{
+    
+    margin-top: 0.5rem;
+    flex:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10%;
+    border : solid 1px #D8D8DB;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+.right_panel_btn
+{
+    display: flex;
+    color:#393939;
+}
+.right_panel_btn_area:hover{
+    cursor:pointer;
+
+}
+
+.right_panel_hide
+{
+    display:none;
+}   

@@ -14,7 +14,6 @@ function MainExplorer(){
                     <div className = "explorer_channels_area" id = "explore_channels">
                         <div className = "explorer_channels_icon">
                             <FontAwesomeIcon icon={faLayerGroup} className="search" />
-                            
                         </div>
                         <div className = "explorer_channels">
                             explore_channels

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './MainScreen.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faBell, faAt, faStar, faFile, faUserFriends, faComment, faCheckSquare,
@@ -12,18 +12,15 @@ import SearchArea from './MainScreenComponents/SearchArea';
 import UserInfoCircle from './MainScreenComponents/UserInfoCircle';
 import MainExplorer from './MainScreenComponents/MainExplorer';
 import MainWorkspaceInfo from './MainScreenComponents/MainWorkspaceInfo';
+import HomeBtn from './MainScreenComponents/HomeBtn';
 
 
 function MainScreen(){
     return(
         <div className = "entire_webpage">
             <div className = "nav_bar">
-                <div className = "round_square_btn_area" id="Home">
-                    <div className = "home_btn">
-                        <FontAwesomeIcon icon={faHome} className="search" />
-                    </div>
-                </div>
-
+                
+                <HomeBtn />
                 <WorkspaceOverall />
 
                 <div className = "top_toolbar">
@@ -58,7 +55,6 @@ function MainScreen(){
                 </div>
 
             </div>
-        
             <div className = "container">
                 <div className = "left_bar">
                     <div className = "left_toolbar">
@@ -74,10 +70,7 @@ function MainScreen(){
                         </div>
                     </div>
                 </div>
-
                 <MainExplorer />
-            
-
                 <div className = "main_area">
                     <div className = "workspace_info">
 
@@ -127,16 +120,12 @@ function MainScreen(){
                                     1
                                 </div>
                             </div>  
-                            <div className = "right_panel_btn_area">
-                                <div className = "right_panel_btn">
-                                    <FontAwesomeIcon icon={faWindowMaximize} className="search" />
-                                </div>
-                            </div>
+
                         </div>
                     </div>
-
                     <div className = "main_chatting">
                         <div className = "chatting_input_area"> 
+                        
                             <div className = "content_add_btn_area">
                                 <FontAwesomeIcon icon={faPlus} className="search" size="2x"/>
                             </div>
@@ -168,6 +157,18 @@ function MainScreen(){
                         <InvitationArea />
                         <ChatBox />
                         
+                    </div>
+                </div>
+                <div className = "right_panel">
+                    <div className = "right_panel_btn_div">
+                        <div className = "right_panel_btn_area">
+                            <div className = "right_panel_btn">
+                                <FontAwesomeIcon icon={faWindowMaximize} className="search" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className = "right_panel_else_div">
+
                     </div>
                 </div>
             </div>

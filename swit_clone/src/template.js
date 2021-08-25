@@ -1,10 +1,10 @@
 /*
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class template extends Component{
-    render(){
-        return();
-    }
+function template(){
+    return(
+        
+    );
 }
 
 export default template;
