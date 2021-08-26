@@ -198,6 +198,11 @@
     justify-content: flex-start;
 }
 
+.switch-button {
+    width: 32px;
+    height: 18px;
+}
+
 .link-invitation-direction {
     font-size: 13px;
     margin: 20px 10px 20px 10px;
@@ -260,13 +265,22 @@
     width: 400px;
     height: 40px;
     padding: 0 0 0 20px;
-    margin: 25px auto;
+    margin: 30px auto;
     background: rgba(0,0,0,0.8);
     color: white;
     text-align: left;
     line-height: 40px;
+    animation: copy-confirmed-show .3s;
 }
 
-.copy-confirmed-div:disabled {
-    visibility: hidden
+@keyframes copy-confirmed-show {
+    from {
+        opacity: 0;
+        margin-top: 20px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
 }
+
