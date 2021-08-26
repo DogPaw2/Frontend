@@ -1,39 +1,48 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-//import axios from 'axios';
+import axios from 'axios';
 import './SwitHome.css';
 import './BuildWorkspace.css';
 
 function BuildWorkspace( {history} ) {
-    /*
+
     const [Name, setName] = useState("");
     const [Url, setUrl] = useState("");
 
     const nameSetter = (e) => {
         e.preventDefault();
         setName(e.target.value);
-    }
+    };
 
     const urlSetter = (e) => {
         e.preventDefault();
         setUrl(e.target.vaule);
-    }
-
+    };
+    
     const submitHandler = (e) => {
         e.preventDefault();
         console.log(Name);
         console.log(Url);
-    }
 
-    let answer = {
-        name: Name,
-        url: Url
-    }
+        let answer = {
+            "name": Name,
+            "url": Url
+        };
 
-    axios
-        .post("http://localhost:8080/api/workspace", answer)
-        .then((res) => console.log(res));
-    */
+        axios({
+            method:"POST",
+            url: "http://localhostL8080/api/workspace",
+            data: {
+                name: Name,
+                url: Url
+            }
+        }).then((res)=>{
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    };
+
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm( {mode: "onChange"});
     const onSubmit = (data) => console.log(data);
 
@@ -54,7 +63,7 @@ function BuildWorkspace( {history} ) {
                         <div className="step-icon gray-icon"></div>
                     </div>
                     <h2 className="step-title">Build a workspace your team will love.</h2>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form onSubmit={handleSubmit(onSubmit), submitHandler}>
                         <span className="question-span">What do you want to call your team workspace?</span>
                         <input
                             className="answer-input workspace-name-input"
@@ -62,6 +71,7 @@ function BuildWorkspace( {history} ) {
                             placeholder=" Workspace name"
                             autoComplete="off"
                             required
+                            onChange={nameSetter}
                             {...register("singleErrorInput", {
                                 required: true
                             })}>
@@ -74,6 +84,7 @@ function BuildWorkspace( {history} ) {
                                 placeholder=" your-workspace-url"
                                 autoComplete="off"
                                 required
+                                onChange={urlSetter}
                                 pattern="^[A-Za-z0-9][A-Za-z0-9-]{2,18}[A-Za-z0-9]$"
                                 {...register("urlErrorInput", {
                                     required: true,
@@ -89,7 +100,7 @@ function BuildWorkspace( {history} ) {
                         <span className="default-direction-span">You can rename workspace or set a new URL in the setting at any time.</span>
                         <div className="btn-sub-div">
                             <button className="cancel-btn" onClick={()=>{history.push("/swit-home")}}>Cancel</button>
-                            <button className="next-btn" onClick={()=>{history.push("/build-workspace2")}} disabled={!isDirty || !isValid}>Next</button>
+                            <button className="next-btn" type="button" onClick={()=>{history.push("/build-workspace2")}} disabled={!isDirty || !isValid}>Next</button>
                         </div>
                     </form>
                 </div>
