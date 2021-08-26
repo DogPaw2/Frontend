@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import SwitchButton from './SwitchButton';
 import './SwitHome.css';
 import './BuildWorkspace.css';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 
 function BuildWorkspace() {
+    const [inviteUrl, setInviteUrl] = useState("https://invite.swit.io/blahblah");
+    const onUrlChange = (e) => {
+        setInviteUrl(e.target.value);
+    }
+    
+    const [copied, setCopied] = useState(false);
+    const confirmCopied = () => {
+        setCopied(!copied);
+    }
+
+    const [checked, setChecked] = useState(false);
+    const onCheckedChange = (checked) => {
+        setChecked(checked);
+    }
+
     return (
         <div className="BuildWorkspace">
             <div className="swit-header">
@@ -33,10 +51,17 @@ function BuildWorkspace() {
                     <div className="link-invitation-div">
                         <FontAwesomeIcon className="invitation-icon" icon={faLink}/>
                         <h4 className="invitation-title">Invite people via link</h4>
-                        <input className="link-invitation-input"></input>
-                        <label className="invitation-direction">Activate invitation link</label>
+                        <div className="link-creation-div">
+                            <SwitchButton ischecked={checked} onChange={onCheckedChange}/>
+                            <label className="link-invitation-direction">Activate invitation link</label>
+                        </div>
+                        <input className="new-invitation-link" value="https://invite.swit.io/blahblah" onChange={onUrlChange}></input>
+                        <CopyToClipboard text={inviteUrl}>
+                            <button className="link-copy-button" onClick={confirmCopied}>Copy</button>
+                        </CopyToClipboard>
                     </div>
                     <span className="invite-later-span">Invite later</span>
+                    {copied ? <div className="copy-confirmed-div">Link copied to clipboard.</div> : <div></div>}
 
                 </div>
             </div>

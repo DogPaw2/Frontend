@@ -187,8 +187,63 @@
     color: white;
 }
 
+.link-invitation-div {
+    margin: 0 0 50px 0;
+}
+
+.link-creation-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.link-invitation-direction {
+    font-size: 13px;
+    margin: 20px 10px 20px 10px;
+}
+
 .link-invitation-input {
     display: block;
+}
+
+.new-invitation-link {
+    width: 470px;
+    height: 40px;
+    padding: 0 10px 0 10px;
+
+    border-style: double;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #D8D8DB;
+
+    font-size: 14px;
+    text-align: left;
+    line-height: 40px;
+
+    display: inline-block;
+
+}
+
+.link-copy-button {
+    width: 100px;
+    height: 40px;
+
+    margin: 0 0 0 5px;
+    border-width: 0px;
+    border-radius: 5px;
+    color: white;
+
+    background-color: #478BFF;
+    border-color: #478BFF;
+
+    display: inline-block;
+}
+
+.link-copy-button:hover {
+    background-color: #1E68F6;
+    border-color: #1E68F6;
+    cursor: pointer;
 }
 
 .invite-later-span {
@@ -199,4 +254,19 @@
 .invite-later-span:hover {
     color: #478BFF;
     cursor: pointer;
+}
+
+.copy-confirmed-div {
+    width: 400px;
+    height: 40px;
+    padding: 0 0 0 20px;
+    margin: 25px auto;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    text-align: left;
+    line-height: 40px;
+}
+
+.copy-confirmed-div:disabled {
+    visibility: hidden
 }

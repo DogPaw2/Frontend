@@ -1,0 +1,38 @@
+.SwitchButton {
+    position: relative;
+    width: 30px;
+    height: 15px;
+}
+.switch-input {
+    display: none;
+}
+
+.switch-input:checked + .ball {
+    transform: translateX(24px);
+}
+
+.switch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+
+    position: relative;
+    width: 30px;
+    height: 15px;
+    border-radius: 50px;
+
+    background-color: #d8d8d8;
+}
+
+.ball {
+    position: absolute;
+    height: 11px;
+    width: 11px;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+
+    transition: transform 0.2s linear;
+
+    background-color: white;
+}

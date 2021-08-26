@@ -1,9 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+//import axios from 'axios';
 import './SwitHome.css';
 import './BuildWorkspace.css';
 
 function BuildWorkspace( {history} ) {
+    /*
+    const [Name, setName] = useState("");
+    const [Url, setUrl] = useState("");
+
+    const nameSetter = (e) => {
+        e.preventDefault();
+        setName(e.target.value);
+    }
+
+    const urlSetter = (e) => {
+        e.preventDefault();
+        setUrl(e.target.vaule);
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        console.log(Name);
+        console.log(Url);
+    }
+
+    let answer = {
+        name: Name,
+        url: Url
+    }
+
+    axios
+        .post("http://localhost:8080/api/workspace", answer)
+        .then((res) => console.log(res));
+    */
     const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm( {mode: "onChange"});
     const onSubmit = (data) => console.log(data);
 
