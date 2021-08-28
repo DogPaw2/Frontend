@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import './SwitHome.css';
+import '../SwitHome/SwitHome.css';
 import './BuildWorkspace.css';
 
 function BuildWorkspace( {history} ) {

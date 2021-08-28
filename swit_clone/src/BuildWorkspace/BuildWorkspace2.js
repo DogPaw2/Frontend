@@ -4,7 +4,7 @@ import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Switch from 'react-switch';
 import LinkModal from './LinkModal';
-import './SwitHome.css';
+import '../SwitHome/SwitHome.css';
 import './BuildWorkspace.css';
 
 function BuildWorkspace() {

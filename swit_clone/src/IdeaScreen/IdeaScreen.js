@@ -5,15 +5,15 @@ import { faBell, faAt, faStar, faFile, faUserFriends, faComment, faCheckSquare,
     faPlus, faUser, faThumbtack, faClone, faWindowMaximize,  faCaretSquareDown, faCaretSquareRight, faSmile} from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
 
-import DateLine from './ChatComponents/DateLine';
-import InvitationArea from './ChatComponents/InvitationArea';
-import ChatBox from './ChatComponents/ChatBox';
-import WorkspaceOverall from './MainScreenComponents/WorkspaceOverall';
-import SearchArea from './MainScreenComponents/SearchArea';
-import UserInfoCircle from './MainScreenComponents/UserInfoCircle';
-import MainExplorer from './MainScreenComponents/MainExplorer';
-import MainWorkspaceInfo from './MainScreenComponents/MainWorkspaceInfo';
-import HomeBtn from './MainScreenComponents/HomeBtn';
+import DateLine from '../ChatComponents/DateLine';
+import InvitationArea from '../ChatComponents/InvitationArea';
+import ChatBox from '../ChatComponents/ChatBox';
+import WorkspaceOverall from '../MainScreenComponents/WorkspaceOverall';
+import SearchArea from '../MainScreenComponents/SearchArea';
+import UserInfoCircle from '../MainScreenComponents/UserInfoCircle';
+import MainExplorer from '../MainScreenComponents/MainExplorer';
+import MainWorkspaceInfo from '../MainScreenComponents/MainWorkspaceInfo';
+import HomeBtn from '../MainScreenComponents/HomeBtn';
 import IdeaPost from './IdeaPost';
 
 

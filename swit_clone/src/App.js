@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
-import SwitHome from './SwitHome';
-import BuildWorkspace1 from './BuildWorkspace1';
-import BuildWorkspace2 from './BuildWorkspace2';
+import SwitHome from './SwitHome/SwitHome';
+import BuildWorkspace1 from './BuildWorkspace/BuildWorkspace1';
+import BuildWorkspace2 from './BuildWorkspace/BuildWorkspace2';
 import MainScreen from './MainScreen';
-import IdeaScreen from './IdeaScreen';
+import IdeaScreen from './IdeaScreen/IdeaScreen';
 
 function App() {
     return (
