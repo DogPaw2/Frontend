@@ -1,5 +1,5 @@
 import React from 'react';
-import './MainScreen.css';
+import './IdeaScreen.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faAt, faStar, faFile, faUserFriends, faComment, faCheckSquare,
     faPlus, faUser, faThumbtack, faClone, faWindowMaximize,  faCaretSquareDown, faCaretSquareRight, faSmile} from "@fortawesome/free-solid-svg-icons";
@@ -14,9 +14,10 @@ import UserInfoCircle from './MainScreenComponents/UserInfoCircle';
 import MainExplorer from './MainScreenComponents/MainExplorer';
 import MainWorkspaceInfo from './MainScreenComponents/MainWorkspaceInfo';
 import HomeBtn from './MainScreenComponents/HomeBtn';
+import IdeaPost from './IdeaPost';
 
 
-function MainScreen(){
+function IdeaScreen(){
     return(
         <div className = "entire_webpage">
             <div className = "nav_bar">
@@ -78,23 +79,23 @@ function MainScreen(){
                         <MainWorkspaceInfo />
 
                         <div className = "chatNidea">
-                            <div className = "btn_with_belowtext_area" id = "chatting">
-                                <div className = "btn_with_belowtext_btn">
-                                    <FontAwesomeIcon icon={faComment} className="search" />
-                                </div>
-                                <div className = "btn_with_belowtext_text">
-                                    chat
-                                </div>
-                            </div>
-                            <div className = "btn_with_belowtext_area" id = "idea">
-                                <Link to="/idea">
+                            <div className = "btn_with_belowtext_area" id = "chatting-in-idea-page">
+                                <Link to="/chat">
                                     <div className = "btn_with_belowtext_btn">
-                                        <FontAwesomeIcon icon={faWindowMaximize} className="search" />
+                                        <FontAwesomeIcon icon={faComment} className="search" />
                                     </div>
                                     <div className = "btn_with_belowtext_text">
-                                        idea
+                                        chat
                                     </div>
                                 </Link>
+                            </div>
+                            <div className = "btn_with_belowtext_area" id = "idea-in-idea-page">
+                                <div className = "btn_with_belowtext_btn">
+                                    <FontAwesomeIcon icon={faWindowMaximize} className="search" />
+                                </div>
+                                <div className = "btn_with_belowtext_text">
+                                    idea
+                                </div>
                             </div>  
                         </div>
 
@@ -126,41 +127,25 @@ function MainScreen(){
 
                         </div>
                     </div>
-                    <div className = "main_chatting">
-                        <div className = "chatting_input_area"> 
-                        
-                            <div className = "content_add_btn_area">
-                                <FontAwesomeIcon icon={faPlus} className="search" size="2x"/>
+                    <div className = "main-idea">
+                        <div className="idea-adding-div">
+                            <div className="idea-adding-text-div">
+                                <input className="idea-adding-text-input" placeholder="Share your idea to ask for feedback, collect data, or decide what to eat for lunch."/>
                             </div>
-
-                            <div className = "chat_text_input">
-                                <input type = "text" placeholder= "Send your Message"></input>
+                            <div className="idea-adding-etc-div">
+                                <FontAwesomeIcon icon={faPlus} className="search" size="1.5x"/>
+                                <div className="white-space-div"></div>
+                                <FontAwesomeIcon icon={faCaretSquareDown} className="search" />
+                                <FontAwesomeIcon icon={faAt} className="search" />
+                                <FontAwesomeIcon icon={faSmile} className="search" />
                             </div>
-
-                            <div className = "chat_buttons" id = "Tbox">
-                                <div className = "chat_button">
-                                    <FontAwesomeIcon icon={faCaretSquareDown} className="search" />
-                                </div>
-
-                                <div className = "chat_button" id = "at">
-                                    <FontAwesomeIcon icon={faAt} className="search" />
-                                </div>
-
-                                <div className = "chat_button" id = "imogi">
-                                    <FontAwesomeIcon icon={faSmile} className="search" />
-                                </div>
-
-                                <div className = "chat_button" id = "append_chat">
-                                    <FontAwesomeIcon icon={faCaretSquareRight} className="search" size="3x"/>
-                                </div>
+                            <div className="idea-adding-btn-div">
+                                <button className="idea-btn idea-cancel-btn">Cancel</button>
+                                <button className="idea-btn idea-confirm-btn">Confirm</button>
                             </div>
                         </div>
-
-                        <DateLine />
-                        <InvitationArea />
-                        <ChatBox />
-                        
                     </div>
+
                 </div>
                 <div className = "right_panel">
                     <div className = "right_panel_btn_div">
@@ -180,4 +165,4 @@ function MainScreen(){
 }
 
 
-export default MainScreen;
+export default IdeaScreen;

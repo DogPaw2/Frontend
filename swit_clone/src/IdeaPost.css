@@ -1,0 +1,42 @@
+.idea-post {
+    width: 680px;
+    min-height: 195px;
+    background-color: white;
+    margin: 0 auto;
+    border: 1px solid;
+    border-color: #D8D8DB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.idea-content-div {
+    width: 98%;
+    min-height: 145px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.idea-content-profile-photo {
+    width: 35px;
+    height: 35px;
+    background-color: #8147FB;
+    border-radius: 50%;
+}
+
+.idea-content-writing-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.idea-content-writing-name {
+
+}
+
+.idea-content-writing-time {
+}
