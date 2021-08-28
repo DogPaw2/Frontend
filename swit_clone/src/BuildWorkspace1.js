@@ -1,51 +1,87 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import './SwitHome.css';
 import './BuildWorkspace.css';
 
 function BuildWorkspace( {history} ) {
+    /*
+    useEffect(() => {
+        axios.post("http://localhost:8080/api/user", {
+            name: "testName"
+        })
+        .then(function(response) {console.log(response.config.data);})
+        .catch(error=>{console.log(error.response);})
 
-    const [Name, setName] = useState("");
-    const [Url, setUrl] = useState("");
+        letsgo()
+    }, []);
+
+
+    const letsgo = () => {
+        axios.post("http://localhost:8080/api/workspace", {
+            name: "DogPaw",
+            url: "haha",
+            userId: "1"
+        })
+        .then(function(response) {console.log(response);})
+        .catch(error=>{console.log(error.response);})
+        
+    }
+    */
+
+    const [workspaceName, setName] = useState("");
+    const [workspaceUrl, setUrl] = useState("");
+    const [isValidName, setIsValidName] = useState(false);
+    const [isTypeError, setIsTypeError] = useState(false);
+    const [isDuplicateError, setIsDuplicateError] = useState(false);
 
     const nameSetter = (e) => {
         e.preventDefault();
+        if (e.target.value != "") {
+            setIsValidName(true);
+        }
         setName(e.target.value);
+        console.log(e.target.value);
     };
 
     const urlSetter = (e) => {
         e.preventDefault();
+        var regExp = /^[A-Za-z0-9][A-Za-z0-9-]{2,18}[A-Za-z0-9]$/;
+        if (!regExp.test(e.target.value)) {
+            setIsTypeError(true);
+        }
+        else {
+            setIsTypeError(false);
+            axios.post("http://localhost:8080/api/checkUrl", { //api undefined
+                url: e.target.value
+            }).then((res) => {
+                if (res.data != null) {
+                    setIsDuplicateError(true);
+                }
+                else {
+                    setIsDuplicateError(false);
+                }
+            }).catch((err) => { console.log(err.response); })
+        }
         setUrl(e.target.vaule);
+        console.log(e.target.value);
     };
     
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(Name);
-        console.log(Url);
-
+        console.log("submission");
         let answer = {
-            "name": Name,
-            "url": Url
-        };
+            name: workspaceName,
+            url: workspaceUrl,
+            userId: "1"
+        }
 
-        axios({
-            method:"POST",
-            //url: "http://localhostL8080/api/workspace",
-            url: "http://localhost:8080/api/workspace",
-            data: {
-                name: Name,
-                url: Url
-            }
-        }).then((res)=>{
-            console.log(res.data);
-        }).catch((err)=>{
-            console.log(err);
-        })
+        axios
+            .post("http://localhost:8080/api/workspace", answer)
+            .then((res) => { console.log(res.data); })
+            .catch((err) => { console.log(err.response); })
+
     };
-
-    const { register, handleSubmit, formState: { errors, isDirty, isValid } } = useForm( {mode: "onChange"});
-    const onSubmit = (data) => console.log(data);
 
     return (
         <div className="BuildWorkspace">
@@ -64,45 +100,33 @@ function BuildWorkspace( {history} ) {
                         <div className="step-icon gray-icon"></div>
                     </div>
                     <h2 className="step-title">Build a workspace your team will love.</h2>
-                    <form onSubmit={handleSubmit(onSubmit), submitHandler}>
+                    <form onSubmit={submitHandler}>
                         <span className="question-span">What do you want to call your team workspace?</span>
                         <input
                             className="answer-input workspace-name-input"
                             type="text"
+                            value={workspaceName || ""}
+                            onChange={nameSetter}
                             placeholder=" Workspace name"
                             autoComplete="off"
                             required
-                            onChange={nameSetter}
-                            {...register("singleErrorInput", {
-                                required: true
-                            })}>
-                        </input>
+                        />
                         <span className="question-span">Enter your workspace's Swit URL</span>
-                        <div className="url-sub-div">
-                            <input
-                                className="answer-input workspace-url-input"
-                                type="text"
-                                placeholder=" your-workspace-url"
-                                autoComplete="off"
-                                required
-                                onChange={urlSetter}
-                                pattern="^[A-Za-z0-9][A-Za-z0-9-]{2,18}[A-Za-z0-9]$"
-                                {...register("urlErrorInput", {
-                                    required: true,
-                                    pattern: {
-                                        value: /^[A-Za-z0-9][A-Za-z0-9-]{2,18}[A-Za-z0-9]$/,
-                                        message: "Must be 4-20 characters and only contain alphabet letters and numbers, along with hyphens (-) not in the first or last position."
-                                    }
-                                })}>
-                            </input>
-                            <span className="direction-span">.swit.io</span><br/>
-                        </div>
-                        {errors.urlErrorInput && <p className="validation-error-message">{errors.urlErrorInput.message}</p>}
+                        <input
+                            className="answer-input workspace-url-input"
+                            type="text"
+                            value={workspaceUrl}
+                            onChange={urlSetter}
+                            placeholder=" your-workspace-url"
+                            autoComplete="off"
+                            required
+                        />
+                        <span className="direction-span">.swit.io</span><br/>
+                        {isTypeError && <p className="validation-error-message">Must be 4-20 characters and only contain alphabet letters and numbers, along with hyphens (-) not in the first or last position.</p>}
+                        {isDuplicateError && <p className="validation-error-message">Sorry, that is already in use.</p>}
                         <span className="default-direction-span">You can rename workspace or set a new URL in the setting at any time.</span>
-                        <div className="btn-sub-div">
-                            <button className="cancel-btn" onClick={()=>{history.push("/swit-home")}}>Cancel</button>
-                            <button className="next-btn" type="button" onClick={()=>{history.push("/build-workspace2")}} disabled={!isDirty || !isValid}>Next</button>
-                        </div>
+                        <button className="cancel-btn" type="button" onClick={()=>{history.push("/swit-home")}}>Cancel</button>
+                        <button className="next-btn" type="button" onClick={()=>{history.push("/build-workspace2")}} disabled={!isValidName || isTypeError || isDuplicateError}>Next</button>
                     </form>
                 </div>
             </div>

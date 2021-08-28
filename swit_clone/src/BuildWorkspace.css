@@ -66,12 +66,6 @@
     width: 600px;
 }
 
-.url-sub-div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
 .workspace-url-input {
     width: 400px;
 }
@@ -95,19 +89,11 @@
     margin: 20px 0 20px 0;
 }
 
-.btn-sub-div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center; 
-
-    margin: 20px 0 0 0
-}
 
 .cancel-btn {
     width: 125px;
     height: 40px;
-    margin: 0 5px 0 0;
+    margin: 40px 5px 0 175px;
     background-color: white;
     border-style: double;
     border-width: 1px;
@@ -124,7 +110,7 @@
 .next-btn {
     width: 125px;
     height: 40px;
-    margin: 0 0 0 5px;
+    margin: 40px 0 0 5px;
     border-width: 0px;
     border-radius: 5px;
     color: white;

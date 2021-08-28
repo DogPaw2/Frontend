@@ -4,11 +4,8 @@ import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Switch from 'react-switch';
 import LinkModal from './LinkModal';
-
 import './SwitHome.css';
 import './BuildWorkspace.css';
-import { propTypes } from 'react-bootstrap/esm/Image';
-
 
 function BuildWorkspace() {
     const [inviteUrl, setInviteUrl] = useState("https://invite.swit.io/blahblah");
