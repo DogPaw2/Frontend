@@ -31,7 +31,8 @@ function BuildWorkspace( {history} ) {
 
         axios({
             method:"POST",
-            url: "http://localhostL8080/api/workspace",
+            //url: "http://localhostL8080/api/workspace",
+            url: "http://localhost:8080/api/workspace",
             data: {
                 name: Name,
                 url: Url

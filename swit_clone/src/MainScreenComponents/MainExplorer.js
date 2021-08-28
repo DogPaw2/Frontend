@@ -55,7 +55,7 @@ function MainExplorer(){
             </div>
 
             <div className = "explorer_shrink_btn" onClick={toggle}>
-                    <FontAwesomeIcon icon={isOpen ? faAngleRight : faAngleLeft} className="search" size="0.5x"/>
+                    <FontAwesomeIcon icon={isOpen ? faAngleRight : faAngleLeft} className="search" size="sm"/>
             </div>
 
         </div>

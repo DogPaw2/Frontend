@@ -1,7 +1,7 @@
 import React from 'react';
 import './MainScreen.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faBell, faAt, faStar, faFile, faUserFriends, faComment, faCheckSquare,
+import { faBell, faAt, faStar, faFile, faUserFriends, faComment, faCheckSquare,
     faPlus, faUser, faThumbtack, faClone, faWindowMaximize,  faCaretSquareDown, faCaretSquareRight, faSmile} from "@fortawesome/free-solid-svg-icons";
 
 import DateLine from './ChatComponents/DateLine';
