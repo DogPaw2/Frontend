@@ -4,8 +4,8 @@ import axios from 'axios';
 function UserInfoCircle(){
     const [Username, setUser] = useState('');
 
-    const getUsername = (uid) => {
-        const username = axios.get('http://localhost:8080/api/workspace',{
+    const getUsername = async(uid) => {
+        const username = await axios.get('http://localhost:8080/api/workspace',{
             data:{
                 "userId": uid
             }

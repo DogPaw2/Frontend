@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,7 +12,6 @@ function SearchArea(){
 
             <input type="text" placeholder="DogPaw 내에서 검색"></input>
         </div>
-
     );
 }
 
