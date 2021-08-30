@@ -5,7 +5,6 @@ import '../SwitHome/SwitHome.css';
 import './BuildWorkspace.css';
 
 function BuildWorkspace( {history} ) {
-    /*
     useEffect(() => {
         axios.post("http://localhost:8080/api/user", {
             name: "testName"
@@ -27,7 +26,6 @@ function BuildWorkspace( {history} ) {
         .catch(error=>{console.log(error.response);})
         
     }
-    */
 
     const [workspaceName, setName] = useState("");
     const [workspaceUrl, setUrl] = useState("");
@@ -52,7 +50,7 @@ function BuildWorkspace( {history} ) {
         }
         else {
             setIsTypeError(false);
-            axios.post("http://localhost:8080/api/checkUrl", { //api undefined
+            axios.post("http://localhost:8080/api/workspace", { //api undefined
                 url: e.target.value
             }).then((res) => {
                 if (res.data != null) {

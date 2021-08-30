@@ -28,11 +28,15 @@ function IdeaScreen(){
                                 <input className="idea-adding-text-input" placeholder="Share your idea to ask for feedback, collect data, or decide what to eat for lunch."/>
                             </div>
                             <div className="idea-adding-etc-div">
-                                <FontAwesomeIcon icon={faPlus} className="search" size="1.5x"/>
+                                <div className="vertical-line-div">
+                                    <FontAwesomeIcon icon={faPlus} className="search" size="1.5x"/>
+                                </div>
                                 <div className="white-space-div"></div>
-                                <FontAwesomeIcon icon={faCaretSquareDown} className="search" />
-                                <FontAwesomeIcon icon={faAt} className="search" />
-                                <FontAwesomeIcon icon={faSmile} className="search" />
+                                <div className="idea-adding-etc-icon-div">
+                                    <FontAwesomeIcon icon={faCaretSquareDown} className="search" />
+                                    <FontAwesomeIcon icon={faAt} className="search" />
+                                    <FontAwesomeIcon icon={faSmile} className="search" />
+                                </div>                                
                             </div>
                             <div className="idea-adding-btn-div">
                                 <button className="idea-btn idea-cancel-btn">Cancel</button>
@@ -41,6 +45,7 @@ function IdeaScreen(){
                         </div>
                     </div>
                     
+                    <IdeaPost   />
                 </div>
                 <RightPanel />
             </div>
