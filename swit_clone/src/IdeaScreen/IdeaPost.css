@@ -96,11 +96,22 @@
     margin: 15px 0 15px 0;
 }
 
-.idea-comment-input {
+.idea-comment-writing-div {
     width: 100%;
-    height: 45px;
+    min-height: 45px;
     margin: 20px 0 20px 0;
     border: solid 1px #D8D8D8;
+}
+
+.idea-comment-writing-div:focus-within {
+    min-height: 88px;
+    border: solid 1px gray;
+}
+
+.idea-comment-input {
+    width: 95%;
+    min-height: 45px;
+    border: white;
 }
 
 .idea-comment-input::placeholder {
@@ -110,4 +121,26 @@
 
 .idea-comment-input:focus {
     outline: none;
+}
+
+.comment-confirm-icon-div {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 0px;
+    background-color: #488AFC;
+
+}
+
+.comment-confirm-icon-div:hover {
+    background-color: #1E68F6;
+    cursor: pointer;
+}
+
+.comment-confirm-icon-div:disabled {
+    background-color: #D8D8D8;
+
+}
+.comment-confirm-icon {
+    color: white;
 }

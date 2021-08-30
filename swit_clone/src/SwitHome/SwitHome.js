@@ -7,19 +7,32 @@ function SwitHome() {
   const [userName, setUserName] = useState("정다은 서울 교육공학과");
   const [userEmail, setUserEmail] = useState("dianestar@hanyang.ac.kr")
   const [userSpot, setUserSpot] = useState("Member");
+
+  const [workspaceLists, setWorkspaceLists] = useState([]);
   const [workspaceName, setWorkspaceName] = useState("DogPaw");
   const [workspaceUrl, setWorkspaceUrl] = useState("dogpaw");
-  
+  /*
   const getWorkspaceInfo = () => {
-    axios.get("http://localhost:8080/api/workspace", {
-      userId: "5"
+    axios.get("http://localhost:8080/api/workspace/all", {
+      params: {
+        userId: 1
+      }
     })
-    .then(function(response) { console.log(response.config.data); })
+    .then(({data}) => { 
+      console.log(data.workspaceList[0]);
+      setWorkspaceLists(data.workspaceList);
+      console.log(workspaceLists);
+    })
     .catch(error=>{console.log(error.response);})
-  }
 
-  useEffect(() => {
-    getWorkspaceInfo()
+  }
+  */
+
+  useEffect(async () => {
+    const response = await axios.get("http://localhost:8080/api/workspace/all?userId=1");
+    setWorkspaceLists(response.data);
+    console.log(response.data);
+    console.log(workspaceLists);
   }, []);
 
    return (

@@ -609,13 +609,36 @@ body{
 }
 
 .idea-cancel-btn {
+    background-color: white;
+    border: solid 1px #D8D8D8;
+    color: gray;
+
+}
+
+.idea-cancel-btn:disabled {
     color: #D8D8DB;
     background-color: #F8F8F8;
+    border: none;
+}
+
+.idea-cancel-btn:hover {
+    cursor: pointer;
 }
 
 .idea-confirm-btn {
     color: white;
+    background-color: #488AFC;
+}
+
+.idea-confirm-btn:hover {
+    background-color: #1E68F6;
+    cursor: pointer;
+}
+
+.idea-confirm-btn:disabled {
+    color: white;
     background-color: #D8D8DB;
+
 }
 
     /*====================right_panel========================*/

@@ -6,20 +6,37 @@ import './BuildWorkspace.css';
 
 function BuildWorkspace( {history} ) {
     useEffect(() => {
-        axios.post("http://localhost:8080/api/user", {
-            name: "testName"
-        })
-        .then(function(response) {console.log(response.config.data);})
+
+        axios.get("http://localhost:8080/api/workspace/all?userId=1")
+        .then(function(response) {console.log(response);})
         .catch(error=>{console.log(error.response);})
 
-        letsgo()
+        /*
+        axios.get("http://localhost:8080/api/workspace", {
+            headers: {
+                "Content-Type": "application/json"
+            } 
+        })
+        .then(function(response) {console.log(response);})
+        .catch(error=>{console.log(error.response);})
+        */
+
+        
+        axios.post("http://localhost:8080/api/user", {
+            name: "hi"
+        })
+        .then(function(response) {console.log(response);})
+        .catch(error=>{console.log(error.response);})
+        
+        letsgo();
+        
     }, []);
 
 
     const letsgo = () => {
         axios.post("http://localhost:8080/api/workspace", {
             name: "DogPaw",
-            url: "haha",
+            url: "hoho",
             userId: "1"
         })
         .then(function(response) {console.log(response);})
