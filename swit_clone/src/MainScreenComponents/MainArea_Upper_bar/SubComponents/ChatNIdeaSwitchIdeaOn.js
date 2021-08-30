@@ -5,10 +5,10 @@ import { faComment, faWindowMaximize } from "@fortawesome/free-solid-svg-icons";
 
 
 
-const ChatNIdeaSwitch = () =>{
+const ChatNIdeaSwitchIdeaOn = () =>{
     return(
         <div className ="chatNidea">
-            <div className = "btn_with_belowtext_area" id ="chat_opened">
+            <div className = "btn_with_belowtext_area" id ="chat_closed">
                 <Link to="/chat">
                     <div className = "btn_with_belowtext_btn">
                         <FontAwesomeIcon icon={faComment} className="search" />
@@ -18,7 +18,7 @@ const ChatNIdeaSwitch = () =>{
                     </div>
                 </Link>
             </div>
-            <div className = "btn_with_belowtext_area" id = "idea_closed">
+            <div className = "btn_with_belowtext_area" id = "idea_opened">
                 <Link to="/idea">
                     <div className = "btn_with_belowtext_btn">
                         <FontAwesomeIcon icon={faWindowMaximize} className="search" />
@@ -32,4 +32,4 @@ const ChatNIdeaSwitch = () =>{
     );
 }
 
-export default ChatNIdeaSwitch;
+export default ChatNIdeaSwitchIdeaOn;

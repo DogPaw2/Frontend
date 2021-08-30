@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function UserInfoCircle(){
+    /*
     const [Username, setUser] = useState('');
 
     const getUsername = async(uid) => {
@@ -16,11 +17,11 @@ function UserInfoCircle(){
         getUsername("123")
         //should be variable
     },[]);
-
+    */
     return(
         <div className = "round_square_btn_area">
             <div className = "round_btn" id="User">
-                {Username}
+                Username
             </div>
         </div>
     );

@@ -6,11 +6,12 @@ import {faPlus, faAt, faCaretSquareDown, faSmile} from "@fortawesome/free-solid-
 //MainScreenComponents
 import NavBar from '../MainScreenComponents/Navigation_bar/NavBar';
 import LeftBar from '../MainScreenComponents/Left_bar/LeftBar';
-import MainUpperBar from '../MainScreenComponents/MainArea_Upper_bar/MainUpperBar';
+import MainUpperBarIdeaOn from '../MainScreenComponents/MainArea_Upper_bar/MainUpperBarIdeaOn';
 import MainExplorer from '../MainScreenComponents/Explorer/MainExplorer';
 import RightPanel from '../MainScreenComponents/Right_panel/RightPanel';
 
 import IdeaPost from './IdeaPost';
+
 
 function IdeaScreen(){
     return(
@@ -20,7 +21,7 @@ function IdeaScreen(){
                 <LeftBar />
                 <MainExplorer />    
                 <div className = "main_area">
-                    <MainUpperBar />
+                    <MainUpperBarIdeaOn />
 
                     <div className = "main-idea">
                         <div className="idea-adding-div">

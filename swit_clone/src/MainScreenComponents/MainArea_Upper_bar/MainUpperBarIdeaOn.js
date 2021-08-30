@@ -1,17 +1,17 @@
 import React from 'react';
 
 import MainChannelInfo from './SubComponents/MainChannelInfo';
-import ChatNIdeaSwitch from './SubComponents/ChatNIdeaSwitch';
+import ChatNIdeaSwitchIdeaOn from './SubComponents/ChatNIdeaSwitchIdeaOn';
 import ChatInfoBar from './SubComponents/ChatInfoBar';
 
-function MainUpperBar(){
+function MainUpperBarIdeaOn(){
     return(
         <div className = "workspace_info">
             <MainChannelInfo />
-            <ChatNIdeaSwitch />
+            <ChatNIdeaSwitchIdeaOn />
             <ChatInfoBar />
         </div>
     );
 }
 
-export default MainUpperBar;
+export default MainUpperBarIdeaOn;

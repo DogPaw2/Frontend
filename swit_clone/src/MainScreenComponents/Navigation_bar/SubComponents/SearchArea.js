@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,7 +8,7 @@ function SearchArea(){
                 <FontAwesomeIcon icon={faSearch} className="search" />
             </div>
 
-            <input type="text" placeholder="DogPaw 내에서 검색"></input>
+            <input type="text" placeholder="Search in ..."></input>
         </div>
     );
 }

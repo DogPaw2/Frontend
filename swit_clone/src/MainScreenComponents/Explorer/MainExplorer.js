@@ -1,6 +1,9 @@
 import React , {useState} from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup, faPlus, faStar, faBell,faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faLayerGroup, faPlus, faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+
+import Channelblock from './Channelblock';
+import DMblock from './DMblock';
 
 function MainExplorer(){
     const [isOpen, setExplorer] = useState(false);
@@ -19,21 +22,14 @@ function MainExplorer(){
                             explore_channels
                         </div>
                     </div>
+                    
                     <div className = "explorer_text_btn_area">
                         <div className = "explorer_text_btn" id ="channel">Channel</div>
                         <div className = "explorer_add_btn" id = "add_channel">
                             <FontAwesomeIcon icon={faPlus} className="search" />
                         </div>
                     </div>
-                    <div className = "explorer_lists" id = "channel">
-                        <div className = "explorer_list_star">
-                            <FontAwesomeIcon icon={faStar} className="search" />
-                        </div>
-                        <div className = "list_text_btn">General</div>
-                        <div className = "explorer_list_ring">
-                            <FontAwesomeIcon icon={faBell} className="search" />    
-                        </div>
-                    </div>
+                    <Channelblock />
 
                     <div className = "explorer_text_btn_area">
                         <div className = "explorer_text_btn" id ="Direct_message">Direct_message</div>
@@ -41,16 +37,8 @@ function MainExplorer(){
                             <FontAwesomeIcon icon={faPlus} className="search" />
                         </div>
                     </div>
-
-                    <div className = "explorer_lists" id = "DM">
-                        <div className = "explorer_list_star">
-                            <FontAwesomeIcon icon={faStar} className="search" />
-                        </div>
-                        <div className = "list_text_btn">(me)</div>
-                        <div className = "explorer_list_ring">
-                            <FontAwesomeIcon icon={faBell} className="search" />
-                        </div>
-                    </div>
+                    <DMblock />
+                    
                 </div>
             </div>
 
