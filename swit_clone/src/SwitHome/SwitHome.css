@@ -1,7 +1,6 @@
 html, body, .SwitHome {
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
 .swit-header {
@@ -65,7 +64,7 @@ html, body, .SwitHome {
 }
 
 .main-div {
-  width: 930px;
+  width: 950px;
   height: 100%;
   margin: 0px auto;
 }
@@ -143,10 +142,12 @@ html, body, .SwitHome {
   cursor: pointer;
 }
 .workspace-div {
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .build-workspace-box {
@@ -242,6 +243,8 @@ html, body, .SwitHome {
 }
 
 .leave {
+  border: none;
+  background-color: white;
   padding: 2px 2px 2px 2px;
   color: #8b8e95;
 }
@@ -250,6 +253,7 @@ html, body, .SwitHome {
   border-radius: 5px;
   background-color: #F1F1F1;
   color: brown;
+  cursor: pointer;
 }
 
 a {

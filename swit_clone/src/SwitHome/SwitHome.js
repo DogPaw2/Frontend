@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import LeaveModal from './LeaveModal';
 import './SwitHome.css';
 
 function SwitHome() {
@@ -9,31 +10,51 @@ function SwitHome() {
   const [userSpot, setUserSpot] = useState("Member");
 
   const [workspaceLists, setWorkspaceLists] = useState([]);
-  const [workspaceName, setWorkspaceName] = useState("DogPaw");
-  const [workspaceUrl, setWorkspaceUrl] = useState("dogpaw");
-  /*
+  const [workspaceUpdate, setWorkspaceUpdate] = useState(0);
+
   const getWorkspaceInfo = () => {
     axios.get("http://localhost:8080/api/workspace/all", {
       params: {
         userId: 1
       }
     })
-    .then(({data}) => { 
-      console.log(data.workspaceList[0]);
-      setWorkspaceLists(data.workspaceList);
+    .then((response) => { 
+      console.log(response.data);
+
+      const wp = response.data.workspaceList.map(workspace => workspace);
+      setWorkspaceLists(wp);
       console.log(workspaceLists);
     })
     .catch(error=>{console.log(error.response);})
-
   }
-  */
 
-  useEffect(async () => {
-    const response = await axios.get("http://localhost:8080/api/workspace/all?userId=1");
-    setWorkspaceLists(response.data);
-    console.log(response.data);
-    console.log(workspaceLists);
-  }, []);
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  }
+  const cancelModal = () => {
+    setModalOpen(false);
+  }
+  const deleteModal = (workspaceId) => {
+    setModalOpen(false);
+    /*
+    axios.delete("http://localhost:8080/api/user", {
+      data: {
+        id: workspaceId
+      }
+    })
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch(error=>{console.log(error.response);})
+    */
+   setWorkspaceUpdate(workspaceUpdate+1);
+  }
+
+  useEffect(() => {
+    getWorkspaceInfo();
+  }, [workspaceUpdate])
+
 
    return (
      <div className="SwitHome">
@@ -61,19 +82,27 @@ function SwitHome() {
              <div className="build-workspace-box">
                <Link to="/build-workspace1">+ Build a Free-plan workspace</Link>
              </div>
-             <div className="workspace-box">
-               <div className="workspace-photo">{workspaceName.substring(0,1)}</div>
-               <div className="workspace-text">
-                 <span className="workspace-name">{workspaceName}</span>
-                 <span className="workspace-spot">{userSpot}</span>
-                 <div className="workspace-url">{workspaceUrl}.swit.io</div>
-                 <hr className="workspace-line"></hr>
-               </div>
-               <div className="workspace-nav">
-                 <span className="workspace-setting">Workspace settings</span>
-                 <span className="leave">Leave</span>
-               </div>
-             </div>
+             {workspaceLists.map((cur) => (
+              <div className="workspace-box">
+              <div className="workspace-photo">{cur.workspace.name.substring(0,1)}</div>
+              <div className="workspace-text">
+                <span className="workspace-name">{cur.workspace.name}</span>
+                <span className="workspace-spot">{userSpot}</span>
+                <div className="workspace-url">{cur.workspace.url}.swit.io</div>
+                <hr className="workspace-line"></hr>
+              </div>
+              <div className="workspace-nav">
+                <span className="workspace-setting">Workspace settings</span>
+                <button className="leave" onClick={openModal}>Leave</button>
+              </div>
+              {modalOpen ? 
+              <div>
+                <LeaveModal open={modalOpen} cancel={cancelModal} del={()=>{deleteModal(cur.workspace.id);}} workspaceName={cur.workspace.name}></LeaveModal>
+              </div>
+              : null
+              }
+            </div>
+             ))}
            </div>
          </div>
        </div>

@@ -1,0 +1,103 @@
+.modalLeave {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.modalLeave button {
+    outline: none;
+    cursor: pointer;
+    border: 0;
+}
+.modalLeave > div {
+    width: 500px;
+    height: 180px;
+    margin: 0 auto;
+    border-radius: .3rem;
+    background-color: #fff;
+    animation: modal-show .3s;
+    overflow: hidden;
+}
+
+.modal-content {
+    margin: 20px 20px 20px 20px;
+
+}
+
+.modal-direction-p {
+    font-size: 13px;
+    margin: 10px 0 40px 0;
+}
+
+.modal-btn-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.modal-cancel-btn {
+    width: 80px;
+    height: 30px;
+    
+    margin: 0 5px 0 0;
+    background-color: white;
+    border-style: double;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #D8D8DB;
+    color: #8b8e95;    
+
+}
+
+.modal-cancel-btn:hover {   
+    border-color: #8b8e95;
+    cursor: pointer;
+}
+
+.modal-delete-btn {
+    width: 80px;
+    height: 30px;
+    margin: 0 0 0 5px;
+    border-width: 0px;
+    border-radius: 5px;
+    color: white;
+
+    background-color: #A51200;
+    border-color: #A51200;
+}
+
+.modal-delete-btn:hover {
+    
+    background-color: #921000;
+    border-color: #921000;
+    cursor: pointer;
+}
+
+.modalLeave.openModal {
+    display: flex;
+    align-items: center;
+    animation: modal-bg-show .3s;
+}
+@keyframes modal-show {
+    from {
+        opacity: 0;
+        margin-top: -50px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+@keyframes modal-bg-show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

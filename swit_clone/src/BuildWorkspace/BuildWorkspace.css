@@ -120,7 +120,7 @@
 
 }
 
-.next-btn:hover {
+.next-btn:enabled:hover {
     background-color: #1E68F6;
     border-color: #1E68F6;
     cursor: pointer;
