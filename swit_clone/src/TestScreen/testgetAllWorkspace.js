@@ -8,7 +8,7 @@ http://localhost:8080/api/workspace
 */
 
 function GetAllWorkspace(){
-    const [WorkspaceLists, setWorkspaceLists] = useState({workspaces : []});
+    const [WorkspaceLists, setWorkspaceLists] = useState([]);
 
     const getUsername = () => {
         axios.get("http://localhost:8080/api/workspace/all",{
@@ -17,13 +17,10 @@ function GetAllWorkspace(){
             }
         }
         ).then(response => {
-            console.log(response.data.workspaceList);
-            console.log("-------useState쓴거---------");
-
+            console.log(response.data);
             const wp = response.data.workspaceList.map(workspace => workspace);
             setWorkspaceLists(wp);
             
-            console.log(WorkspaceLists)
             
         })
     }
@@ -34,7 +31,16 @@ function GetAllWorkspace(){
 
     return(
         <div>
-
+            <div>
+                WorkSpace_All GET Result
+                {WorkspaceLists.map((cur) => (
+                    <div key = {cur.workspace.id}>
+                        <div>=========================</div>
+                        <div>{cur.workspace.id}</div>
+                        <div>{cur.workspace.name}</div>
+                    </div>    
+                ))}
+            </div>
         </div>
     );
 
