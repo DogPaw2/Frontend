@@ -42,6 +42,44 @@ function BuildWorkspace() {
         setChecked(false);
     }
 
+    const [emailInput, setEmailInput] = useState("");
+    const [emailList, setEmailList] = useState([]);
+    const [yesExist, setYesExist] = useState(false);
+    const [emailTypeError, setEmailTypeError] = useState(false);
+
+    const inputChangeHandler = (e) => {
+        e.preventDefault();
+        if (e.target.value == "") {
+            setEmailTypeError(false);
+        }
+        setEmailInput(e.target.value);
+    }
+
+    const inputSubmitHandler = () => {
+        setEmailList([...emailList, emailInput]);
+        setEmailInput("");
+        if (emailList.length == 0) {
+            setYesExist(true);
+        }
+    }
+
+    const keyPressHandler = (e) => {
+        if (e.key == "Enter") {
+            var emailRegExp = /^[A-Za-z0-9]([-_\.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_\.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
+            if (!emailRegExp.test(e.target.value)) {
+                setEmailTypeError(true);
+            }
+            else {
+                setEmailTypeError(false);
+                inputSubmitHandler();
+            }
+        }
+    }
+
+    const emailDeleteHandler = (e) => {
+        setEmailList(emailList.filter(email => email !== e))
+    }
+    
     return (
         <div className="BuildWorkspace">
             <div className="swit-header">
@@ -62,8 +100,22 @@ function BuildWorkspace() {
                     <div className="email-invitation-div">
                         <FontAwesomeIcon className="invitation-icon" icon={faEnvelope}/>
                         <h4 className="invitation-title">Invite people via email</h4>
-                        <span className="invitation-direction">To invite multiple people, add the space bar, enter or a comma(,) after an email address.</span>
-                        <input className="email-invitation-input"></input>
+                        <span className="invitation-direction">To invite multiple people, add enter after an email address.</span>
+                        {emailTypeError ?
+                        <input className="email-invitation-input-error" value={emailInput} onChange={inputChangeHandler} onKeyPress={keyPressHandler} />
+                        : <input className="email-invitation-input" value={emailInput} onChange={inputChangeHandler} onKeyPress={keyPressHandler}/>
+                        }
+                        {emailTypeError && <p className="validation-error-message">Proper email adress formats required.</p>}
+                        {yesExist ?
+                            <div>
+                                {emailList.map(list => (
+                                    <div className="email-invitation-output-div">
+                                        <div className="email-invitation-output">{list}</div>
+                                        <button className="email-invitation-output-delete" >X</button>
+                                    </div>
+                                ))}
+                            </div>
+                        : null}
                         <button className="send-invitation-btn">Send invitation</button>
                     </div>
                     <div className="link-invitation-div">

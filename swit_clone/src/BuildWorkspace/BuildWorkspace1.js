@@ -5,44 +5,6 @@ import '../SwitHome/SwitHome.css';
 import './BuildWorkspace.css';
 
 function BuildWorkspace( {history} ) {
-    useEffect(() => {
-
-        axios.get("http://localhost:8080/api/workspace/all?userId=1")
-        .then(function(response) {console.log(response);})
-        .catch(error=>{console.log(error.response);})
-
-        /*
-        axios.get("http://localhost:8080/api/workspace", {
-            headers: {
-                "Content-Type": "application/json"
-            } 
-        })
-        .then(function(response) {console.log(response);})
-        .catch(error=>{console.log(error.response);})
-        */
-
-        
-        axios.post("http://localhost:8080/api/user", {
-            name: "hi"
-        })
-        .then(function(response) {console.log(response);})
-        .catch(error=>{console.log(error.response);})
-        
-        letsgo();
-        
-    }, []);
-
-
-    const letsgo = () => {
-        axios.post("http://localhost:8080/api/workspace", {
-            name: "DogPaw",
-            url: "hoho",
-            userId: "1"
-        })
-        .then(function(response) {console.log(response);})
-        .catch(error=>{console.log(error.response);})
-        
-    }
 
     const [workspaceName, setName] = useState("");
     const [workspaceUrl, setUrl] = useState("");
@@ -66,6 +28,10 @@ function BuildWorkspace( {history} ) {
             setIsTypeError(true);
         }
         else {
+            setIsTypeError(false); //eliminate afterwards
+        }
+        /*
+        else {
             setIsTypeError(false);
             axios.post("http://localhost:8080/api/workspace", { //api undefined
                 url: e.target.value
@@ -78,6 +44,7 @@ function BuildWorkspace( {history} ) {
                 }
             }).catch((err) => { console.log(err.response); })
         }
+        */
         setUrl(e.target.vaule);
         console.log(e.target.value);
     };
@@ -85,17 +52,16 @@ function BuildWorkspace( {history} ) {
     const submitHandler = (e) => {
         e.preventDefault();
         console.log("submission");
-        let answer = {
-            name: workspaceName,
-            url: workspaceUrl,
-            userId: "1"
-        }
-
-        axios
-            .post("http://localhost:8080/api/workspace", answer)
-            .then((res) => { console.log(res.data); })
-            .catch((err) => { console.log(err.response); })
-
+        axios.post("http://localhost:8080/api/workspace", {
+            data: {
+                name: "DogPaw",
+                url: "wpqkf",
+                userId: "1"
+            }
+        })
+        .then(function(response) {console.log(response);})
+        .catch(error=>{console.log(error.response);})
+        history.push("/build-workspace2");
     };
 
     return (
@@ -115,7 +81,7 @@ function BuildWorkspace( {history} ) {
                         <div className="step-icon gray-icon"></div>
                     </div>
                     <h2 className="step-title">Build a workspace your team will love.</h2>
-                    <form onSubmit={submitHandler}>
+                    <div>
                         <span className="question-span">What do you want to call your team workspace?</span>
                         <input
                             className="answer-input workspace-name-input"
@@ -141,8 +107,8 @@ function BuildWorkspace( {history} ) {
                         {isDuplicateError && <p className="validation-error-message">Sorry, that is already in use.</p>}
                         <span className="default-direction-span">You can rename workspace or set a new URL in the setting at any time.</span>
                         <button className="cancel-btn" type="button" onClick={()=>{history.push("/swit-home")}}>Cancel</button>
-                        <button className="next-btn" type="button" onClick={()=>{history.push("/build-workspace2")}} disabled={!isValidName || isTypeError || isDuplicateError}>Next</button>
-                    </form>
+                        <button className="next-btn" type="button" onClick={submitHandler} disabled={!isValidName || isTypeError || isDuplicateError}>Next</button>
+                    </div>
                 </div>
             </div>
         </div>
