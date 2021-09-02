@@ -11,7 +11,7 @@ function Postworkspace(){
 
     const POST_WORKSPACE = () =>{
         axios.post("http://localhost:8080/api/workspace",
-            {"name" : "workspacename", "url": "http://naver.com", "userId":"1"})
+            {"name" : "workspacename", "url": "workspaceurl", "userId":"1"})
         .then(console.log("WorkspacePost_ok"));
     }
 

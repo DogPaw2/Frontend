@@ -5,7 +5,6 @@ import '../SwitHome/SwitHome.css';
 import './BuildWorkspace.css';
 
 function BuildWorkspace( {history} ) {
-
     const [workspaceName, setName] = useState("");
     const [workspaceUrl, setUrl] = useState("");
     const [isValidName, setIsValidName] = useState(false);
@@ -18,46 +17,40 @@ function BuildWorkspace( {history} ) {
             setIsValidName(true);
         }
         setName(e.target.value);
-        console.log(e.target.value);
     };
 
     const urlSetter = (e) => {
         e.preventDefault();
+        if (e.target.value != "") {
+            setUrl(e.target.value);
+        }
         var regExp = /^[A-Za-z0-9][A-Za-z0-9-]{2,18}[A-Za-z0-9]$/;
         if (!regExp.test(e.target.value)) {
             setIsTypeError(true);
         }
         else {
-            setIsTypeError(false); //eliminate afterwards
-        }
-        /*
-        else {
             setIsTypeError(false);
-            axios.post("http://localhost:8080/api/workspace", { //api undefined
-                url: e.target.value
-            }).then((res) => {
-                if (res.data != null) {
-                    setIsDuplicateError(true);
+            axios.get("http://localhost:8080/api/workspace/url-check", { 
+                params: {
+                    url: e.target.value
                 }
-                else {
-                    setIsDuplicateError(false);
-                }
-            }).catch((err) => { console.log(err.response); })
+            }).then(() => {
+                setIsDuplicateError(false);
+            }).catch(() => {
+                setIsDuplicateError(true);
+            })
         }
-        */
-        setUrl(e.target.vaule);
-        console.log(e.target.value);
     };
     
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log("submission");
+        
+        console.log(workspaceName);
+        console.log(workspaceUrl);
         axios.post("http://localhost:8080/api/workspace", {
-            data: {
-                name: "DogPaw",
-                url: "wpqkf",
-                userId: "1"
-            }
+            name: workspaceName,
+            url: workspaceUrl,
+            userId: "1"
         })
         .then(function(response) {console.log(response);})
         .catch(error=>{console.log(error.response);})
@@ -96,7 +89,7 @@ function BuildWorkspace( {history} ) {
                         <input
                             className="answer-input workspace-url-input"
                             type="text"
-                            value={workspaceUrl}
+                            value={workspaceUrl || ""}
                             onChange={urlSetter}
                             placeholder=" your-workspace-url"
                             autoComplete="off"
