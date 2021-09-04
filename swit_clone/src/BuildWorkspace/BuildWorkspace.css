@@ -221,11 +221,24 @@
     float: right;
     margin: 20px 0px 20px 0px;
 
-    background-color: #D8D8DB;
     border-width: 0px;
     border-radius: 5px;
-    border-color: #D8D8DB;
+    
+    background-color: #478BFF;
+    border-color: #478BFF;
     color: white;
+}
+
+.send-invitation-btn:hover {
+    cursor: pointer;
+    
+    background-color: #1E68F6;
+    border-color: #1E68F6;
+}
+
+.send-invitation-btn:disabled {
+    background-color: #D8D8DB;
+    border-color: #D8D8DB;
 }
 
 .link-invitation-div {

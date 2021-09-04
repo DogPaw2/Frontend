@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Switch from 'react-switch';
 import LinkModal from './LinkModal';
+import EmailModal from './EmailModal';
 import '../SwitHome/SwitHome.css';
 import './BuildWorkspace.css';
 
 function BuildWorkspace() {
+
+
     const [inviteUrl, setInviteUrl] = useState("https://invite.swit.io/blahblah");
     const onUrlChange = (e) => {
         setInviteUrl(e.target.value);
@@ -52,19 +56,21 @@ function BuildWorkspace() {
         if (e.target.value == "") {
             setEmailTypeError(false);
         }
-        setEmailInput(e.target.value);
+        if (e.target.value != ",") {
+            setEmailInput(e.target.value);
+        }
     }
 
     const inputSubmitHandler = () => {
-        setEmailList([...emailList, emailInput]);
+        setEmailList(emailList.concat(emailInput));
         setEmailInput("");
-        if (emailList.length == 0) {
+        if (emailList.length != -1) {
             setYesExist(true);
         }
     }
 
     const keyPressHandler = (e) => {
-        if (e.key == "Enter") {
+        if (e.key == "Enter" || e.key == " " || e.charCode == 44) {
             var emailRegExp = /^[A-Za-z0-9]([-_\.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_\.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
             if (!emailRegExp.test(e.target.value)) {
                 setEmailTypeError(true);
@@ -77,7 +83,32 @@ function BuildWorkspace() {
     }
 
     const emailDeleteHandler = (e) => {
-        setEmailList(emailList.filter(email => email !== e))
+        setEmailList(emailList.filter(target => target != e))
+        if (emailList.length == 1) {
+            setYesExist(false);
+        }
+    }
+
+    const [emailModalOpen, setEmailModalOpen] = useState(false);
+
+    const sendInvitation = () => {
+        emailList.map(email => {
+            axios.post("http://localhost:8080/api/mail", {
+                address: email,
+                title: "invited you to join the Swit workspace", 
+                //제목에 USERNAME, WORKSPACENAME 추가할 것
+                message: "You are invited to join the Swit team for WORKSPACENAME\nUSERNAME USEREMAIL sent you this invitation\nClick onthis link: LINK" 
+                //본문에 link 생성해서 추가할 것
+            })
+            .then(function(response) {console.log(response);})
+            .catch(error=>{console.log(error.response);})            
+        })
+
+        setEmailModalOpen(true);
+    }
+
+    const closeEmailModal = () => {
+        setEmailModalOpen(false);
     }
     
     return (
@@ -100,7 +131,7 @@ function BuildWorkspace() {
                     <div className="email-invitation-div">
                         <FontAwesomeIcon className="invitation-icon" icon={faEnvelope}/>
                         <h4 className="invitation-title">Invite people via email</h4>
-                        <span className="invitation-direction">To invite multiple people, add enter after an email address.</span>
+                        <span className="invitation-direction">To invite multiple people, add the spacebar, enter or a comma(,) after an email address.</span>
                         {emailTypeError ?
                         <input className="email-invitation-input-error" value={emailInput} onChange={inputChangeHandler} onKeyPress={keyPressHandler} />
                         : <input className="email-invitation-input" value={emailInput} onChange={inputChangeHandler} onKeyPress={keyPressHandler}/>
@@ -111,12 +142,15 @@ function BuildWorkspace() {
                                 {emailList.map(list => (
                                     <div className="email-invitation-output-div">
                                         <div className="email-invitation-output">{list}</div>
-                                        <button className="email-invitation-output-delete" >X</button>
+                                        <button className="email-invitation-output-delete" type="button" onClick={() => emailDeleteHandler(list)}>X</button>
                                     </div>
                                 ))}
                             </div>
                         : null}
-                        <button className="send-invitation-btn">Send invitation</button>
+                        <button className="send-invitation-btn" disabled={!yesExist} onClick={sendInvitation}>Send invitation</button>
+                        {emailModalOpen ? 
+                            <EmailModal open={emailModalOpen} close={closeEmailModal} number={emailList.length}></EmailModal>
+                        : null}
                     </div>
                     <div className="link-invitation-div">
                         <FontAwesomeIcon className="invitation-icon" icon={faLink}/>

@@ -21,9 +21,7 @@ function BuildWorkspace( {history} ) {
 
     const urlSetter = (e) => {
         e.preventDefault();
-        if (e.target.value != "") {
-            setUrl(e.target.value);
-        }
+        setUrl(e.target.value);
         var regExp = /^[A-Za-z0-9][A-Za-z0-9-]{2,18}[A-Za-z0-9]$/;
         if (!regExp.test(e.target.value)) {
             setIsTypeError(true);
