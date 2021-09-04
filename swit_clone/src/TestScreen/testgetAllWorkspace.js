@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 /* APIS
-//워크스페이스
+//워크스페이스 하나
 http://localhost:8080/api/workspace
 
+//워크스페이스 전부
+http://localhost:8080/api/workspace/all?userId=1
 */
 
 function GetAllWorkspace(){
     const [WorkspaceLists, setWorkspaceLists] = useState([]);
 
-    const getUsername = () => {
+    const getAllworkspace = () => {
         axios.get("http://localhost:8080/api/workspace/all",{
             params:{
                 userId : 1
@@ -26,7 +28,7 @@ function GetAllWorkspace(){
     }
 
     useEffect(()=>{
-        getUsername();
+        getAllworkspace();
     },[]);
 
     return(
@@ -36,10 +38,11 @@ function GetAllWorkspace(){
                 {WorkspaceLists.map((cur) => (
                     <div key = {cur.workspace.id}>
                         <div>=========================</div>
-                        <div>{cur.workspace.id}</div>
-                        <div>{cur.workspace.name}</div>
+                        <div>Workspace ID : {cur.workspace.id}</div>
+                        <div>Name : {cur.workspace.name}</div>
                     </div>    
                 ))}
+                =========================
             </div>
         </div>
     );

@@ -5,34 +5,33 @@ import {faAngleDown} from "@fortawesome/free-solid-svg-icons";
 
 
 function WorkspaceOverall(){
-    /*
-    const[Workspacename, setWorkspacename] = useState("");
     
-    const getWorkspacename = async(uid) => {
-        //async 이렇게 하는거 맞나..?
+    const [Workspacename, setWorkspacename] = useState("");
+    
 
-        //https://darrengwon.tistory.com/275 참고
-
-        const workspacename = await axios.get('http://localhost:8080/api/workspace',{
-            data:{
-                "userId": uid
+    const getOneworkspace = () => {
+        axios.get("http://localhost:8080/api/workspace/",{
+            params:{
+                workspaceId : 2
             }
-        }).then(response => {setWorkspacename(workspacename)})
+        }
+        ).then(response => {
+            console.log(response.data);
+            setWorkspacename(response.data.workspace.name);
+        })
     }
 
     useEffect(()=>{
-        getWorkspacename("123")
-        //should be variable
-
+        getOneworkspace();
     },[]);
-    */
+
     return(
         <div className = "workspace_overall">
             <div className = "round_square_btn_area">
                 <div className = "big_round_square_btn" id = "Workspace_icon">D</div>
             </div>                
             <div className = "workspace_name_area">
-                <div className = "workspace_name">Workspacename</div>
+                <div className = "workspace_name">{Workspacename}</div>
             </div>
 
             <div className = "toggle_btn_area">

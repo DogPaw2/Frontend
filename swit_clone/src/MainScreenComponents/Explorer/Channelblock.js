@@ -4,29 +4,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faBell } from "@fortawesome/free-solid-svg-icons";
 
 function Channelblock(){
+    const [WorkspaceChannelList, setWorkspaceChannelList] = useState([]);
 
-    const [Channels, setChannels] =  useState([]);
-
-    const getChannels = async(uid) => {
-        await axios.get('http://localhost:8080/api/workspace',{
-            data:{
-                "userId": uid
+    const getOneworkspace = () => {
+        axios.get("http://localhost:8080/api/workspace/",{
+            params:{
+                workspaceId : 1
             }
-        }).then(({ channelList })=>setChannels(Channels));
+        }
+        ).then(response => {
+            console.log(response.data);
+            const cur_channel = response.data.workspace.channels.map(cur => cur);
+            setWorkspaceChannelList(cur_channel)
+        })
     }
 
     useEffect(()=>{
-        getChannels("123")
+        getOneworkspace();
     },[]);
 
     return(
         <div>
-            {Channels.map((channels, index)=>(
-                <div className = "explorer_lists" id = "channel">
+            {WorkspaceChannelList.map((cur)=>(
+                <div key={cur.id} className = "explorer_lists" id = "channel">
                     <div className = "explorer_list_star">
                         <FontAwesomeIcon icon={faStar} className="search" />
                     </div>
-                    <div className = "list_text_btn">General</div>
+                    <div className = "list_text_btn">{cur.name}</div>
                     <div className = "explorer_list_ring">
                         <FontAwesomeIcon icon={faBell} className="search" />    
                     </div>
@@ -35,24 +39,6 @@ function Channelblock(){
         </div>
 
     );
-/*
-    return(
-        <div>
-
-            <div className = "explorer_lists" id = "channel">
-                <div className = "explorer_list_star">
-                    <FontAwesomeIcon icon={faStar} className="search" />
-                </div>
-                <div className = "list_text_btn">General</div>
-                <div className = "explorer_list_ring">
-                    <FontAwesomeIcon icon={faBell} className="search" />    
-                </div>
-            </div>
-        
-        </div>
-
-);
-*/
 }
 
 export default Channelblock;

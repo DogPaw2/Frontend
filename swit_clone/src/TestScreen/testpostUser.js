@@ -7,22 +7,25 @@ http://localhost:8080/api/user
 */
 
 function Postuser(){
-    const [postnow, setpostnow] = useState(1);
+    const [query, setquery] = useState("default");
+    const [search, setSearch] = useState("");
 
-    const PostNow = () => {setpostnow(postnow+1)}
-
-    const POST_USER = () =>{
-        axios.post("http://localhost:8080/api/user",
-            {"name" : "hi"})
-        .then(console.log("Userpost_ok"));
-    }
 
     useEffect(()=>{
-        POST_USER()
-    },[postnow]);
+    const POST_USER = async() =>{
+        await axios.post("http://localhost:8080/api/user",
+            {"name" : search})
+        .then(console.log("Posted User named :" + search));
+    };
+    POST_USER()
+    },[search]);
     
     return(
-        <button onClick = {PostNow} >Post User</button>
+        <div>
+            <input type="text" value={query} onChange={(event) => setquery(event.target.value)} />
+            <button onClick={() => setSearch(query)}>POST USER</button>
+        </div>
+        
     );
 }
 

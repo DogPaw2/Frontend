@@ -1,4 +1,4 @@
-import React, {  useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 /* APIS
@@ -8,19 +8,20 @@ http://localhost:8080/api/workspace
 */
 
 function Postworkspace(){
-
-    const POST_WORKSPACE = () =>{
-        axios.post("http://localhost:8080/api/workspace",
-            {"name" : "workspacename", "url": "http://naver.com", "userId":"1"})
-        .then(console.log("WorkspacePost_ok"));
-    }
+    const [postwpnow, setpostnow] = useState(1);
+    const PostNow = () => {setpostnow(postwpnow+1)}
 
     useEffect(()=>{
+        const POST_WORKSPACE = async() =>{
+            await axios.post("http://localhost:8080/api/workspace",
+                {"name" : "workspacename", "url": "http://naver.com", "userId":"1"})
+            .then(console.log("WorkspacePost_ok"));
+        }
         POST_WORKSPACE()
-    },[]);
+    },[postwpnow]);
     
     return(
-        <button onClick = {POST_WORKSPACE}>Post Workspace</button>
+        <button onClick = {PostNow}>Post Workspace</button>
     );
 }
 
