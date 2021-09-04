@@ -1,5 +1,6 @@
-import React, {  useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import useDidMountEffect from './useDidMountEffect';
 
 /* APIS
 //유저
@@ -10,13 +11,13 @@ function Postuser(){
     const [query, setquery] = useState("default");
     const [search, setSearch] = useState("");
 
-
-    useEffect(()=>{
     const POST_USER = async() =>{
         await axios.post("http://localhost:8080/api/user",
             {"name" : search})
         .then(console.log("Posted User named :" + search));
     };
+
+    useDidMountEffect(()=>{
     POST_USER()
     },[search]);
     

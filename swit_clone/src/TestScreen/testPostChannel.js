@@ -1,4 +1,5 @@
-import React, {  useEffect, useState } from 'react';
+import React, {  useState } from 'react';
+import useDidMountEffect from './useDidMountEffect';
 import axios from 'axios';
 
 /* APIS
@@ -9,14 +10,15 @@ http://localhost:8080/api/channel
 function PostChannel(){
     const [query, setquery] = useState("default Channelname");
     const [search, setSearch] = useState("");
+    
+    const POST_Channel = async() =>{
+        await axios.post("http://localhost:8080/api/channel",
+            {"name" : search, "purpose" : "nothing" , "userId":1, "workspaceId":1})
+        .then(console.log("Posted Channel named :" + search +", in Workspace 1, UserId is 1."));
+    };
 
+    useDidMountEffect(()=>{
 
-    useEffect(()=>{
-        const POST_Channel = async() =>{
-            await axios.post("http://localhost:8080/api/channel",
-                {"name" : search, "purpose" : "nothing" , "userId":2, "workspaceId":1})
-            .then(console.log("Posted Channel named :" + search +", in Workspace 1, UserId is 2."));
-        };
         POST_Channel()
     },[search]);
     
