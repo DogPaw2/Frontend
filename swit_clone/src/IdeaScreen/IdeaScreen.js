@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import './IdeaScreen.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +17,10 @@ function IdeaScreen(){
     //const [isFocus, setIsFocus] = useState(false);
     const [isValid, setIsValid] = useState(false);
     const [ideaInput, setIdeaInput] = useState("");
+
+    const [fileList, setFileList] = useState([]);
+    const [fileExist, setFileExist] = useState(false);
+
 
     /*
     const focusOn = () => {
@@ -38,12 +42,47 @@ function IdeaScreen(){
         }
     }
 
+    
+    const fileUploadHandler = (e) => {
+        const newFile = {
+            name: e.target.files[0].name,
+            file: e.target.files[0]
+        }
+        setFileList(fileList.concat(newFile));
+        if (fileList.length != -1) {
+            setFileExist(true);
+            setIsValid(true);
+        }
+    }
+
+    const fileDeleteHandler = (e) => {
+        setFileList(fileList.filter(target => target.name != e.name))
+        if (fileList.length == 1) {
+            setFileExist(false);
+        }
+    }
+    
     const cancelHandler = (e) => {
         setIsValid(false);
         setIdeaInput("");
     }
 
     const confirmHandler = (e) => {
+        /*
+        const formData = new FormData();
+        formData.append("file", fileInput);
+
+        axios.post("http://localhost:8080/api/idea", formData, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json;charset=UTF-8"
+            }
+        })
+        .then(function(response) { console.log(response); })
+        .catch((error) => {console.log(error.response); })
+        */
+
+        /*
         axios.post("http://localhost:8080/api/idea", {
             data: {
                 ideaBoardId: "1",
@@ -55,11 +94,19 @@ function IdeaScreen(){
         })
         .then(function(response) { console.log(response); })
         .catch((error) => { console.log(error.response); })
-        
+        */
 
         setIsValid(false);
         setIdeaInput("");
     }
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/idea", {
+            params: {
+                id: 1
+            }
+        })
+    }, [])
 
 
     return(
@@ -84,15 +131,27 @@ function IdeaScreen(){
                             </div>
                             <div className="idea-adding-etc-div">
                                 <div className="vertical-line-div">
-                                    <FontAwesomeIcon icon={faPlus} className="search idea-adding-etc-plus" size="1x"/>
+                                    <label className="file-upload-label" for="idea-file-upload-input">+</label>
+                                    <input type="file" onChange={fileUploadHandler} className="file-upload-input" id ="idea-file-upload-input"></input>
                                 </div>
                                 <div className="white-space-div"></div>
                                 <div className="idea-adding-etc-icon-div">
                                     <FontAwesomeIcon icon={faCaretSquareDown} className="search idea-adding-etc-icons" />
                                     <FontAwesomeIcon icon={faAt} className="search idea-adding-etc-icons" />
                                     <FontAwesomeIcon icon={faSmile} className="search idea-adding-etc-icons" />
-                                </div>                                
+                                </div>
                             </div>
+                            { fileExist ? 
+                                <div>
+                                    { fileList.map(list => (
+                                        <div className="file-uploaded-div">
+                                            <div className="file-uploaded-name">{list.name}</div>
+                                            <button className="file-uploaded-delete" type="button" onClick={() => fileDeleteHandler(list)}>X</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            : null}
+                                                            
                             <div className="idea-adding-btn-div">
                                 <button className="idea-btn idea-cancel-btn" disabled={!isValid} onClick={cancelHandler}>Cancel</button>
                                 <button className="idea-btn idea-confirm-btn" disabled={!isValid} onClick={confirmHandler}>Confirm</button>

@@ -496,7 +496,7 @@ body{
     width:1rem;
 }
 
-/*============================main chatting============================*/
+/*============================main idea============================*/
 .main-idea
 {
     display: flex;
@@ -507,7 +507,7 @@ body{
 
 .idea-adding-div {
     width: 680px;
-    height: 160px;
+    min-height: 160px;
     margin: 25px auto;
     background-color: white;
     border: 1px solid;
@@ -598,6 +598,59 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+}
+
+.file-upload-label {
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 30px;
+}
+
+.file-upload-label:hover {
+    cursor: pointer;
+}
+
+.file-upload-input {
+    display: none;
+}
+
+.file-uploaded-div {
+    width: 603px;
+    height: 50px;
+    padding: 0 25px 0 50px;
+    border: 1px solid #E6E6E8;
+    
+    background-color: #F8F8F8;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-uploaded-name {
+    line-height: 50px;
+}
+
+.file-uploaded-delete {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: white;
+    color: gray;
+    font-size: 10px;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+}
+
+
+.file-uploaded-delete:hover {
+    cursor: pointer;
+    
+    background-color: #D8D8D8;
 }
 
 .idea-btn {
