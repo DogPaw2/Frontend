@@ -78,6 +78,24 @@
     cursor: pointer;
 }
 
+.modal-confirm-btn {
+    width: 80px;
+    height: 30px;
+    margin: 0 0 0 5px;
+    border-width: 0px;
+    border-radius: 5px;
+    color: white;
+
+    background-color: #478BFF;
+    border-color: #478BFF;
+}
+
+.modal-confirm-btn:hover {
+    background-color: #1E68F6;
+    border-color: #1E68F6;
+    cursor: pointer;
+}
+
 .modal.openModal {
     display: flex;
     align-items: center;

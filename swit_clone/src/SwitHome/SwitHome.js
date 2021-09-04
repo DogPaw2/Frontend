@@ -37,8 +37,7 @@ function SwitHome() {
   }
   const deleteModal = (workspaceId) => {
     setModalOpen(false);
-    /*
-    axios.delete("http://localhost:8080/api/user", {
+    axios.delete("http://localhost:8080/api/workspace", {
       data: {
         id: workspaceId
       }
@@ -47,7 +46,6 @@ function SwitHome() {
       console.log(response.data);
     })
     .catch(error=>{console.log(error.response);})
-    */
    setWorkspaceUpdate(workspaceUpdate+1);
   }
 
