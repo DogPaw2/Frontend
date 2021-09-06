@@ -61,7 +61,7 @@ function SwitHome() {
         userId: userId,
         userName: userName,
         userEmail: userEmail,
-        workspaceId: workspaceLists.length
+        workspaceId: workspaceLists.length+1
       }
     })
   }
@@ -82,10 +82,7 @@ function SwitHome() {
 
   useEffect(() => {
     getWorkspaceInfo();
-
-    axios.post("http://localhost:8080/api/user", {name: "Daeun Chung"})
-    .then(console.log("Posted User named: " + "Daeun Chung"));
-    
+    axios.post("http://localhost:8080/api/user", {name: userName})
   }, [])
 
 
