@@ -51,7 +51,7 @@ function MainScreen(){
 
     return(
         <div className = "entire_webpage">
-            <NavBar />
+            <NavBar workspacename = {workspaceName} />
             <div className = "container">
                 <LeftBar />
                 <MainExplorer /> 

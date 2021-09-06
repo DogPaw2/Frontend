@@ -4,12 +4,13 @@ import HomeBtn from './SubComponents/HomeBtn';
 import WorkspaceOverall from './SubComponents/WorkspaceOverall';
 import MainScreenTopToolbar from './SubComponents/MainScreenToptoolbar';
 
-function NavBar(){
+function NavBar(props){
     
     return(
         <div className = "nav_bar">
             <HomeBtn />
-            <WorkspaceOverall />
+            <WorkspaceOverall wpname = {props.workspacename}/>
+            
             <MainScreenTopToolbar />
         </div>
 
