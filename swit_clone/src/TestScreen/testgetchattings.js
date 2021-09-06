@@ -1,5 +1,4 @@
 //! chatting != message / 채팅은 채널 채팅, 메시지는 DM
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 

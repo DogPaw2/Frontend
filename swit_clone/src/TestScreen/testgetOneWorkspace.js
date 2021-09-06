@@ -23,7 +23,7 @@ function GetOneWorkspace(){
         ).then(response => {
             setWorkspaceindex(response.data.workspace.id);
             setWorkspacename(response.data.workspace.name);
-            console.log(response.data.workspace.channels);
+            console.log(response.data.workspace);
             const cur_channel = response.data.workspace.channels;
             setWorkspaceChannelList(cur_channel)
 

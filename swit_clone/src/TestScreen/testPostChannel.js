@@ -13,12 +13,11 @@ function PostChannel(){
     
     const POST_Channel = async() =>{
         await axios.post("http://localhost:8080/api/channel",
-            {"name" : search, "purpose" : "nothing" , "userId":1, "workspaceId":1})
+            {"name" : search, "purpose" : "Testing" , "userId":1, "workspaceId":1})
         .then(console.log("Posted Channel named :" + search +", in Workspace 1, UserId is 1."));
     };
 
     useDidMountEffect(()=>{
-
         POST_Channel()
     },[search]);
     

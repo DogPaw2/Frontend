@@ -11,6 +11,9 @@ import PostSingleChat from './testPostSingleChat';
 import GetChat from './testgetchattings';
 import GetChannel from './testgetChannels';
 
+import GetMsgRoom from './testgetMessageRoom';
+import PostSingleMessage from './testPostSingleMessage';
+
 
 //import GetUser from './testgetuser';
 //uncreated;
@@ -23,21 +26,32 @@ function TestScreen()
     return(
         <div>
             <h1>Welcome To TestPage!</h1>
-            <h2>Here is a place to test POST CHANNEL of UserId-1, WorkspaceId-1(unWorking)</h2>
-            <PostChannel />
+            <h2>Here is a place to test POST DM Room for UserId-1</h2>
+            <PostMsgRoom />
 
-            <h2>Here is a place to test GET CHANNELS</h2>
-            <GetChannel />
+            <h2>Here is a place to test POST DM</h2>
+            <PostSingleMessage />
+
+            <h2>Here is a place to test GET Messages of MessageRoom 1</h2>
+            <GetMsgRoom />
+
         </div>
     );
     
 
 }
 
+
 export default TestScreen;
 
-/* ______________TRASHCAN______________
+/*_______________________________________TRASHCAN_______________________________________________
 
+
+            <h2>Here is a place to test POST DM</h2>
+            <PostSingleMessage />
+
+            <h2>Here is a place to test GET Messages of MessageRoom 1</h2>
+            <GetMsgRoom />
 
             <h2>Here is a place to test POST single Chat for UserId-1</h2>
             <PostSingleChat />
@@ -48,7 +62,7 @@ export default TestScreen;
             <h2>Here is a place to test POST DM Room for UserId-1</h2>
             <PostMsgRoom />
 
-            <h2>Here is a place to test POST CHANNEL of UserId-1, WorkspaceId-1(unWorking)</h2>
+            <h2>Here is a place to test POST CHANNEL of UserId-1, WorkspaceId-1</h2>
             <PostChannel />
 
             <h2>Here is a place to test POST WORKSPACE</h2>
@@ -56,6 +70,9 @@ export default TestScreen;
 
             <h2>Here is a place to test GET CHATTING</h2>
             <GetChat />
+
+            <h2>Here is a place to test GET CHANNEL</h2>
+            <GetChannel />
 
             <h2>Here is a place to test GET ALL WORKSPACE</h2>
             <GetAllWorkspace />

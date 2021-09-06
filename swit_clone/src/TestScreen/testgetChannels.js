@@ -3,17 +3,17 @@ import axios from 'axios';
 
 
 
-function GetChannels(){
-    const [ChatList, setChatList] = useState([]);
+function GetChannel(){
+    const [ChannelList, setChannelList] = useState([]);
 
     const getChannels = async() => {
         await axios.get("http://localhost:8080/api/channel",{
             params:{
-                channelId : 2
+                channelId : 1
             }
         }
         ).then(response => {
-            console.log(response.data);
+            console.log(response.data.channel);
             
         })
     }
@@ -24,9 +24,11 @@ function GetChannels(){
 
     return(
         <div>
+            <div>
+            </div>
         </div>
     );
 
 }
 
-export default GetChannels;
+export default GetChannel;
