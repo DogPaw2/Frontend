@@ -15,9 +15,27 @@ function BuildWorkspace2() {
     const location = useLocation();
 
     const userId = location.state.userId;
+    const userName = location.state.userName;
+    const userEmail = location.state.userEmail;
+    const workspaceId = location.state.workspaceId;
     const workspaceName = location.state.workspaceName;
     const workspaceUrl = location.state.workspaceUrl;
     /* ****************************** */
+
+    const history = useHistory();
+    const goChat = () => {
+        history.push({
+            pathname: `/${userId}/${workspaceUrl}/general/chat`,
+            state: {
+                userId: userId,
+                userName: userName,
+                userEmail: userEmail,
+                workspaceId: workspaceId,
+                workspaceName: workspaceName,
+                workspaceUrl: workspaceUrl
+            }
+        })
+    }
 
     const [inviteUrl, setInviteUrl] = useState("https://invite.swit.io/blahblah");
     const onUrlChange = (e) => {
@@ -102,8 +120,8 @@ function BuildWorkspace2() {
         emailList.map(email => {
             axios.post("http://localhost:8080/api/mail", {
                 address: email,
-                title: `${userId} invited you to join the Swit workspace ${workspaceName}`, 
-                message: `You are invited to join the Swit team for ${workspaceName}\n${userId} sent you this invitation\nClick onthis link: LINK` 
+                title: `${userName} invited you to join the Swit workspace ${workspaceName}`, 
+                message: `You are invited to join the Swit team for ${workspaceName}\n${userName} ${userEmail} sent you this invitation\nClick onthis link: LINK` 
                 //본문에 link 생성해서 추가할 것
             })
             .then(function(response) {console.log(response);})
@@ -115,20 +133,11 @@ function BuildWorkspace2() {
 
     const closeEmailModal = () => {
         setEmailModalOpen(false);
+        goChat();
     }
 
     
-    const history = useHistory();
-    const goChat = () => {
-        history.push({
-            pathname: `/${userId}/${workspaceUrl}/general/chat`,
-            state: {
-                userId: userId,
-                workspaceName: workspaceName,
-                workspaceUrl: workspaceUrl
-            }
-        })
-    }
+    
     
     return (
         <div className="BuildWorkspace">

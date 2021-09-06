@@ -22,6 +22,9 @@ function MainScreen(){
     const location = useLocation();
     
     const userId = location.state.userId;
+    const userName = location.state.userName; //props 추가
+    const userEmail = location.state.userEmail; //props 추가
+    const workspaceId = location.state.workspaceId; //props 추가
     const workspaceName = location.state.workspaceName;
     const workspaceUrl = location.state.workspaceUrl;
     

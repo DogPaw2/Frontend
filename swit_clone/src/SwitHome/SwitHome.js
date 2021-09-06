@@ -8,13 +8,11 @@ function SwitHome() {
   const history = useHistory();
 
   // temporarily designated account
-  const [userId, setUserId] = useState(1); 
-  const [userName, setUserName] = useState("Daeun Chung");
-  const [userEmail, setUserEmail] = useState("dianestar@hanyang.ac.kr")
-  const [userSpot, setUserSpot] = useState("Member");
+  const userId = 1;
+  const userName = "DogPaw Developers";
+  const userEmail = "dogpaw@hanyang.ac.kr";
 
   const [workspaceLists, setWorkspaceLists] = useState([]);
-  const [workspaceUpdate, setWorkspaceUpdate] = useState(0);
 
   const getWorkspaceInfo = () => {
     axios.get("http://localhost:8080/api/workspace/all", {
@@ -36,13 +34,15 @@ function SwitHome() {
   const openModal = () => {
     setModalOpen(true);
   }
+
   const cancelModal = () => {
     setModalOpen(false);
   }
+
   const deleteModal = (workspaceId) => {
     setModalOpen(false);
     axios.delete("http://localhost:8080/api/workspace", {
-      data: {
+      params: {
         id: workspaceId
       }
     })
@@ -50,14 +50,18 @@ function SwitHome() {
       console.log(response.data);
     })
     .catch(error=>{console.log(error.response);})
-   setWorkspaceUpdate(workspaceUpdate+1);
+    setModalOpen(false);
+    window.location.replace("/swit-home");
   }
 
   const buildWorkspaceLink = () => {
     history.push({
       pathname: `/build-workspace1/${userId}`,
       state: {
-        userId: userId
+        userId: userId,
+        userName: userName,
+        userEmail: userEmail,
+        workspaceId: workspaceLists.length
       }
     })
   }
@@ -67,6 +71,9 @@ function SwitHome() {
       pathname: `/${userId}/${cur.workspace.url}/general/chat`,
       state: {
         userId: userId,
+        userName: userName,
+        userEmail: userEmail,
+        workspaceId: cur.workspace.id,
         workspaceName: cur.workspace.name,
         workspaceUrl: cur.workspace.url
       } 
@@ -79,7 +86,7 @@ function SwitHome() {
     axios.post("http://localhost:8080/api/user", {name: "Daeun Chung"})
     .then(console.log("Posted User named: " + "Daeun Chung"));
     
-  }, [workspaceUpdate])
+  }, [])
 
 
    return (
@@ -109,17 +116,16 @@ function SwitHome() {
                <div>+ Build a Free-plan workspace</div>
              </div>
              {workspaceLists.map((cur) => (
-              <div className="workspace-box" onClick={() => workspaceBoxLink(cur)}>
-              <div className="workspace-photo">{cur.workspace.name.substring(0,1)}</div>
-              <div className="workspace-text">
+              <div className="workspace-box">
+              <div className="workspace-photo" onClick={() => workspaceBoxLink(cur)}>{cur.workspace.name.substring(0,1)}</div>
+              <div className="workspace-text" onClick={() => workspaceBoxLink(cur)}>
                 <span className="workspace-name">{cur.workspace.name}</span>
-                <span className="workspace-spot">{userSpot}</span>
                 <div className="workspace-url">{cur.workspace.url}</div>
                 <hr className="workspace-line"></hr>
               </div>
               <div className="workspace-nav">
                 <span className="workspace-setting">Workspace settings</span>
-                <button className="leave" onClick={openModal}>Leave</button>
+                <button className="leave" onClick={openModal}>Delete</button>
               </div>
               {modalOpen ? 
               <div>

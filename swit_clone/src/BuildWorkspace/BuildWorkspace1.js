@@ -8,6 +8,9 @@ import './BuildWorkspace.css';
 function BuildWorkspace1() {
     const location = useLocation();
     const userId = location.state.userId;
+    const userName = location.state.userName;
+    const userEmail = location.state.userEmail;
+    const workspaceId = location.state.workspaceId;
 
     const [workspaceName, setName] = useState("");
     const [workspaceUrl, setUrl] = useState("");
@@ -26,26 +29,26 @@ function BuildWorkspace1() {
     const urlSetter = (e) => {
         e.preventDefault();
         setUrl(e.target.value);
-
-        if (e.target.value == "") {
-            setIsDuplicateError(false);
-        }
-
+        
         var regExp = /^[A-Za-z0-9][A-Za-z0-9-]{2,18}[A-Za-z0-9]$/;
         if (!regExp.test(e.target.value)) {
             setIsTypeError(true);
         }
-
         else {
             setIsTypeError(false);
             axios.get("http://localhost:8080/api/workspace/url-check", { 
                 params: {
                     url: e.target.value
                 }
-            }).then(() => {
-                setIsDuplicateError(false);
-            }).catch(() => {
-                setIsDuplicateError(true);
+            }).then((res) => {
+                if (res.data.success == true) {
+                    setIsDuplicateError(true);
+                }
+                else {
+                    setIsDuplicateError(false);
+                }
+            }).catch((err) => {
+                console.log(err);
             })
         }
     };
@@ -72,6 +75,9 @@ function BuildWorkspace1() {
             pathname: `/build-workspace2/${userId}/${workspaceUrl}`,
             state: {
                 userId: userId,
+                userName: userName,
+                userEmail: userEmail,
+                workspaceId: workspaceId,
                 workspaceName: workspaceName,
                 workspaceUrl: workspaceUrl
             }

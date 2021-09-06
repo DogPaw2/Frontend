@@ -21,6 +21,9 @@ function IdeaScreen(){
     const location = useLocation();
     
     const userId = location.state.userId;
+    const userName = location.state.userName;
+    const userEmail = location.state.userEmail;
+    const workspaceId = location.state.workspaceId;
     const workspaceName = location.state.workspaceName;
     const workspaceUrl = location.state.workspaceUrl;
     

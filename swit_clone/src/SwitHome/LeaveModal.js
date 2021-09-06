@@ -10,7 +10,7 @@ const LeaveModal = ( props ) => {
                 <div>
                     <div className="modal-content">
                         <h3>Leave Workspace</h3> 
-                        <p className="modal-direction-p">Once you leave {workspaceName}, you can no longer access any information in the workspace.</p>
+                        <p className="modal-direction-p">Once you delete {workspaceName}, you can no longer access any information in the workspace.</p>
                         <div className="modal-btn-div">
                             <button className="modal-cancel-btn" onClick={cancel}>Cancel</button>
                             <button className="modal-delete-btn" onClick={del}>Delete</button>
