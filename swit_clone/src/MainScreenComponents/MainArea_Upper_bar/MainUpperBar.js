@@ -4,11 +4,13 @@ import MainChannelInfo from './SubComponents/MainChannelInfo';
 import ChatNIdeaSwitch from './SubComponents/ChatNIdeaSwitch';
 import ChatInfoBar from './SubComponents/ChatInfoBar';
 
-function MainUpperBar(){
+function MainUpperBar(props){
+    const { chatRouter, ideaRouter } = props;
+
     return(
         <div className = "workspace_info">
             <MainChannelInfo />
-            <ChatNIdeaSwitch />
+            <ChatNIdeaSwitch chatRouter={chatRouter} ideaRouter={ideaRouter}/>
             <ChatInfoBar />
         </div>
     );

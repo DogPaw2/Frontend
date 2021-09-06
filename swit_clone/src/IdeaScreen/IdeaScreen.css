@@ -421,6 +421,10 @@ body{
     color :#488AFC;
 }
 
+.btn_with_belowtext_area:hover {
+    cursor: pointer;
+}
+
 #chatting-in-idea-page:hover
 {
     cursor: pointer;

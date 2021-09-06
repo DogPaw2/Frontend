@@ -14,17 +14,49 @@ import InvitationArea from '../ChatComponents/InvitationArea';
 import ChattingInput from '../ChatComponents/ChattingInput';
 import ChatBox from '../ChatComponents/ChatBox';
 
+//React-Router
+import { useHistory, useLocation } from 'react-router-dom';
 
 function MainScreen(){
-    return(
+    
+    const location = useLocation();
+    
+    const userId = location.state.userId;
+    const workspaceName = location.state.workspaceName;
+    const workspaceUrl = location.state.workspaceUrl;
+    
+    const history = useHistory();
 
+    const moveToChat = () => {
+        history.push({
+            pathname: `/${userId}/${workspaceUrl}/general/chat`,
+            state: {
+                userId: userId,
+                workspaceName: workspaceName,
+                workspaceUrl: workspaceUrl
+            }
+        })
+    }
+
+    const moveToIdea = () => {
+        history.push({
+            pathname: `/${userId}/${workspaceUrl}/general/idea`,
+            state: {
+                userId: userId,
+                workspaceName: workspaceName,
+                workspaceUrl: workspaceUrl
+            }
+        })
+    }
+
+    return(
         <div className = "entire_webpage">
             <NavBar />
             <div className = "container">
                 <LeftBar />
                 <MainExplorer /> 
                 <div className = "main_area">
-                    <MainUpperBar />
+                    <MainUpperBar chatRouter={moveToChat} ideaRouter={moveToIdea}/>
 
                     <div className = "main_chatting">
                         <ChattingInput />

@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import LeaveModal from './LeaveModal';
 import './SwitHome.css';
 
 function SwitHome() {
-  const [userName, setUserName] = useState("정다은 서울 교육공학과");
+  const history = useHistory();
+
+  // temporarily designated account
+  const [userId, setUserId] = useState(1); 
+  const [userName, setUserName] = useState("Daeun Chung");
   const [userEmail, setUserEmail] = useState("dianestar@hanyang.ac.kr")
   const [userSpot, setUserSpot] = useState("Member");
 
@@ -49,8 +53,32 @@ function SwitHome() {
    setWorkspaceUpdate(workspaceUpdate+1);
   }
 
+  const buildWorkspaceLink = () => {
+    history.push({
+      pathname: `/build-workspace1/${userId}`,
+      state: {
+        userId: userId
+      }
+    })
+  }
+
+  const workspaceBoxLink = (cur) => {
+    history.push({
+      pathname: `/${userId}/${cur.workspace.url}/general/chat`,
+      state: {
+        userId: userId,
+        workspaceName: cur.workspace.name,
+        workspaceUrl: cur.workspace.url
+      } 
+    })
+  }
+
   useEffect(() => {
     getWorkspaceInfo();
+
+    axios.post("http://localhost:8080/api/user", {name: "Daeun Chung"})
+    .then(console.log("Posted User named: " + "Daeun Chung"));
+    
   }, [workspaceUpdate])
 
 
@@ -77,16 +105,16 @@ function SwitHome() {
              </div>
            </div>
            <div className="workspace-div">
-             <div className="build-workspace-box">
-               <Link to="/build-workspace1">+ Build a Free-plan workspace</Link>
+             <div className="build-workspace-box" onClick={() => buildWorkspaceLink()}>
+               <div>+ Build a Free-plan workspace</div>
              </div>
              {workspaceLists.map((cur) => (
-              <div className="workspace-box">
+              <div className="workspace-box" onClick={() => workspaceBoxLink(cur)}>
               <div className="workspace-photo">{cur.workspace.name.substring(0,1)}</div>
               <div className="workspace-text">
                 <span className="workspace-name">{cur.workspace.name}</span>
                 <span className="workspace-spot">{userSpot}</span>
-                <div className="workspace-url">{cur.workspace.url}.swit.io</div>
+                <div className="workspace-url">{cur.workspace.url}</div>
                 <hr className="workspace-line"></hr>
               </div>
               <div className="workspace-nav">

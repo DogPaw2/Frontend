@@ -13,7 +13,40 @@ import RightPanel from '../MainScreenComponents/Right_panel/RightPanel';
 
 import IdeaPost from './IdeaPost';
 
+//React-Router
+import { useHistory, useLocation } from 'react-router-dom';
+
 function IdeaScreen(){
+
+    const location = useLocation();
+    
+    const userId = location.state.userId;
+    const workspaceName = location.state.workspaceName;
+    const workspaceUrl = location.state.workspaceUrl;
+    
+    const history = useHistory();
+    const moveToChat = () => {
+        history.push({
+            pathname: `/${userId}/${workspaceUrl}/general/chat`,
+            state: {
+                userId: userId,
+                workspaceName: workspaceName,
+                workspaceUrl: workspaceUrl
+            }
+        })
+    }
+
+    const moveToIdea = () => {
+        history.push({
+            pathname: `/${userId}/${workspaceUrl}/general/idea`,
+            state: {
+                userId: userId,
+                workspaceName: workspaceName,
+                workspaceUrl: workspaceUrl
+            }
+        })
+    }
+
     //const [isFocus, setIsFocus] = useState(false);
     const [isValid, setIsValid] = useState(false);
     const [ideaInput, setIdeaInput] = useState("");
@@ -79,10 +112,8 @@ function IdeaScreen(){
             }
         })
         .then(function(response) { console.log(response); })
-        .catch((error) => {console.log(error.response); })
-        */
-
-        /*
+        .catch((error) => { console.log(error.response); })
+                
         axios.post("http://localhost:8080/api/idea", {
             data: {
                 ideaBoardId: "1",
@@ -116,7 +147,7 @@ function IdeaScreen(){
                 <LeftBar />
                 <MainExplorer />    
                 <div className = "main_area">
-                    <MainUpperBarIdeaOn />
+                    <MainUpperBarIdeaOn chatRouter={moveToChat} ideaRouter={moveToIdea}/>
 
                     <div className = "main-idea">
                         <div className="idea-adding-div">

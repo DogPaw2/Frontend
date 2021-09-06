@@ -430,6 +430,10 @@ body{
     width : 4rem;
 }
 
+.btn_with_belowtext_area:hover {
+    cursor: pointer;
+}
+
 #idea:hover
 {
     cursor: pointer;

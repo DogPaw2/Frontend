@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation, useHistory } from 'react-router-dom'; // import { useLocation }
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
@@ -9,8 +10,14 @@ import EmailModal from './EmailModal';
 import '../SwitHome/SwitHome.css';
 import './BuildWorkspace.css';
 
-function BuildWorkspace() {
+function BuildWorkspace2() {
+    /* 이동한 페이지에서 props 불러오기 */
+    const location = useLocation();
 
+    const userId = location.state.userId;
+    const workspaceName = location.state.workspaceName;
+    const workspaceUrl = location.state.workspaceUrl;
+    /* ****************************** */
 
     const [inviteUrl, setInviteUrl] = useState("https://invite.swit.io/blahblah");
     const onUrlChange = (e) => {
@@ -95,9 +102,8 @@ function BuildWorkspace() {
         emailList.map(email => {
             axios.post("http://localhost:8080/api/mail", {
                 address: email,
-                title: "invited you to join the Swit workspace", 
-                //제목에 USERNAME, WORKSPACENAME 추가할 것
-                message: "You are invited to join the Swit team for WORKSPACENAME\nUSERNAME USEREMAIL sent you this invitation\nClick onthis link: LINK" 
+                title: `${userId} invited you to join the Swit workspace ${workspaceName}`, 
+                message: `You are invited to join the Swit team for ${workspaceName}\n${userId} sent you this invitation\nClick onthis link: LINK` 
                 //본문에 link 생성해서 추가할 것
             })
             .then(function(response) {console.log(response);})
@@ -109,6 +115,19 @@ function BuildWorkspace() {
 
     const closeEmailModal = () => {
         setEmailModalOpen(false);
+    }
+
+    
+    const history = useHistory();
+    const goChat = () => {
+        history.push({
+            pathname: `/${userId}/${workspaceUrl}/general/chat`,
+            state: {
+                userId: userId,
+                workspaceName: workspaceName,
+                workspaceUrl: workspaceUrl
+            }
+        })
     }
     
     return (
@@ -127,7 +146,7 @@ function BuildWorkspace() {
                         <div className="step-icon blue-icon"></div>
                         <div className="step-icon gray-icon"></div>
                     </div>
-                    <h2 className="step-title">Invite your teammates to the ? Workspace that you have built!</h2>
+                    <h2 className="step-title">Invite your teammates to the {workspaceName} Workspace that you have built!</h2>
                     <div className="email-invitation-div">
                         <FontAwesomeIcon className="invitation-icon" icon={faEnvelope}/>
                         <h4 className="invitation-title">Invite people via email</h4>
@@ -193,7 +212,7 @@ function BuildWorkspace() {
                         }
 
                     </div>
-                    <span className="invite-later-span">Invite later</span>
+                    <span className="invite-later-span" onClick={goChat}>Invite later</span>
                     {copied ? <div className="copy-confirmed-div">Link copied to clipboard.</div> : null}
                 </div>
             </div>
@@ -201,4 +220,4 @@ function BuildWorkspace() {
     );
 }
 
-export default BuildWorkspace;
+export default BuildWorkspace2;
