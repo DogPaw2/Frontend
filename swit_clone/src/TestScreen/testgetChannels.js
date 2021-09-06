@@ -4,7 +4,8 @@ import axios from 'axios';
 
 
 function GetChannel(){
-    const [ChannelList, setChannelList] = useState([]);
+    
+    const [ChannelList, setChannelList] = useState({});
 
     const getChannels = async() => {
         await axios.get("http://localhost:8080/api/channel",{
@@ -14,6 +15,7 @@ function GetChannel(){
         }
         ).then(response => {
             console.log(response.data.channel);
+            setChannelList(response.data.channel);
             
         })
     }
@@ -21,7 +23,6 @@ function GetChannel(){
     useEffect(()=>{
         getChannels();
     },[]);
-
     return(
         <div>
             <div>

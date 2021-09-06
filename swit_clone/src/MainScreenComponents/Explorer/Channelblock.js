@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faBell } from "@fortawesome/free-solid-svg-icons";
 
 function Channelblock(){
+    /*
     const [WorkspaceChannelList, setWorkspaceChannelList] = useState([]);
 
     const getOneworkspace = () => {
@@ -22,10 +23,11 @@ function Channelblock(){
     useEffect(()=>{
         getOneworkspace();
     },[]);
-
+*/
     return(
         <div>
-            {WorkspaceChannelList.map((cur)=>(
+
+            {/*WorkspaceChannelList.map((cur)=>(
                 <div key={cur.id} className = "explorer_lists" id = "channel">
                     <div className = "explorer_list_star">
                         <FontAwesomeIcon icon={faStar} className="search" />
@@ -35,7 +37,16 @@ function Channelblock(){
                         <FontAwesomeIcon icon={faBell} className="search" />    
                     </div>
                 </div>
-            ))}
+            )) */}
+            <div className = "explorer_lists" id = "channel">
+                <div className = "explorer_list_star">
+                    <FontAwesomeIcon icon={faStar} className="search" />
+                </div>
+                <div className = "list_text_btn">name</div>
+                <div className = "explorer_list_ring">
+                    <FontAwesomeIcon icon={faBell} className="search" />    
+                </div>
+            </div>
         </div>
 
     );

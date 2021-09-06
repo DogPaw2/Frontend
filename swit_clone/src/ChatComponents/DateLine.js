@@ -5,7 +5,7 @@ function DateLine()
     return(
         <div className= "date_line_area">
             <div className = "d_line"></div>
-            <div className = "date">yesterday</div>
+            <div className = "date">Today</div>
             <div className = "d_line"></div>
         </div>
     );

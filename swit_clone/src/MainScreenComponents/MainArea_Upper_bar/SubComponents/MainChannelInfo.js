@@ -5,19 +5,24 @@ import { faStar, faAngleDown} from "@fortawesome/free-solid-svg-icons";
 //http://localhost:8080/api/channel
 
 function MainChannelInfo(){
-    const [Channelname, setChannelname] = useState('');
 
-    const getUsername = async(uid) => {
-        const channelname = await axios.get('http://localhost:8080/api/channel',{
-            data:{
-                "userId": uid
+    const [ChannelList, setChannelList] = useState({});
+
+    const getChannels = async() => {
+        await axios.get("http://localhost:8080/api/channel",{
+            params:{
+                channelId : 1
             }
-        }).then(response => {setChannelname(channelname)})
+        }
+        ).then(response => {
+            console.log(response.data.channel);
+            setChannelList(response.data.channel);
+            
+        })
     }
 
     useEffect(()=>{
-        getUsername("123")
-        //should be variable
+        getChannels();
     },[]);
 
     return(
@@ -28,7 +33,7 @@ function MainChannelInfo(){
                 </div>
             </div>
             <div className ="channel_name_area">
-                <div className = "channel_name">{Channelname}</div>
+                <div className = "channel_name">{ChannelList.name}</div>
             </div>
             
             <div className = "toggle_btn_area">

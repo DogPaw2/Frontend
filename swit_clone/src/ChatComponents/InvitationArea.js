@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function InvitationArea(){
+    const [ChannelList, setChannelList] = useState({});
+
+    const getChannels = async() => {
+        await axios.get("http://localhost:8080/api/channel",{
+            params:{
+                channelId : 1
+            }
+        }
+        ).then(response => {
+            console.log(response.data.channel);
+            setChannelList(response.data.channel);
+            
+        })
+    }
+
+    useEffect(()=>{
+        getChannels();
+    },[]);
     return(
         <div className= "invite_area">
             <div className= "chatting_room_member">
-                @Leekyeongjun
+                @Lee
             </div>
 
             <div className = "invite_text">
@@ -12,7 +31,7 @@ function InvitationArea(){
             </div>
 
             <div className = "chatting_room_name">
-                Team DogPaw's chatting room
+                {ChannelList.name}
             </div>                            
         </div>
     );

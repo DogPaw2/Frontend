@@ -26,15 +26,9 @@ function TestScreen()
     return(
         <div>
             <h1>Welcome To TestPage!</h1>
-            <h2>Here is a place to test POST DM Room for UserId-1</h2>
-            <PostMsgRoom />
 
-            <h2>Here is a place to test POST DM</h2>
-            <PostSingleMessage />
-
-            <h2>Here is a place to test GET Messages of MessageRoom 1</h2>
-            <GetMsgRoom />
-
+            <h2>Here is a place to test POST CHANNEL of UserId-1, WorkspaceId-1</h2>
+            <PostChannel />
         </div>
     );
     

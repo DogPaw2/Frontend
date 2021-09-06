@@ -12,7 +12,7 @@ function WorkspaceOverall(){
     const getOneworkspace = () => {
         axios.get("http://localhost:8080/api/workspace/",{
             params:{
-                workspaceId : 2
+                workspaceId : 1
             }
         }
         ).then(response => {

@@ -532,7 +532,7 @@ body{
     display: flex;
     flex-direction: column-reverse;
     margin-top : auto;
-    align-items: center;
+    align-items: right;
 
 }
 

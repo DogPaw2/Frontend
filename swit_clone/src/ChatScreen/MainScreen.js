@@ -60,9 +60,9 @@ function MainScreen(){
 
                     <div className = "main_chatting">
                         <ChattingInput />
+                        <ChatBox />  
                         <DateLine />
-                        <InvitationArea />
-                        <ChatBox />       
+                        <InvitationArea />     
                     </div>
 
                 </div>

@@ -40,7 +40,7 @@ function DMblock(){
             <div className = "explorer_list_star">
                 <FontAwesomeIcon icon={faStar} className="search" />
             </div>
-            <div className = "list_text_btn">(me)</div>
+            <div className = "list_text_btn">(Me)</div>
             <div className = "explorer_list_ring">
                 <FontAwesomeIcon icon={faBell} className="search" />
             </div>
