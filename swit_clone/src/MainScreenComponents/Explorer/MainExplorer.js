@@ -6,7 +6,7 @@ import Channelblock from './Channelblock';
 import DMblock from './DMblock';
 import ChannelCreateModal from '../Modal/Modal';
 
-function MainExplorer(){
+function MainExplorer(props){
     //explorer itself
     const [isOpen, setExplorer] = useState(false);
 
@@ -44,14 +44,11 @@ function MainExplorer(){
                         </div>
                         <React.Fragment>
                             <ChannelCreateModal open={ modalOpen } close={ closeModal } header="Modal heading">
-                                리액트 함수형 모달 팝업창입니다.
-                                쉽게 만들 수 있어요. 
-                                같이 만들어봐요!
                             </ChannelCreateModal>
                         </React.Fragment>
                         
                     </div>
-                    <Channelblock />
+                    <Channelblock workspaceIndex = {props.workspaceIndex}/>
 
                     <div className = "explorer_text_btn_area">
                         <div className = "explorer_text_btn" id ="Direct_message">Direct_message</div>

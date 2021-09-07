@@ -6,7 +6,7 @@ import { faBell, faAt, faStar, faFile, faUserFriends } from "@fortawesome/free-s
 import SearchArea from './SearchArea';
 import UserInfoCircle from './UserInfoCircle';
  
-function MainScreenTopToolbar(){
+function MainScreenTopToolbar(props){
     return(
 
         <div className = "top_toolbar">
@@ -42,7 +42,7 @@ function MainScreenTopToolbar(){
             </div>
 
             <SearchArea />
-            <UserInfoCircle />
+            <UserInfoCircle uname = {props.usname}/>
 
         </div>
     );

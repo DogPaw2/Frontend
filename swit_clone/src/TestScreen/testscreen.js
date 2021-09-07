@@ -27,8 +27,18 @@ function TestScreen()
         <div>
             <h1>Welcome To TestPage!</h1>
 
+            <h2>Here is a place to test POST USER</h2>
+            <Postuser />
+
+            <h2>Here is a place to test POST WORKSPACE</h2>
+            <Postworkspace />
+
             <h2>Here is a place to test POST CHANNEL of UserId-1, WorkspaceId-1</h2>
             <PostChannel />
+
+            
+            <h2>Here is a place to test GET ONE WORKSPACE</h2>
+            <GetOneWorkspace />
         </div>
     );
     

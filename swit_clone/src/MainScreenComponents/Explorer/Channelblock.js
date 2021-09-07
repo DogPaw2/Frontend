@@ -3,17 +3,19 @@ import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faBell } from "@fortawesome/free-solid-svg-icons";
 
-function Channelblock(){
-    /*
+function Channelblock(props){
+    
     const [WorkspaceChannelList, setWorkspaceChannelList] = useState([]);
+
 
     const getOneworkspace = () => {
         axios.get("http://localhost:8080/api/workspace/",{
             params:{
-                workspaceId : 1
+                workspaceId : props.workspaceIndex
             }
         }
         ).then(response => {
+            
             console.log(response.data);
             const cur_channel = response.data.workspace.channels.map(cur => cur);
             setWorkspaceChannelList(cur_channel)
@@ -23,12 +25,11 @@ function Channelblock(){
     useEffect(()=>{
         getOneworkspace();
     },[]);
-*/
+
     return(
         <div>
-
-            {/*WorkspaceChannelList.map((cur)=>(
-                <div key={cur.id} className = "explorer_lists" id = "channel">
+            {WorkspaceChannelList.map((cur,index)=>(
+                <div key={index} className = "explorer_lists" id = "channel">
                     <div className = "explorer_list_star">
                         <FontAwesomeIcon icon={faStar} className="search" />
                     </div>
@@ -37,18 +38,8 @@ function Channelblock(){
                         <FontAwesomeIcon icon={faBell} className="search" />    
                     </div>
                 </div>
-            )) */}
-            <div className = "explorer_lists" id = "channel">
-                <div className = "explorer_list_star">
-                    <FontAwesomeIcon icon={faStar} className="search" />
-                </div>
-                <div className = "list_text_btn">name</div>
-                <div className = "explorer_list_ring">
-                    <FontAwesomeIcon icon={faBell} className="search" />    
-                </div>
-            </div>
+            )) }
         </div>
-
     );
 }
 

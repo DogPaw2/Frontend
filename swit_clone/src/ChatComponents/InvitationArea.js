@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function InvitationArea(){
+function InvitationArea(props){
     const [ChannelList, setChannelList] = useState({});
 
     const getChannels = async() => {
@@ -23,7 +23,7 @@ function InvitationArea(){
     return(
         <div className= "invite_area">
             <div className= "chatting_room_member">
-                @Lee
+                @{props.username}
             </div>
 
             <div className = "invite_text">

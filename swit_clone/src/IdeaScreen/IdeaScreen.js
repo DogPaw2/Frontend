@@ -28,11 +28,15 @@ function IdeaScreen(){
     const workspaceUrl = location.state.workspaceUrl;
     
     const history = useHistory();
+
     const moveToChat = () => {
         history.push({
             pathname: `/${userId}/${workspaceUrl}/general/chat`,
             state: {
                 userId: userId,
+                userName: userName,
+                userEmail: userEmail,
+                workspaceId: workspaceId,
                 workspaceName: workspaceName,
                 workspaceUrl: workspaceUrl
             }
@@ -44,6 +48,9 @@ function IdeaScreen(){
             pathname: `/${userId}/${workspaceUrl}/general/idea`,
             state: {
                 userId: userId,
+                userName: userName,
+                userEmail: userEmail,
+                workspaceId: workspaceId,
                 workspaceName: workspaceName,
                 workspaceUrl: workspaceUrl
             }
@@ -145,10 +152,12 @@ function IdeaScreen(){
 
     return(
         <div className = "entire_webpage">
-            <NavBar />
+            {console.log(userName)}
+            <NavBar workspacename = {workspaceName} username = {userName}/>
+            
             <div className = "container">
                 <LeftBar />
-                <MainExplorer />    
+                <MainExplorer workspaceIndex = {workspaceId}/> 
                 <div className = "main_area">
                     <MainUpperBarIdeaOn chatRouter={moveToChat} ideaRouter={moveToIdea}/>
 
