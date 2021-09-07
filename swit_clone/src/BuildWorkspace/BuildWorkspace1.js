@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from "react-router-dom"; // import { useHistory }
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -22,6 +22,9 @@ function BuildWorkspace1() {
         e.preventDefault();
         if (e.target.value != "") {
             setIsValidName(true);
+        }
+        else {
+            setIsValidName(false);
         }
         setName(e.target.value);
     };
@@ -85,11 +88,17 @@ function BuildWorkspace1() {
         /* ****************************** */
     };
 
+    const goHome = () => {
+        history.push({
+            pathname: `/swit-home`
+        })
+    }
+
     return (
         <div className="BuildWorkspace">
             <div className="swit-header">
-                <div className="swit-logo">
-                    <img className="swit-symbol" src="https://swit.io/assets/images/home/brand/img_logo_symbol.png"></img>
+                <div className="swit-logo" onClick={goHome}>
+                    <img className="swit-symbol" src="https://swit.io/assets/images/home/brand/img_logo_symbol.png" alt="swit-symbol"></img>
                     <span className="swit-title">Swit</span>
                 </div>
                 <div className="question-icon">?</div>

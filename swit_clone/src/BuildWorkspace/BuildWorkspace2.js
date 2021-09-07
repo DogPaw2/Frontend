@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom'; // import { useLocation }
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -136,13 +136,17 @@ function BuildWorkspace2() {
         goChat();
     }
 
-    
+    const goHome = () => {
+        history.push({
+            pathname: `/swit-home`
+        })
+    }
     
     
     return (
         <div className="BuildWorkspace">
             <div className="swit-header">
-                <div className="swit-logo">
+                <div className="swit-logo" onClick={goHome}>
                     <img className="swit-symbol" src="https://swit.io/assets/images/home/brand/img_logo_symbol.png"></img>
                     <span className="swit-title">Swit</span>
                 </div>

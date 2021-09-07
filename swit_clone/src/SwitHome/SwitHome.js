@@ -25,7 +25,6 @@ function SwitHome() {
 
       const wp = response.data.workspaceList.map(workspace => workspace);
       setWorkspaceLists(wp);
-      console.log(workspaceLists);
     })
     .catch(error=>{console.log(error.response);})
   }
