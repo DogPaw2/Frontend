@@ -1,8 +1,8 @@
 .idea-post {
     width: 680px;
-    min-height: 195px;
+    height: auto;
     background-color: white;
-    margin: 0 auto;
+    margin: 10px auto 10px;
     border: 1px solid;
     border-color: #D8D8DB;
     display: flex;
@@ -80,6 +80,7 @@
 }
 
 .idea-comment-div {
+    display: table;
     width: 630px;
     min-height: 125px;
     display: flex;
@@ -88,6 +89,7 @@
     justify-content: space-between;
 
 }
+
 
 .idea-comment-count {
     color: #D8D8D8;
@@ -102,6 +104,7 @@
     margin: 20px 0 20px 0;
     border: solid 1px #D8D8D8;
 }
+
 
 .idea-comment-writing-div:focus-within {
     min-height: 88px;

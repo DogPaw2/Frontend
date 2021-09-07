@@ -7,7 +7,7 @@ import './IdeaScreen.css';
 import axios from 'axios';
 
 const IdeaPost = (props) => {
-    const { writer, date, time, content } = props;
+    const { userId, ideaId, writer, date, time, content } = props;
 
     const [commentFocus, setCommentFocus] = useState(false);
     const [commentValid, setCommentValid] = useState(false);
@@ -29,15 +29,69 @@ const IdeaPost = (props) => {
     }
 
     const cConfirmHandler = (e) => {
-        axios.post("http://localhost:8080/api/undefined", {
-            data: {
+        /*
+        const formData = new FormData();
+        if (commentInput == "") {
+            const data = {
+                ideaId: ideaId,
+                userId: userId,
+                text: fileList.length + " Files"
+            }            
+            formData.append(
+                "dto",
+                new Blob([JSON.stringify(data)], {type: "application/json"})
+            );       
+        }
+        else {
+            const data = {
+                ideaId: ideaId,
+                userId: userId,
+                text: commentInput
             }
-        })
+            formData.append(
+                "dto",
+                new Blob([JSON.stringify(data)], {type: "application/json"})
+            )
+        }
+
+        if (fileList.length == 0) {
+            formData.append("files", new Blob([]));
+        }
+        else {
+            fileList.forEach((list) => formData.append("files", list.file));
+        }
+        axios.post("http://localhost:8080/api/idea/comment", formData,
+        )
         .then(function(response) { console.log(response); })
         .catch((error) => { console.log(error.response); })
 
         setCommentInput("");
         setCommentValid(false);
+        setFileExist(false);
+        setFileList([]);
+        */
+    }
+
+    const [fileList, setFileList] = useState([]);
+    const [fileExist, setFileExist] = useState(false);
+
+    const fileUploadHandler = (e) => {
+        const newFile = {
+            name: e.target.files[0].name,
+            file: e.target.files[0]
+        }
+        setFileList(fileList.concat(newFile));
+        if (fileList.length != -1) {
+            setFileExist(true);
+            setCommentValid(true);
+        }
+    }
+
+    const fileDeleteHandler = (e) => {
+        setFileList(fileList.filter(target => target.name != e.name))
+        if (fileList.length == 1) {
+            setFileExist(false);
+        }
     }
 
     return (
@@ -74,7 +128,8 @@ const IdeaPost = (props) => {
                     {commentFocus ?
                     <div className="idea-adding-etc-div">
                         <div className="vertical-line-div">
-                            <FontAwesomeIcon icon={faPlus} className="search idea-adding-etc-plus" size="1x"/>
+                            <label className="file-upload-label" for="idea-file-upload-input">+</label>
+                            <input type="file" onChange={fileUploadHandler} className="file-upload-input" id ="idea-file-upload-input"></input>
                         </div>
                         <div className="white-space-div"></div>
                         <div className="idea-adding-etc-icon-div">

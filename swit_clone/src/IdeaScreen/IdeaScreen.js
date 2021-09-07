@@ -64,6 +64,8 @@ function IdeaScreen(){
     const [fileList, setFileList] = useState([]);
     const [fileExist, setFileExist] = useState(false);
 
+    const [post, setPost] = useState(0);
+
 
     /*
     const focusOn = () => {
@@ -111,48 +113,73 @@ function IdeaScreen(){
     }
 
     const confirmHandler = (e) => {
-        /*
         const formData = new FormData();
-        formData.append("file", fileInput);
+        if (ideaInput == "") {
+            const data = {
+                ideaBoardId: 1,
+                userId: userId,
+                text: fileList.length + " Files"
+            }            
+            formData.append(
+                "dto",
+                new Blob([JSON.stringify(data)], {type: "application/json"})
+            );       
+        }
+        else {
+            const data = {
+                ideaBoardId: 1,
+                userId: userId,
+                text: ideaInput
+            }
+            formData.append(
+                "dto",
+                new Blob([JSON.stringify(data)], {type: "application/json"})
+            )
+        }
 
-        axios.post("http://localhost:8080/api/idea", formData, {
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json;charset=UTF-8"
-            }
-        })
+        if (fileList.length == 0) {
+            formData.append("files", new Blob([]));
+        }
+        else {
+            fileList.forEach((list) => formData.append("files", list.file));
+        }
+
+        axios.post("http://localhost:8080/api/idea", formData, 
+        )
         .then(function(response) { console.log(response); })
         .catch((error) => { console.log(error.response); })
-                
-        axios.post("http://localhost:8080/api/idea", {
-            data: {
-                ideaBoardId: "1",
-                userId: "1",
-                text: "개발", //ideaInput
-                date: "2021-08-31",
-                time: "05:10:02"
-            }
-        })
-        .then(function(response) { console.log(response); })
-        .catch((error) => { console.log(error.response); })
-        */
 
         setIsValid(false);
         setIdeaInput("");
+        setFileExist(false);
+        setFileList([]);
+        setPost(post+1);
+    }
+
+    const [ideaLists, setIdeaLists] = useState([]);
+
+    const getIdeaBoardInfo = () => {
+        axios.get("http://localhost:8080/api/ideaBoard", {
+            params: {
+                ideaBoardId: 1
+            }
+        })
+        .then(function(response) { 
+            console.log(response);
+            const ideas = response.data.ideas.map(idea => idea);
+            setIdeaLists(ideas);
+
+        })
+        .catch((error) => { console.log(error.response); })
     }
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/idea", {
-            params: {
-                id: 1
-            }
-        })
-    }, [])
+        getIdeaBoardInfo();
+    }, [post])
 
 
     return(
         <div className = "entire_webpage">
-            {console.log(userName)}
             <NavBar workspacename = {workspaceName} username = {userName}/>
             
             <div className = "container">
@@ -202,6 +229,9 @@ function IdeaScreen(){
                         </div>
                     </div>
                     
+                    {ideaLists.slice(0).reverse().map((cur, index) => (
+                        <IdeaPost userId={userId} ideaId={index} writer={cur.user.name} date={cur.date} time={cur.time} content={cur.text}/>
+                    ))}
                     <IdeaPost writer="Daeun Chung" date="2021-08-31" time="05:08:00" content="test! hehe"/>
                 </div>
                 <RightPanel />
