@@ -222,8 +222,8 @@ function IdeaScreen(){
                         </div>
                     </div>
                     
-                    {ideaLists.slice(0).reverse().map((cur, index) => (
-                        <IdeaPost userId={userId} ideaBoardId={currentChannelIndex} ideaId={cur.id} writer={cur.user.name} date={cur.date} time={cur.time} content={cur.text} files={cur.fileList}/>
+                    {ideaLists.slice(0).reverse().map((cur) => (
+                        <IdeaPost userId={userId} ideaBoardId={currentChannelIndex} ideaId={cur.id} writer={cur.user.name} date={cur.date} time={cur.time} content={cur.text} files={cur.fileList} comments={cur.comments}/>
                     ))}
                 </div>
             </div>

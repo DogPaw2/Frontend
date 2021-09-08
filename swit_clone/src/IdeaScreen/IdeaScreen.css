@@ -525,6 +525,22 @@ body{
     justify-content: space-between;
 }
 
+.idea-comment-edit-adding-div {
+    
+    width: 630px;
+    min-height: 160px;
+    margin: 25px auto;
+    background-color: white;
+    border: 1px solid;
+    border-color:#D8D8DB;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
 .idea-adding-div:hover {
     border-color:gray;
 }
@@ -602,7 +618,7 @@ body{
 }
 
 .idea-adding-btn-div {
-    width: 660px;
+    width: 610px;
     height: 50px;
     margin: 0 auto;
     display: flex;
@@ -610,6 +626,7 @@ body{
     align-items: center;
     justify-content: flex-end;
 }
+
 
 .file-upload-label {
     width: 30px;
@@ -630,6 +647,32 @@ body{
 
 .file-uploaded-div {
     width: 628px;
+    height: 50px;
+    padding: 0 25px 0 25px;
+    border: 1px solid #E6E6E8;
+    
+    background-color: #F8F8F8;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.comment-file-uploaded-div {
+    width: 577px;
+    height: 50px;
+    padding: 0 25px 0 25px;
+    border: 1px solid #E6E6E8;
+    
+    background-color: #F8F8F8;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.comment-edit-file-uploaded-div {
+    width: 580px;
     height: 50px;
     padding: 0 25px 0 25px;
     border: 1px solid #E6E6E8;

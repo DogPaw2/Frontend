@@ -8,10 +8,12 @@ import './IdeaScreen.css';
 import './PopupMenu.css';
 import axios from 'axios';
 import EditCancelModal from './EditCancelModal';
+import CommentPost from './CommentPost';
+import DeleteModal from './DeleteModal';
 
 const IdeaPost = (props) => {
     const history = useHistory();
-    const { userId, ideaBoardId, ideaId, writer, date, time, content, files } = props;
+    const { userId, ideaBoardId, ideaId, writer, date, time, content, files, comments } = props;
 
     /***** File Download *****/
     const fileDownloadHandler = (e) => {
@@ -85,11 +87,12 @@ const IdeaPost = (props) => {
         setEditInput(content);
         setEditFileList(files);
         setEditMode(false);
+        setECmodalOpen(false);
     }
 
     const editConfirmHandler = () => {
         const formData = new FormData();
-        if (commentInput == "") {
+        if (editInput == "") {
             const data = {
                 id: ideaId,
                 text: editFileList.length + " Files"
@@ -130,7 +133,17 @@ const IdeaPost = (props) => {
 
 
     /***** Delete Idea *****/
+    const [delModalOpen, setDelModalOpen] = useState(false);
+
     const deleteIdea = () => {
+        setDelModalOpen(true);
+    }
+
+    const cancelDelete = () => {
+        setDelModalOpen(false);
+    }
+
+    const confirmDelete = () => {
         axios.delete("http://localhost:8080/api/idea", {
             params: {
                 ideaId: ideaId
@@ -138,17 +151,17 @@ const IdeaPost = (props) => {
         })
         .then(function(response) { console.log(response); })
         .catch((error) => { console.log(error.response); })
+        setDelModalOpen(false);
         history.go(0);
     }
     /***********************/
 
 
     /***** Comment *****/
-    
     const [commentFocus, setCommentFocus] = useState(false);
-    const [commentValid, setCommentValid] = useState(false);
 
-    const [commentInput, setCommentInput] = useState("");
+    const [commentInput, setCommentInput] = useState("");    
+    const [commentValid, setCommentValid] = useState(false);
 
     const cFocusHandler = () => {
         setCommentFocus(true);
@@ -164,6 +177,28 @@ const IdeaPost = (props) => {
         }
     }
 
+    const [cFileList, setCFileList] = useState([]);
+    const [cFileExist, setCFileExist] = useState(false);
+
+    const cFileUploadHandler = (e) => {
+        const newFile = {
+            name: e.target.files[0].name,
+            file: e.target.files[0]
+        }
+        setCFileList(cFileList.concat(newFile));
+        if (cFileList.length != -1) {
+            setCFileExist(true);
+            setCommentValid(true);
+        }
+    }
+
+    const cFileDeleteHandler = (e) => {
+        setCFileList(cFileList.filter(target => target.name != e.name))
+        if (cFileList.length == 1) {
+            setCFileExist(false);
+        }
+    }
+
     const cConfirmHandler = (e) => {
         
         const formData = new FormData();
@@ -171,7 +206,7 @@ const IdeaPost = (props) => {
             const data = {
                 ideaId: ideaId,
                 userId: userId,
-                text: fileList.length + " Files"
+                text: cFileList.length + " Files"
             }            
             formData.append(
                 "dto",
@@ -190,11 +225,11 @@ const IdeaPost = (props) => {
             )
         }
 
-        if (fileList.length == 0) {
+        if (cFileList.length == 0) {
             formData.append("files", new Blob([]));
         }
         else {
-            fileList.forEach((list) => formData.append("files", list));
+            cFileList.forEach((list) => formData.append("files", list.file));
         }
         axios.post("http://localhost:8080/api/idea/comment", formData,
         )
@@ -203,31 +238,9 @@ const IdeaPost = (props) => {
 
         setCommentInput("");
         setCommentValid(false);
-        setFileExist(false);
-        setFileList([]);
+        setCFileExist(false);
+        setCFileList([]);
         
-    }
-
-    const [fileList, setFileList] = useState([]);
-    const [fileExist, setFileExist] = useState(false);
-
-    const fileUploadHandler = (e) => {
-        const newFile = {
-            name: e.target.files[0].name,
-            file: e.target.files[0]
-        }
-        setFileList(fileList.concat(newFile));
-        if (fileList.length != -1) {
-            setFileExist(true);
-            setCommentValid(true);
-        }
-    }
-
-    const fileDeleteHandler = (e) => {
-        setFileList(fileList.filter(target => target.name != e.name))
-        if (fileList.length == 1) {
-            setFileExist(false);
-        }
     }
     
     /*******************/
@@ -273,7 +286,58 @@ const IdeaPost = (props) => {
                     : null}
                     <button className="idea-btn idea-confirm-btn" disabled={!editValid} onClick={editConfirmHandler}>Confirm</button>
                 </div>
+                <hr className="idea-content-hr"/>
+                <div className="idea-comment-div">
+                    <div className="idea-comment-count">0 comments</div>
+                    { comments.map((cur) => (
+                        <CommentPost userId={cur.user.id} userName={cur.user.name}
+                            commentId={cur.id} commentDate={cur.date} commentTime={cur.time}
+                            commentText={cur.text} commentFiles={cur.fileList}>
+                        </CommentPost>
+                    ))
+                    }
+                    <div className="idea-comment-writing-div">
+                        <input
+                            className="idea-comment-input"
+                            placeholder=" Enter message"
+                            value={commentInput}
+                            onFocus={cFocusHandler}
+                            onChange={cChangeHandler}
+                        />
+                        {commentFocus ?
+                        <div>
+                            <div className="idea-adding-etc-div">
+                                <div className="vertical-line-div">
+                                    <label className="file-upload-label" for="idea-comment-file-upload-input">+</label>
+                                    <input type="file" onChange={cFileUploadHandler} className="file-upload-input" id ="idea-comment-file-upload-input"></input>
+                                </div>
+                                <div className="white-space-div"></div>
+                                <div className="idea-adding-etc-icon-div">
+                                    <FontAwesomeIcon icon={faCaretSquareDown} className="search idea-adding-etc-icons" />
+                                    <FontAwesomeIcon icon={faAt} className="search idea-adding-etc-icons" />
+                                    <FontAwesomeIcon icon={faSmile} className="search idea-adding-etc-icons" />
+                                    <button className="comment-confirm-icon-div" disabled={!commentValid} onClick={cConfirmHandler}>
+                                        <FontAwesomeIcon icon={faPaperPlane} className="comment-confirm-icon"/>
+                                    </button>
+                                </div>                                
+                            </div>
+                            { cFileExist ? 
+                                <div>
+                                    { cFileList.map(list => (
+                                        <div className="comment-file-uploaded-div">
+                                            <FontAwesomeIcon icon={faFileDownload} size="2x"/>
+                                            <div className="file-uploaded-name">{list.name}</div>
+                                            <button className="file-uploaded-delete" type="button" onClick={() => cFileDeleteHandler(list)}>X</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            : null}
+                        </div>
+                        : null}
+                    </div>
+                </div>
             </div>
+            
 
             :
             <div className="idea-post">
@@ -299,9 +363,12 @@ const IdeaPost = (props) => {
                                 <MenuItem id="menu-item-two" onClick={deleteIdea}>
                                     <span>Delete</span>
                                 </MenuItem>
-                            </ContextMenu>   
+                            </ContextMenu> 
                         </div>
                     </div>
+                    { delModalOpen ? 
+                            <DeleteModal open={delModalOpen} cancel={cancelDelete} del={confirmDelete}></DeleteModal>
+                    : null}  
                     <div className="idea-content-contents">
                         {content}
                         {files.length ?
@@ -322,6 +389,13 @@ const IdeaPost = (props) => {
                 <hr className="idea-content-hr"/>
                 <div className="idea-comment-div">
                     <div className="idea-comment-count">0 comments</div>
+                    { comments.map((cur) => (
+                        <CommentPost userId={cur.user.id} userName={cur.user.name}
+                            commentId={cur.id} commentDate={cur.date} commentTime={cur.time}
+                            commentText={cur.text} commentFiles={cur.fileList}>
+                        </CommentPost>
+                    ))
+                    }
                     <div className="idea-comment-writing-div">
                         <input
                             className="idea-comment-input"
@@ -331,20 +405,33 @@ const IdeaPost = (props) => {
                             onChange={cChangeHandler}
                         />
                         {commentFocus ?
-                        <div className="idea-adding-etc-div">
-                            <div className="vertical-line-div">
-                                <label className="file-upload-label" for="idea-file-upload-input">+</label>
-                                <input type="file" onChange={fileUploadHandler} className="file-upload-input" id ="idea-file-upload-input"></input>
+                        <div>
+                            <div className="idea-adding-etc-div">
+                                <div className="vertical-line-div">
+                                    <label className="file-upload-label" for="idea-comment-file-upload-input">+</label>
+                                    <input type="file" onChange={cFileUploadHandler} className="file-upload-input" id ="idea-comment-file-upload-input"></input>
+                                </div>
+                                <div className="white-space-div"></div>
+                                <div className="idea-adding-etc-icon-div">
+                                    <FontAwesomeIcon icon={faCaretSquareDown} className="search idea-adding-etc-icons" />
+                                    <FontAwesomeIcon icon={faAt} className="search idea-adding-etc-icons" />
+                                    <FontAwesomeIcon icon={faSmile} className="search idea-adding-etc-icons" />
+                                    <button className="comment-confirm-icon-div" disabled={!commentValid} onClick={cConfirmHandler}>
+                                        <FontAwesomeIcon icon={faPaperPlane} className="comment-confirm-icon"/>
+                                    </button>
+                                </div>                                
                             </div>
-                            <div className="white-space-div"></div>
-                            <div className="idea-adding-etc-icon-div">
-                                <FontAwesomeIcon icon={faCaretSquareDown} className="search idea-adding-etc-icons" />
-                                <FontAwesomeIcon icon={faAt} className="search idea-adding-etc-icons" />
-                                <FontAwesomeIcon icon={faSmile} className="search idea-adding-etc-icons" />
-                                <button className="comment-confirm-icon-div" disabled={!commentValid} onClick={cConfirmHandler}>
-                                    <FontAwesomeIcon icon={faPaperPlane} className="comment-confirm-icon"/>
-                                </button>
-                            </div>                                
+                            { cFileExist ? 
+                                <div>
+                                    { cFileList.map(list => (
+                                        <div className="comment-file-uploaded-div">
+                                            <FontAwesomeIcon icon={faFileDownload} size="2x"/>
+                                            <div className="file-uploaded-name">{list.name}</div>
+                                            <button className="file-uploaded-delete" type="button" onClick={() => cFileDeleteHandler(list)}>X</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            : null}
                         </div>
                         : null}
                     </div>
