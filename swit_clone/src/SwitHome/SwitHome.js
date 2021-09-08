@@ -11,6 +11,8 @@ function SwitHome() {
   const userId = 1;
   const userName = "DogPaw Developers";
   const userEmail = "dogpaw@hanyang.ac.kr";
+  const [currentChannelIndex, setChannelIndex] = useState(1);
+  const [currentChattingIndex, setChattingIndex] = useState(1);
 
   const [workspaceLists, setWorkspaceLists] = useState([]);
 
@@ -67,7 +69,7 @@ function SwitHome() {
 
   const workspaceBoxLink = (cur) => {
     history.push({
-      pathname: `/${userId}/${cur.workspace.url}/general/chat`,
+      pathname: `/${userId}/${cur.workspace.url}/${currentChannelIndex}/chat/${currentChattingIndex}`,
       state: {
         userId: userId,
         userName: userName,

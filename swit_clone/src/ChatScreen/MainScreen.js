@@ -34,7 +34,7 @@ function MainScreen(){
 
     const moveToChat = () => {
         history.push({
-            pathname: `/${userId}/${workspaceUrl}/general/chat`,
+            pathname: `/${userId}/${workspaceUrl}/${currentChannelIndex}/chat/${currentChattingIndex}`,
             state: {
                 userId: userId,
                 userName: userName,
@@ -50,7 +50,7 @@ function MainScreen(){
 
     const moveToIdea = () => {
         history.push({
-            pathname: `/${userId}/${workspaceUrl}/general/idea`,
+            pathname: `/${userId}/${workspaceUrl}/${currentChannelIndex}/idea/${currentChattingIndex}`,
             state: {
                 userId: userId,
                 userName: userName,

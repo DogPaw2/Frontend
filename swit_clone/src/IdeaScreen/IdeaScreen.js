@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import './IdeaScreen.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faPlus, faAt, faCaretSquareDown, faSmile} from "@fortawesome/free-solid-svg-icons";
+import {faAt, faCaretSquareDown, faSmile, faFileDownload} from "@fortawesome/free-solid-svg-icons";
 
 //MainScreenComponents
 import NavBar from '../MainScreenComponents/Navigation_bar/NavBar';
@@ -33,7 +33,7 @@ function IdeaScreen(){
 
     const moveToChat = () => {
         history.push({
-            pathname: `/${userId}/${workspaceUrl}/general/chat`,
+            pathname: `/${userId}/${workspaceUrl}/${currentChannelIndex}/chat/${currentChattingIndex}`,
             state: {
                 userId: userId,
                 userName: userName,
@@ -49,7 +49,7 @@ function IdeaScreen(){
 
     const moveToIdea = () => {
         history.push({
-            pathname: `/${userId}/${workspaceUrl}/general/idea`,
+            pathname: `/${userId}/${workspaceUrl}/${currentChannelIndex}/idea/${currentChattingIndex}`,
             state: {
                 userId: userId,
                 userName: userName,
@@ -63,25 +63,11 @@ function IdeaScreen(){
         })
     }
 
-    //const [isFocus, setIsFocus] = useState(false);
     const [isValid, setIsValid] = useState(false);
     const [ideaInput, setIdeaInput] = useState("");
 
     const [fileList, setFileList] = useState([]);
     const [fileExist, setFileExist] = useState(false);
-
-    const [post, setPost] = useState(0);
-
-
-    /*
-    const focusOn = () => {
-        setIsFocus(true);
-    }
-
-    const focusOff = () => {
-        setIsFocus(false);
-    }
-    */
 
     const changeHandler = (e) => {
         setIdeaInput(e.target.value);
@@ -122,7 +108,7 @@ function IdeaScreen(){
         const formData = new FormData();
         if (ideaInput == "") {
             const data = {
-                ideaBoardId: 1,
+                ideaBoardId: currentChannelIndex,
                 userId: userId,
                 text: fileList.length + " Files"
             }            
@@ -133,7 +119,7 @@ function IdeaScreen(){
         }
         else {
             const data = {
-                ideaBoardId: 1,
+                ideaBoardId: currentChannelIndex,
                 userId: userId,
                 text: ideaInput
             }
@@ -159,7 +145,7 @@ function IdeaScreen(){
         setIdeaInput("");
         setFileExist(false);
         setFileList([]);
-        setPost(post+1);
+        history.go(0);
     }
 
     const [ideaLists, setIdeaLists] = useState([]);
@@ -167,7 +153,7 @@ function IdeaScreen(){
     const getIdeaBoardInfo = () => {
         axios.get("http://localhost:8080/api/ideaBoard", {
             params: {
-                ideaBoardId: 1
+                ideaBoardId: currentChannelIndex
             }
         })
         .then(function(response) { 
@@ -181,7 +167,7 @@ function IdeaScreen(){
 
     useEffect(() => {
         getIdeaBoardInfo();
-    }, [post])
+    }, [])
 
 
     return(
@@ -221,6 +207,7 @@ function IdeaScreen(){
                                 <div>
                                     { fileList.map(list => (
                                         <div className="file-uploaded-div">
+                                            <FontAwesomeIcon icon={faFileDownload} size="2x"/>
                                             <div className="file-uploaded-name">{list.name}</div>
                                             <button className="file-uploaded-delete" type="button" onClick={() => fileDeleteHandler(list)}>X</button>
                                         </div>
@@ -236,9 +223,8 @@ function IdeaScreen(){
                     </div>
                     
                     {ideaLists.slice(0).reverse().map((cur, index) => (
-                        <IdeaPost userId={userId} ideaId={index} writer={cur.user.name} date={cur.date} time={cur.time} content={cur.text}/>
+                        <IdeaPost userId={userId} ideaBoardId={currentChannelIndex} ideaId={cur.id} writer={cur.user.name} date={cur.date} time={cur.time} content={cur.text} files={cur.fileList}/>
                     ))}
-                    <IdeaPost writer="Daeun Chung" date="2021-08-31" time="05:08:00" content="test! hehe"/>
                 </div>
             </div>
         </div>

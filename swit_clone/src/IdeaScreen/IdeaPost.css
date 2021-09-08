@@ -53,12 +53,20 @@
 }
 
 .idea-content-icon-div {
-
+    padding: 0 5px 0 5px;
 }
 
 .idea-content-icons {
     margin: 0 5px 0 5px;
     color: #D8D8D8;
+}
+
+.edit-delete-icon {
+    display: inline;
+}
+
+.edit-delete-icon:hover {
+    cursor: pointer;
 }
 
 .idea-content-contents {
@@ -146,4 +154,43 @@
 }
 .comment-confirm-icon {
     color: white;
+}
+
+.file-download-div {
+    width: 100%;
+    height: 40px;
+    margin: 5px 0 5px 0;
+    padding: 10px 5px 0 5px;
+}
+
+.file-download-checkbox {
+    width: 15px;
+    height: 15px;
+}
+
+.file-shaped-icon {
+    color: #488AFC;
+    padding: 0 5px 0 5px;
+}
+
+.file-download-name {
+    width: 400px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 0 0 10px;
+    display: inline-block;
+}
+
+.file-download-div:hover {
+    background-color: #F2F2F2;
+    cursor: pointer;
+}
+
+.file-download-icon {
+    color: #D8D8D8;
+}
+
+.file-download-icon:hover {
+    color: gray;
+    cursor: pointer;
 }

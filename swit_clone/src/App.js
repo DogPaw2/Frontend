@@ -14,8 +14,8 @@ function App() {
             <Route path="/swit-home" component={SwitHome}/>
             <Route path="/build-workspace1/:userId" component={BuildWorkspace1}/>
             <Route path="/build-workspace2/:userId/:workspaceUrl" component={BuildWorkspace2}/>
-            <Route exact path="/:userId/:workspaceUrl/:channel/chat" component={MainScreen}/>
-            <Route exact path="/:userId/:workspaceUrl/:channel/idea" component={IdeaScreen}/>
+            <Route exact path="/:userId/:workspaceUrl/:currentChannelIndex/chat/:currentChattingIndex" component={MainScreen}/>
+            <Route exact path="/:userId/:workspaceUrl/:currentChannelIndex/idea/:currentChattingIndex" component={IdeaScreen}/>
             <Route path = "/test" component={TestScreen}/>
         </BrowserRouter>
     );

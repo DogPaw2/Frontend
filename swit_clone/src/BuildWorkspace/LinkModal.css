@@ -101,6 +101,11 @@
     align-items: center;
     animation: modal-bg-show .3s;
 }
+
+.back-discard-btn {
+    width: 120px;
+}
+
 @keyframes modal-show {
     from {
         opacity: 0;

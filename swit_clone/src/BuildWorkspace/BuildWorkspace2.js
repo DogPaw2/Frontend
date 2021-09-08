@@ -21,11 +21,14 @@ function BuildWorkspace2() {
     const workspaceName = location.state.workspaceName;
     const workspaceUrl = location.state.workspaceUrl;
     /* ****************************** */
+    
+    const [currentChannelIndex, setChannelIndex] = useState(1);
+    const [currentChattingIndex, setChattingIndex] = useState(1);
 
     const history = useHistory();
     const goChat = () => {
         history.push({
-            pathname: `/${userId}/${workspaceUrl}/general/chat`,
+            pathname: `/${userId}/${workspaceUrl}/${currentChannelIndex}/chat/${currentChattingIndex}`,
             state: {
                 userId: userId,
                 userName: userName,

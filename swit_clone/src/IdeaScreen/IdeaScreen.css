@@ -629,21 +629,22 @@ body{
 }
 
 .file-uploaded-div {
-    width: 603px;
+    width: 628px;
     height: 50px;
-    padding: 0 25px 0 50px;
+    padding: 0 25px 0 25px;
     border: 1px solid #E6E6E8;
     
     background-color: #F8F8F8;
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
 }
 
 .file-uploaded-name {
+    width: 600px;
     line-height: 50px;
+    padding: 0 0 0 15px;
 }
 
 .file-uploaded-delete {
