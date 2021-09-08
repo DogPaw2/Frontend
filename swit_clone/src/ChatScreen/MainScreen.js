@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './MainScreen.css';
 
 //MainScreenComponents
@@ -6,7 +6,7 @@ import NavBar from '../MainScreenComponents/Navigation_bar/NavBar';
 import LeftBar from '../MainScreenComponents/Left_bar/LeftBar'
 import MainUpperBar from '../MainScreenComponents/MainArea_Upper_bar/MainUpperBar';
 import MainExplorer from '../MainScreenComponents/Explorer/MainExplorer';
-import RightPanel from '../MainScreenComponents/Right_panel/RightPanel';
+
 
 //ChatComponents
 import DateLine from '../ChatComponents/DateLine';
@@ -27,9 +27,9 @@ function MainScreen(){
     const workspaceId = location.state.workspaceId; //props 추가
     const workspaceName = location.state.workspaceName;
     const workspaceUrl = location.state.workspaceUrl;
-    const currentChannelIndex = 1;
-    const currentChattingId = 1;
-
+    const [currentChannelIndex, setChannelIndex] = useState(1);
+    const [currentChattingIndex, setChattingIndex] = useState(1);
+    
     const history = useHistory();
 
     const moveToChat = () => {
@@ -41,7 +41,9 @@ function MainScreen(){
                 userEmail: userEmail,
                 workspaceId: workspaceId,
                 workspaceName: workspaceName,
-                workspaceUrl: workspaceUrl
+                workspaceUrl: workspaceUrl,
+                currentChattingIndex : currentChattingIndex,
+                currentChannelIndex: currentChannelIndex
             }
         })
     }
@@ -55,26 +57,28 @@ function MainScreen(){
                 userEmail: userEmail,
                 workspaceId: workspaceId,
                 workspaceName: workspaceName,
-                workspaceUrl: workspaceUrl
+                workspaceUrl: workspaceUrl,
+                currentChattingIndex : currentChattingIndex,
+                currentChannelIndex: currentChannelIndex
             }
         })
     }
 
     return(
         <div className = "entire_webpage">
-            {console.log(userName)}
+            {console.log(currentChannelIndex, currentChattingIndex)}
             <NavBar workspacename = {workspaceName} username = {userName}/>
             <div className = "container">
                 <LeftBar />
-                <MainExplorer workspaceIndex = {workspaceId}/> 
+                <MainExplorer workspaceIndex = {workspaceId} setChannelIndex = {setChannelIndex} setChattingIndex = {setChattingIndex}/> 
                 <div className = "main_area">
-                    <MainUpperBar chatRouter={moveToChat} ideaRouter={moveToIdea}/>
+                    <MainUpperBar chatRouter={moveToChat} ideaRouter={moveToIdea} currentChannelIndex={currentChannelIndex}/>
 
                     <div className = "main_chatting">
                         <ChattingInput />
                         <ChatBox />  
                         <DateLine />
-                        <InvitationArea username = {userName}/>     
+                        <InvitationArea username = {userName} currentChannelIndex = {currentChannelIndex}/>     
                     </div>
 
                 </div>

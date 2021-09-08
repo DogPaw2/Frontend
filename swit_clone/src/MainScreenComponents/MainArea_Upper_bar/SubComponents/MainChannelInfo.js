@@ -4,26 +4,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faAngleDown} from "@fortawesome/free-solid-svg-icons";
 //http://localhost:8080/api/channel
 
-function MainChannelInfo(){
+function MainChannelInfo(props){
 
     const [ChannelList, setChannelList] = useState({});
 
     const getChannels = async() => {
         await axios.get("http://localhost:8080/api/channel",{
             params:{
-                channelId : 1
+                channelId : props.currentChannelId
             }
         }
         ).then(response => {
             console.log(response.data.channel);
             setChannelList(response.data.channel);
-            
         })
     }
 
     useEffect(()=>{
         getChannels();
-    },[]);
+    },[props.currentChannelId]);
 
     return(
         <div className = "infos">

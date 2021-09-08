@@ -559,6 +559,11 @@ body{
     color : #E6E6E8;
 }
 
+.content_add_btn_area:hover{
+    cursor: pointer;
+    color :#B9BABE;
+}
+
 .chat_text_input
 {
     border-left: 1px solid #E6E6E8; 
@@ -609,6 +614,7 @@ body{
     width:2.5rem;
     margin-right:0.5rem;
 }
+
 
 .date_line_area{
     display: flex;

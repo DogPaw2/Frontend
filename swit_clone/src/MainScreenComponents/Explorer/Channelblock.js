@@ -15,7 +15,6 @@ function Channelblock(props){
             }
         }
         ).then(response => {
-            
             console.log(response.data);
             const cur_channel = response.data.workspace.channels.map(cur => cur);
             setWorkspaceChannelList(cur_channel)
@@ -29,7 +28,10 @@ function Channelblock(props){
     return(
         <div>
             {WorkspaceChannelList.map((cur,index)=>(
-                <div key={index} className = "explorer_lists" id = "channel">
+                <div key={index} className = "explorer_lists" id = "channel" onClick ={(event) => {
+                        props.setChannelIndex(cur.id)
+                        props.setChattingIndex(cur.chatting.id)
+                        }}>
                     <div className = "explorer_list_star">
                         <FontAwesomeIcon icon={faStar} className="search" />
                     </div>

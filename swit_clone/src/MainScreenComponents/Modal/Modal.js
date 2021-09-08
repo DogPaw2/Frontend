@@ -12,9 +12,11 @@ const ChannelCreateModal = ( props ) => {
     const Activate = () => {
         setActivation(activation+1);
     }
+
     function refreshPage() {
         window.location.reload(false);
     };
+
     const POST_Channel = async() =>{
         await axios.post("http://localhost:8080/api/channel",
             {"name" : ChannelName, "purpose" : ChannelPurpose , "userId":1, "workspaceId":1})
@@ -22,7 +24,8 @@ const ChannelCreateModal = ( props ) => {
     };
 
     useDidMountEffect(()=>{
-        POST_Channel()
+        POST_Channel();
+        refreshPage();
     },[activation]);
     
     return (
@@ -35,21 +38,17 @@ const ChannelCreateModal = ( props ) => {
                     <main>
                         <div className= "section1">
                             <div>채널 이름</div>
-                            <input type= "text" value={ChannelName} onChange={(event) => setChannelName(event.target.value)}></input>
+                            <input type= "text" value={ChannelName} onChange={(event) => setChannelName(event.target.value)} className = "ChannelInfoinput"></input>
                         </div>
                         <div className = "section1">
                             <div>설명 (선택사항)</div>
-                            <input type= "text" value={ChannelPurpose} onChange={(event) => setChannelPurpose(event.target.value)}></input>
+                            <input type= "text" value={ChannelPurpose} onChange={(event) => setChannelPurpose(event.target.value)} className = "ChannelInfoinput"></input>
                         </div>
 
                     </main>
                     <footer>
                         <button className="close" onClick={close}> 취소 </button>
-                        <button className="close" onClick={(event) => 
-                        {   Activate();
-                            close();
-                            refreshPage();
-                        }}> 확인 </button>
+                        <button className="close" onClick={(event) => {Activate(); close();}}> 확인 </button>
                     </footer>
                 </section>
             ) : null }

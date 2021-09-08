@@ -26,6 +26,8 @@ function IdeaScreen(){
     const workspaceId = location.state.workspaceId;
     const workspaceName = location.state.workspaceName;
     const workspaceUrl = location.state.workspaceUrl;
+    const [currentChannelIndex, setChannelIndex] = useState(1);
+    const [currentChattingIndex, setChattingIndex] = useState(1);
     
     const history = useHistory();
 
@@ -38,7 +40,9 @@ function IdeaScreen(){
                 userEmail: userEmail,
                 workspaceId: workspaceId,
                 workspaceName: workspaceName,
-                workspaceUrl: workspaceUrl
+                workspaceUrl: workspaceUrl,
+                currentChattingIndex : currentChattingIndex,
+                currentChannelIndex: currentChannelIndex
             }
         })
     }
@@ -52,7 +56,9 @@ function IdeaScreen(){
                 userEmail: userEmail,
                 workspaceId: workspaceId,
                 workspaceName: workspaceName,
-                workspaceUrl: workspaceUrl
+                workspaceUrl: workspaceUrl,
+                currentChattingIndex : currentChattingIndex,
+                currentChannelIndex: currentChannelIndex
             }
         })
     }
@@ -184,9 +190,9 @@ function IdeaScreen(){
             
             <div className = "container">
                 <LeftBar />
-                <MainExplorer workspaceIndex = {workspaceId}/> 
+                <MainExplorer workspaceIndex = {workspaceId} setChannelIndex = {setChannelIndex} setChattingIndex = {setChattingIndex}/> 
                 <div className = "main_area">
-                    <MainUpperBarIdeaOn chatRouter={moveToChat} ideaRouter={moveToIdea}/>
+                    <MainUpperBarIdeaOn chatRouter={moveToChat} ideaRouter={moveToIdea} currentChannelIndex={currentChannelIndex}/>
 
                     <div className = "main-idea">
                         <div className="idea-adding-div">

@@ -60,6 +60,10 @@
     /* 팝업이 열릴때 스르륵 열리는 효과 */
     animation: modal-bg-show .3s;
 }
+input[type="text"]:focus
+{
+    outline:none;
+}
 @keyframes modal-show {
     from {
         opacity: 0;

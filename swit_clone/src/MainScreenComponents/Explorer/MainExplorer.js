@@ -48,7 +48,7 @@ function MainExplorer(props){
                         </React.Fragment>
                         
                     </div>
-                    <Channelblock workspaceIndex = {props.workspaceIndex}/>
+                    <Channelblock workspaceIndex = {props.workspaceIndex} setChannelIndex = {props.setChannelIndex} setChattingIndex={props.setChattingIndex}/>
 
                     <div className = "explorer_text_btn_area">
                         <div className = "explorer_text_btn" id ="Direct_message">Direct_message</div>

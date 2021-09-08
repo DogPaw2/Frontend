@@ -7,7 +7,7 @@ function InvitationArea(props){
     const getChannels = async() => {
         await axios.get("http://localhost:8080/api/channel",{
             params:{
-                channelId : 1
+                channelId : props.currentChannelIndex
             }
         }
         ).then(response => {
@@ -19,7 +19,7 @@ function InvitationArea(props){
 
     useEffect(()=>{
         getChannels();
-    },[]);
+    },[props.currentChannelIndex]);
     return(
         <div className= "invite_area">
             <div className= "chatting_room_member">

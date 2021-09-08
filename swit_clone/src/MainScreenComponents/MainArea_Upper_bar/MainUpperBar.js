@@ -9,7 +9,7 @@ function MainUpperBar(props){
 
     return(
         <div className = "workspace_info">
-            <MainChannelInfo />
+            <MainChannelInfo currentChannelId = {props.currentChannelIndex}/>
             <ChatNIdeaSwitch chatRouter={chatRouter} ideaRouter={ideaRouter}/>
             <ChatInfoBar />
         </div>
