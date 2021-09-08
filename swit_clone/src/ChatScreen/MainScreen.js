@@ -27,7 +27,9 @@ function MainScreen(){
     const workspaceId = location.state.workspaceId; //props 추가
     const workspaceName = location.state.workspaceName;
     const workspaceUrl = location.state.workspaceUrl;
-    
+    const currentChannelIndex = 1;
+    const currentChattingId = 1;
+
     const history = useHistory();
 
     const moveToChat = () => {
@@ -76,7 +78,6 @@ function MainScreen(){
                     </div>
 
                 </div>
-                <RightPanel />
             </div>
         </div>
     );

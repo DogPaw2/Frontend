@@ -234,7 +234,6 @@ function IdeaScreen(){
                     ))}
                     <IdeaPost writer="Daeun Chung" date="2021-08-31" time="05:08:00" content="test! hehe"/>
                 </div>
-                <RightPanel />
             </div>
         </div>
     );

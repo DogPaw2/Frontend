@@ -10,16 +10,17 @@ function ChattingInput(){
 
     const POST_Single_chat = async() =>{
         await axios.post("http://localhost:8080/api/chat",
-            {    "chattingId": "1", "userId" : "1", "text" : search })
+            {    "chattingId": 1, "userId" : 1, "text" : search })
         .then(console.log("Send ->" + search));
     };
     function refreshPage() {
         window.location.reload(false);
-      }
+    };
 
     useDidMountEffect(()=>{
     POST_Single_chat();
     refreshPage();
+ 
     },[search]);
     
     return(
