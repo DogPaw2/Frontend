@@ -111,7 +111,7 @@ const IdeaPost = (props) => {
                 new Blob([JSON.stringify(data)], {type: "application/json"})
             );       
         }
-        else {
+        else { 
             const data = {
                 id: ideaId,
                 text: editInput
@@ -127,6 +127,9 @@ const IdeaPost = (props) => {
         }
         else {
             editFileList.forEach((list) => { formData.append("files", list); });
+            if (editFileList == files) {
+                formData.append("files", new Blob([]));
+            }
         }
 
         axios.put("http://localhost:8080/api/idea", formData,
@@ -253,7 +256,7 @@ const IdeaPost = (props) => {
         setCFileList([]);
         history.go(0);
     }
-    
+     
     /*******************/
 
     return (
@@ -284,7 +287,7 @@ const IdeaPost = (props) => {
                         { editFileList.map(list => (
                             <div className="file-uploaded-div">
                                 <FontAwesomeIcon icon={faFileDownload} size="2x"/>
-                                <div className="file-uploaded-name">{list.originName}</div>
+                                <div className="file-uploaded-name">{list.originName || list.name}</div>
                                 <button className="file-uploaded-delete" type="button" onClick={() => fileDeleteEditer(list)}>X</button>
                             </div>
                         ))}
@@ -299,7 +302,7 @@ const IdeaPost = (props) => {
                 </div>
                 <hr className="idea-content-hr"/>
                 <div className="idea-comment-div">
-                    <div className="idea-comment-count">0 comments</div>
+                    <div className="idea-comment-count">{comments.length} comments</div>
                     { comments.map((cur) => (
                         <CommentPost userId={cur.user.id} userName={cur.user.name}
                             commentId={cur.id} commentDate={cur.date} commentTime={cur.time}
@@ -398,7 +401,7 @@ const IdeaPost = (props) => {
                 </div>
                 <hr className="idea-content-hr"/>
                 <div className="idea-comment-div">
-                    <div className="idea-comment-count">0 comments</div>
+                    <div className="idea-comment-count">{comments.length} comments</div>
                     { comments.map((cur) => (
                         <CommentPost userId={cur.user.id} userName={cur.user.name}
                             commentId={cur.id} commentDate={cur.date} commentTime={cur.time}

@@ -127,6 +127,9 @@ const CommentPost = (props) => {
         }
         else {
             cEditFileList.forEach((list) => { formData.append("files", list); });
+            if (cEditFileList == commentFiles) {
+                formData.append("files", new Blob([]));
+            }
         }
 
         axios.put("http://localhost:8080/api/idea/comment", formData,
@@ -194,7 +197,7 @@ const CommentPost = (props) => {
                             { cEditFileList.map(list => (
                                 <div className="comment-edit-file-uploaded-div">
                                     <FontAwesomeIcon icon={faFileDownload} size="2x"/>
-                                    <div className="file-uploaded-name">{list.originName}</div>
+                                    <div className="file-uploaded-name">{list.originName || list.name}</div>
                                     <button className="file-uploaded-delete" type="button" onClick={() => cFileDeleteEditer(list)}>X</button>
                                 </div>
                             ))}
