@@ -72,6 +72,14 @@ const CommentPost = (props) => {
     }
 
     const cFileDeleteEditer = (e) => {
+        
+        axios.delete("http://localhost:8080/api/idea/comment/file", {
+            params: {
+                fileId: e.id
+            }
+        })
+        .then(response => { console.log(response); })
+        .catch(error => { console.log(error.response); })
         setCEditFileList(cEditFileList.filter(target => target.id != e.id))
         setCEditValid(true);
     }

@@ -73,6 +73,13 @@ const IdeaPost = (props) => {
     }
 
     const fileDeleteEditer = (e) => {
+        axios.delete("http://localhost:8080/api/idea/file", {
+            params: {
+                fileId: e.id
+            }
+        })
+        .then(response => { console.log(response); })
+        .catch(error => { console.log(error.response); })
         setEditFileList(editFileList.filter(target => target.id != e.id))
         setEditValid(true);
     }
@@ -196,13 +203,14 @@ const IdeaPost = (props) => {
     }
 
     const cFileDeleteHandler = (e) => {
-        setCFileList(cFileList.filter(target => target.name != e.name))
+        setCFileList(cFileList.filter(target => target.name != e.name));
         if (cFileList.length == 1) {
             setCFileExist(false);
         }
     }
 
     const cConfirmHandler = (e) => {
+
         
         const formData = new FormData();
         if (commentInput == "") {
