@@ -14,66 +14,89 @@ const CommentPost = (props) => {
     const { userId, userName, commentId, commentDate, commentTime, commentText, commentFiles } = props;
     const history = useHistory();
 
+    /***** File Download *****/
+    const cFileDownloadHandler = (e) => {
+        console.log(e);
+        axios({
+            method: "GET",
+            url: "http://localhost:8080/api/idea/comment/download/",
+            params: {
+                fileId: e.id
+            },
+            responseType: "blob"
+        })
+        .then(response => {
+            const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", e.originName); 
+            document.body.appendChild(link);
+            link.click();
+        })
+        .catch((error) => {console.log(error);})
+    }
+    /*************************/
+
     /***** Edit Comment *****/
-    const [editMode, setEditMode] = useState(false);
+    const [cEditMode, setCEditMode] = useState(false);
 
-    const [editInput, setEditInput] = useState(commentText);
-    const [editValid, setEditValid] = useState(false);
+    const [cEditInput, setCEditInput] = useState(commentText);
+    const [cEditValid, setCEditValid] = useState(false);
 
-    const [editFileList, setEditFileList] = useState(commentFiles);
+    const [cEditFileList, setCEditFileList] = useState(commentFiles);
 
-    const [ECmodalOpen, setECmodalOpen] = useState(false);
+    const [cECmodalOpen, setCECmodalOpen] = useState(false);
 
     const editComment = () => {
-        setEditMode(true);
+        setCEditMode(true);
     }
-    const editChangeHandler = (e) => {
-        setEditInput(e.target.value);
+    const cEditChangeHandler = (e) => {
+        setCEditInput(e.target.value);
         if (e.target.value != commentText) {
-            setEditValid(true);
+            setCEditValid(true);
         }
         else {
-            setEditValid(false);
+            setCEditValid(false);
         }
     }
 
-    const fileUploadEditer = (e) => {
+    const cFileUploadEditer = (e) => {
         const newFile = e.target.files[0];
-        setEditFileList(editFileList.concat(newFile));
-        if (editFileList[editFileList.length] != e.target.files[0]) {
-            setEditValid(true);
+        setCEditFileList(cEditFileList.concat(newFile));
+        if (cEditFileList[cEditFileList.length] != e.target.files[0]) {
+            setCEditValid(true);
         }
         else {
-            setEditValid(false);
+            setCEditValid(false);
         }
     }
 
-    const fileDeleteEditer = (e) => {
-        setEditFileList(editFileList.filter(target => target.id != e.id))
-        setEditValid(true);
+    const cFileDeleteEditer = (e) => {
+        setCEditFileList(cEditFileList.filter(target => target.id != e.id))
+        setCEditValid(true);
     }
 
-    const editCancelHandler = () => {
-        setECmodalOpen(true);
+    const cEditCancelHandler = () => {
+        setCECmodalOpen(true);
     }
 
-    const backHandler = () => {
-        setECmodalOpen(false);
+    const cBackHandler = () => {
+        setCECmodalOpen(false);
     }
 
-    const discardHandler = () => {
-        setEditInput(commentText);
-        setEditFileList(commentFiles);
-        setEditMode(false);
-        setECmodalOpen(false);
+    const cDiscardHandler = () => {
+        setCEditInput(commentText);
+        setCEditFileList(commentFiles);
+        setCEditMode(false);
+        setCECmodalOpen(false);
     }
 
-    const editConfirmHandler = () => {
+    const cEditConfirmHandler = () => {
         const formData = new FormData();
-        if (editInput == "") {
+        if (cEditInput == "") {
             const data = {
                 id: commentId,
-                text: editFileList.length + " Files"
+                text: cEditFileList.length + " Files"
             }            
             formData.append(
                 "dto",
@@ -83,7 +106,7 @@ const CommentPost = (props) => {
         else {
             const data = {
                 id: commentId,
-                text: editInput
+                text: cEditInput
             }
             formData.append(
                 "dto",
@@ -91,21 +114,22 @@ const CommentPost = (props) => {
             )
         }
 
-        if (editFileList.length == 0) {
+        if (cEditFileList.length == 0) {
             formData.append("files", new Blob([]));
         }
         else {
-            editFileList.forEach((list) => { formData.append("files", list); });
+            cEditFileList.forEach((list) => { formData.append("files", list); });
         }
 
-        axios.put("http://localhost:8080/api/idea", formData,
+        axios.put("http://localhost:8080/api/idea/comment", formData,
         )
         .then(function(response) { console.log(response); })
         .catch((error) => { console.log(error.response); })
 
-        console.log(editInput);
-        console.log(editFileList);
-        setEditMode(false);
+        console.log(cEditInput);
+        console.log(cEditFileList);
+        setCEditMode(false);
+        history.go(0);
     }
     /*********************/
 
@@ -135,20 +159,20 @@ const CommentPost = (props) => {
 
     return (
         <div>
-            { editMode ?
+            { cEditMode ?
             <div>
                     <div className="idea-comment-edit-adding-div">
                     <div className="idea-adding-text-div">
                         <input
                             className="idea-adding-text-input"
                             placeholder="Share your idea to ask for feedback, collect data, or decide what to eat for lunch."
-                            value={editInput}
-                            onChange={editChangeHandler}/>
+                            value={cEditInput}
+                            onChange={cEditChangeHandler}/>
                     </div>
                     <div className="idea-adding-etc-div">
                         <div className="vertical-line-div">
                             <label className="file-upload-label" for="idea-file-upload-edit-input">+</label>
-                            <input type="file" onChange={fileUploadEditer} className="file-upload-input" id ="idea-file-upload-edit-input"></input>
+                            <input type="file" onChange={cFileUploadEditer} className="file-upload-input" id ="idea-file-upload-edit-input"></input>
                         </div>
                         <div className="white-space-div"></div>
                         <div className="idea-adding-etc-icon-div">
@@ -157,23 +181,23 @@ const CommentPost = (props) => {
                             <FontAwesomeIcon icon={faSmile} className="search idea-adding-etc-icons" />
                         </div>
                     </div>
-                    { editFileList.length ? 
+                    { cEditFileList.length ? 
                         <div>
-                            { editFileList.map(list => (
+                            { cEditFileList.map(list => (
                                 <div className="comment-edit-file-uploaded-div">
                                     <FontAwesomeIcon icon={faFileDownload} size="2x"/>
                                     <div className="file-uploaded-name">{list.originName}</div>
-                                    <button className="file-uploaded-delete" type="button" onClick={() => fileDeleteEditer(list)}>X</button>
+                                    <button className="file-uploaded-delete" type="button" onClick={() => cFileDeleteEditer(list)}>X</button>
                                 </div>
                             ))}
                         </div>
                     : null}
                     <div className="idea-adding-btn-div">
-                        <button className="idea-btn idea-cancel-btn"onClick={editCancelHandler}>Cancel</button>
-                        { ECmodalOpen ?
-                        <EditCancelModal open={ECmodalOpen} back={backHandler} discard={discardHandler}/>
+                        <button className="idea-btn idea-cancel-btn"onClick={cEditCancelHandler}>Cancel</button>
+                        { cECmodalOpen ?
+                        <EditCancelModal open={cECmodalOpen} back={cBackHandler} discard={cDiscardHandler}/>
                         : null}
-                        <button className="idea-btn idea-confirm-btn" disabled={!editValid} onClick={editConfirmHandler}>Confirm</button>
+                        <button className="idea-btn idea-confirm-btn" disabled={!cEditValid} onClick={cEditConfirmHandler}>Confirm</button>
                     </div>
                 </div>
             </div> 
@@ -207,10 +231,9 @@ const CommentPost = (props) => {
                     <div>
                         { commentFiles.map(list => (
                             <div className="comment-file-download-div">
-                                <input type="checkbox" className="file-download-checkbox" id="checkbox-link"/>
                                 <FontAwesomeIcon icon={faFileDownload} className="file-shaped-icon" size="2x"/>
                                 <div className="file-download-name">{list.originName}</div>
-                                <FontAwesomeIcon icon={faDownload} size="2x" className="file-download-icon"/>
+                                <FontAwesomeIcon icon={faDownload} onClick={() => cFileDownloadHandler(list)} size="2x" className="file-download-icon"/>
                             </div>
                         ))}
                     </div>

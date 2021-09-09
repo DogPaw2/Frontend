@@ -17,22 +17,24 @@ const IdeaPost = (props) => {
 
     /***** File Download *****/
     const fileDownloadHandler = (e) => {
-        /*
+        console.log(e);
         axios({
             method: "GET",
-            url: `http://localhost:8080/api/idea/download/${e.id}`,
+            url: "http://localhost:8080/api/idea/download/",
+            params: {
+                fileId: e.id //fileId 매칭해서 params 넘겨줘야 함
+            },
             responseType: "blob"
         })
         .then(response => {
             const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
             const link = document.createElement("a");
             link.href = url;
-            link.setAttribute("download", e.fileName);
+            link.setAttribute("download", e.originName); //fileName으로 하면 제대로 구현되지 않음 originName 쓸 것
             document.body.appendChild(link);
             link.click();
         })
         .catch((error) => {console.log(error);})
-        */
     }
     /*************************/
 
@@ -128,6 +130,7 @@ const IdeaPost = (props) => {
         console.log(editInput);
         console.log(editFileList);
         setEditMode(false);
+        history.go(0);
     }
     /*********************/
 
@@ -240,7 +243,7 @@ const IdeaPost = (props) => {
         setCommentValid(false);
         setCFileExist(false);
         setCFileList([]);
-        
+        history.go(0);
     }
     
     /*******************/
@@ -375,7 +378,6 @@ const IdeaPost = (props) => {
                         <div>
                             { files.map(list => (
                                 <div className="file-download-div">
-                                    <input type="checkbox" className="file-download-checkbox" id="checkbox-link"/>
                                     <FontAwesomeIcon icon={faFileDownload} className="file-shaped-icon" size="2x"/>
                                     <div className="file-download-name">{list.originName}</div>
                                     <FontAwesomeIcon icon={faDownload} onClick={() => fileDownloadHandler(list)} size="2x" className="file-download-icon"/>
