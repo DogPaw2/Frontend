@@ -540,7 +540,7 @@ body{
 {
     width: 98%;
     margin : 1.5rem;
-    height : 3rem;
+    height : auto;
     background-color: #FFFFFF;
     border : 1px solid #E6E6E8;
     display: flex;
@@ -548,6 +548,17 @@ body{
     align-items: center;
     
 }
+
+.file-uploaded-div
+{
+    margin : 0.5rem;
+}
+
+.file-uploaded-delete
+{
+    background-color: blue;
+}
+
 .content_add_btn_area
 {
     display:flex;
@@ -564,12 +575,8 @@ body{
     color :#B9BABE;
 }
 
-.chat_text_input
-{
-    border-left: 1px solid #E6E6E8; 
-}
 
-.chat_text_input input[type="text"]{
+.chat_text_input input{
     height: 2.5rem;
     min-width: 80rem;
     margin-left : 0.5rem;
@@ -577,11 +584,11 @@ body{
     background-color:white;
     color :black
 }
-.chat_text_input input[type="text"]::placeholder
+.chat_text_input input::placeholder
 {
     color:#CED9EB;
 }
-.chat_text_input input[type="text"]:focus
+.chat_text_input input:focus
 {
     outline:none;
 }
@@ -608,11 +615,20 @@ body{
     color : #B9BABE;
     cursor: pointer;
 }
-#append_chat
+
+.append_chat
 {
+    border : none;
+    background-color: white;
+    color : #E6E6E8;
     height:2.5rem;
     width:2.5rem;
     margin-right:0.5rem;
+}
+
+.append_chat:hover{
+    color : #B9BABE;
+    cursor: pointer;
 }
 
 

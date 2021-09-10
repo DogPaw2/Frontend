@@ -6,20 +6,23 @@ import axios from 'axios';
 function GetChat(){
     const [ChatList, setChatList] = useState([]);
 
-    const getChat = async() => {
-        await axios.get("http://localhost:8080/api/chatting",{
-            params:{
-                chattingId : 1 
+    const getChats = () => {
+        axios.get("http://localhost:8080/api/chatting", {
+            params: {
+                chattingId: 1
             }
-        }
-        ).then(response => {
-            console.log(response.data.chats);
-            setChatList(response.data.chats.map(cur => cur));
         })
+        .then(function(response) { 
+            console.log(response);
+            const chats = response.data.chats.map(cur => cur);
+            setChatList(chats);
+
+        })
+        .catch((error) => { console.log(error.response); })
     }
 
     useEffect(()=>{
-        getChat();
+        getChats();
     },[]);
 
     return(

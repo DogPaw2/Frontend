@@ -1,38 +1,136 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import useDidMountEffect from '../TestScreen/useDidMountEffect';
 import axios from 'axios';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faCaretSquareDown, faAt, faSmile, faCaretSquareRight } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from 'react/cjs/react.development';
 
-function ChattingInput(){
-    const [query, setquery] = useState("");
-    const [search, setSearch] = useState("");
-
-    const POST_Single_chat = async() =>{
-        await axios.post("http://localhost:8080/api/chat",
-            {    "chattingId": 1, "userId" : 1, "text" : search })
-        .then(console.log("Send ->" + search));
-    };
-    function refreshPage() {
-        window.location.reload(false);
-    };
-
-    useDidMountEffect(()=>{
-    POST_Single_chat();
-    refreshPage();
- 
-    },[search]);
+function ChattingInput(props){
     
+    const history = useHistory();
+    
+    const [isValid, setIsValid] = useState(false);
+    const [ChatInput, setChatInput] = useState("");
+
+    const [fileList, setFileList] = useState([]);
+    const [fileExist, setFileExist] = useState(false);
+
+    const changeHandler = (e) => {
+        setChatInput(e.target.value);
+        if (e.target.value != "") {
+            setIsValid(true);
+        }
+        else {
+            setIsValid(false);
+        }
+    }
+
+    
+    const fileUploadHandler = (e) => {
+        const newFile = {
+            name: e.target.files[0].name,
+            file: e.target.files[0]
+        }
+        setFileList(fileList.concat(newFile));
+        if (fileList.length != -1) {
+            setFileExist(true);
+            setIsValid(true);
+        }
+    }
+
+    const fileDeleteHandler = (e) => {
+        setFileList(fileList.filter(target => target.name != e.name))
+        if (fileList.length == 1) {
+            setFileExist(false);
+        }
+    }
+    
+    const cancelHandler = (e) => {
+        setIsValid(false);
+        setChatInput("");
+    }
+
+    const confirmHandler = (e) => {
+        
+        const formData = new FormData();
+        if (ChatInput == "") {
+            const data = {
+                chattingId: props.currentChattingIndex,
+                userId: props.userId,
+                text: fileList.length + " Files"
+            }            
+            formData.append(
+                "dto",
+                new Blob([JSON.stringify(data)], {type: "application/json"})
+            );       
+        }
+        else {
+            const data = {
+                chattingId: props.currentChattingIndex,
+                userId: props.userId,
+                text: ChatInput
+            }
+            formData.append(
+                "dto",
+                new Blob([JSON.stringify(data)], {type: "application/json"})
+            )
+        }
+
+        if (fileList.length == 0) {
+            formData.append("files", new Blob([]));
+        }
+        else {
+            fileList.forEach((list) => formData.append("files", list.file));
+        }
+
+        axios.post("http://localhost:8080/api/chat", formData, 
+        )
+        .then(function(response) { console.log(response); })
+        .catch((error) => { console.log(error.response); })
+
+        setIsValid(false);
+        setChatInput("");
+        setFileExist(false);
+        setFileList([]);
+        history.go(0);
+    }
+
+
     return(
         <div className = "chatting_input_area"> 
                             
             <div className = "content_add_btn_area">
-                <FontAwesomeIcon icon={faPlus} className="search" size="2x"/>
+                <label className="file-upload-label" for="chat-file-upload-input">+</label>
+                <input type="file" onChange={fileUploadHandler} className="file-upload-input" id ="chat-file-upload-input"></input>
             </div>
 
-            <div className = "chat_text_input">
-                <input type = "text" value={query} placeholder= "Send your Message" onChange={(event) => setquery(event.target.value)}></input>
+            <div className = "input_area">
+
+                <div className = "chat_text_input">     
+                    <input
+                        placeholder="Type your message"
+                        value={ChatInput}
+                        //onFocus={focusOn}
+                        //onBlur={focusOff}
+                        onChange={changeHandler}/>
+                </div>
+                
+                { fileExist ? 
+                    <div>
+                        { fileList.map(list => (
+                            <div className="file-uploaded-div">
+                                <div className="file-uploaded-name">{list.name}</div>
+                                <button className="file-uploaded-delete" type="button" onClick={() => fileDeleteHandler(list)}>X</button>
+                            </div>
+                        ))}
+                    </div>
+                : null}
+
             </div>
+            
 
             <div className = "chat_buttons" id = "Tbox">
                 <div className = "chat_button">
@@ -47,9 +145,10 @@ function ChattingInput(){
                     <FontAwesomeIcon icon={faSmile} className="search" />
                 </div>
 
-                <div className = "chat_button" id = "append_chat" onClick={() => setSearch(query)}>
-                    <FontAwesomeIcon icon={faCaretSquareRight} className="search" size="3x"/>
-                </div>
+                <button className="chat_buttons append_chat" disabled={!isValid} onClick={confirmHandler}>
+                    <FontAwesomeIcon icon={faCaretSquareRight} size = "3x" className="search" />
+                </button>
+
             </div>
         </div>
     );

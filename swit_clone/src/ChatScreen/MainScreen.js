@@ -7,7 +7,6 @@ import LeftBar from '../MainScreenComponents/Left_bar/LeftBar'
 import MainUpperBar from '../MainScreenComponents/MainArea_Upper_bar/MainUpperBar';
 import MainExplorer from '../MainScreenComponents/Explorer/MainExplorer';
 
-
 //ChatComponents
 import DateLine from '../ChatComponents/DateLine';
 import InvitationArea from '../ChatComponents/InvitationArea';
@@ -75,8 +74,8 @@ function MainScreen(){
                     <MainUpperBar chatRouter={moveToChat} ideaRouter={moveToIdea} currentChannelIndex={currentChannelIndex}/>
 
                     <div className = "main_chatting">
-                        <ChattingInput />
-                        <ChatBox />  
+                        <ChattingInput userId = {userId} currentChattingIndex = {currentChattingIndex}/>
+                        <ChatBox  currentChattingIndex = {currentChattingIndex} />  
                         <DateLine />
                         <InvitationArea username = {userName} currentChannelIndex = {currentChannelIndex}/>     
                     </div>

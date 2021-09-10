@@ -2,13 +2,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 
-function ChatBox(){
+function ChatBox(props){
     const [ChatList, setChatList] = useState([]);
 
     const getChat = async() => {
         await axios.get("http://localhost:8080/api/chatting",{
             params:{
-                chattingId : 1 
+                chattingId : props.currentChattingIndex
             }
         }
         ).then(response => {
@@ -19,12 +19,12 @@ function ChatBox(){
 
     useEffect(()=>{
         getChat();
-    },[]);
+    },[props.currentChattingIndex]);
 
     return(
         <div>
-            {ChatList.map((cur)=>(
-                <div className = "chatbox">
+            {ChatList.map((cur,index)=>(
+                <div className = "chatbox" key={index}>
                     <div className = "profile_circle"></div>
 
                     <div className = "chat_area">
