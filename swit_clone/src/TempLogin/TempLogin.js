@@ -26,7 +26,9 @@ function TempLogin() {
                 userEmail: userEmail
             }]
             setUserList(newUser);
-            localStorage.setItem("users", JSON.stringify(newUser));    
+            localStorage.setItem("users", JSON.stringify(newUser));
+            setUserName("");
+            setUserEmail("");
             setUserId(userId+1);
         }
         else {
@@ -37,6 +39,8 @@ function TempLogin() {
             }]
             setUserList(newUser);
             localStorage.setItem("users", JSON.stringify(newUser));
+            setUserName("");
+            setUserEmail("");
             setUserId(userId+1);
         }
     }
