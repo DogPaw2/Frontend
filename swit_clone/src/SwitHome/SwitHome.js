@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import LeaveModal from './LeaveModal';
 import './SwitHome.css';
 
 function SwitHome() {
   const history = useHistory();
+  const location = useLocation();
 
   // temporarily designated account
-  const userId = 1;
-  const userName = "DogPaw Developers";
-  const userEmail = "dogpaw@hanyang.ac.kr";
+  const userId = location.state.userId;
+  const userName = location.state.userName;
+  const userEmail = location.state.userEmail;
   const [currentChannelIndex, setChannelIndex] = useState(1);
   const [currentChattingIndex, setChattingIndex] = useState(1);
 
