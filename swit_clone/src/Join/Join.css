@@ -1,6 +1,6 @@
 .join-content-div {
     width: 500px;
-    padding: 20px 10px 20px 10px;
+    padding: 20px 10px 40px 10px;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -12,24 +12,25 @@
 }
 
 .join-content-text {
+    font-size: 15px;
 
 }
 
 .emphasis {
-    color: brown;
+    color: blue;
     font-style: italic;
 }
 
 
 .join-content-btn {
-    margin: 50px 0 0 0;
-    
-    width: 120px;
-    height: 30px;
+    min-width: 200px;
+    height: 40px;
     margin: 40px 0 0 5px;
     border-width: 0px;
     border-radius: 5px;
     color: white;
+
+    font-size: 18px;
 
     background-color: #478BFF;
     border-color: #478BFF;
@@ -41,4 +42,64 @@
     
     background-color: #1E68F6;
     border-color: #1E68F6;
+}
+
+.join-email-div {
+    width: 500px;
+    padding: 25px 10px 15px 10px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    margin: 20px auto;
+
+}
+
+.join-email-div > h2 {
+    margin: 5px 0 5px 0;
+}
+
+.join-email-div > div {
+    width: 80%;
+    margin: 25px auto 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.join-email-input {
+    width: 200px;
+    height: 30px;
+    margin: 0 10px 0 40px;
+}
+
+.join-submit-btn {
+    width: 100px;
+    height: 40px;
+    border-width: 0px;
+    border-radius: 5px;
+    color: white;
+
+    font-size: 18px;
+
+    background-color: #D8D8D8;
+    border-color: #D8D8D8;;
+
+}
+
+.join-submit-btn:hover {
+    cursor: pointer;
+    
+    background-color: gray;
+    border-color: gray;
+}
+
+.join-email-div > span {
+    color: brown;
+    font-size: 13px;
+    font-style: italic;
+    margin: 0 0 10px;
+
 }

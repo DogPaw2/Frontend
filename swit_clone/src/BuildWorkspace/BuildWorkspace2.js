@@ -39,11 +39,6 @@ function BuildWorkspace2() {
             }
         })
     }
-
-    const [inviteUrl, setInviteUrl] = useState("https://invite.swit.io/blahblah");
-    const onUrlChange = (e) => {
-        setInviteUrl(e.target.value);
-    }
     
     const [copied, setCopied] = useState(false);
     const hiddenCopied = () => {
@@ -132,7 +127,7 @@ function BuildWorkspace2() {
                     axios.post("http://localhost:8080/api/mail", {
                         address: email,
                         title: `[${userName}] invited you to join the Swit workspace [${workspaceName}]`, 
-                        message: `You are invited to join the Swit team for ${workspaceName}\n${userName} ${userEmail} sent you this invitation\nClick on this link: http://localhost:3000/emailJoin/${invitedId}/${workspaceId}`
+                        message: `You are invited to join the Swit team for ${workspaceName}\n${userName} ${userEmail} sent you this invitation\nClick on this link: http://localhost:3000/email/joined/${invitedId}/${workspaceId}`
                     })
                     .then(function(response) {
                         console.log(response);
@@ -147,7 +142,7 @@ function BuildWorkspace2() {
 
     const closeEmailModal = () => {
         setEmailModalOpen(false);
-        //goChat();
+        goChat();
     }
 
     const goHome = () => {
@@ -160,6 +155,8 @@ function BuildWorkspace2() {
             }
         })
     }
+    
+    const invitationLink = `http://localhost:3000/link/join/${workspaceId}`;
     
     return (
         <div className="BuildWorkspace">
@@ -222,8 +219,8 @@ function BuildWorkspace2() {
                         </div>
                         {checked ?
                         <div>
-                            <input className="new-invitation-link" value="https://invite.swit.io/blahblah" onChange={onUrlChange}></input>
-                            <CopyToClipboard text={inviteUrl}>
+                            <input className="new-invitation-link" value={invitationLink}></input>
+                            <CopyToClipboard text={invitationLink}>
                                 <button className="link-copy-button" onClick={confirmCopied}>Copy</button>
                             </CopyToClipboard>
                         </div>
@@ -231,8 +228,8 @@ function BuildWorkspace2() {
                         <div>
                             { modalOpen ? 
                             <div>
-                                <input className="new-invitation-link" value="https://invite.swit.io/blahblah" onChange={onUrlChange}></input>
-                                <CopyToClipboard text={inviteUrl}>
+                                <input className="new-invitation-link" value={invitationLink}></input>
+                                <CopyToClipboard text={invitationLink}>
                                     <button className="link-copy-button" onClick={confirmCopied}>Copy</button>
                                 </CopyToClipboard>
                                 <LinkModal open={modalOpen} cancel={cancelModal} del={deleteModal}></LinkModal>

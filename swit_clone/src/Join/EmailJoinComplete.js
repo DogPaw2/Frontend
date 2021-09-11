@@ -4,7 +4,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import './Join.css';
 import 'url-search-params-polyfill';
 
-function Join() {
+function EmailJoinComplete() {
     const location = useLocation();
     const history = useHistory();
 
@@ -19,19 +19,19 @@ function Join() {
         const arr = location.pathname.split('/');
         console.log(arr);
 
-        setUserId(arr[2]);
+        setUserId(arr[3]);
         const userList = JSON.parse(localStorage.getItem("users"));
         Object.entries(userList).map((user) => {
-            if (user[1].userId == arr[2]) {
+            if (user[1].userId == arr[3]) {
                 setUserName(user[1].userName);
                 setUserEmail(user[1].userEmail);
             }
         })
 
-        setWorkspaceId(arr[3]);
+        setWorkspaceId(arr[4]);
         axios.get("http://localhost:8080/api/workspace",{
             params:{
-                workspaceId : arr[3]
+                workspaceId : arr[4]
             }
         })
         .then((response) => {
@@ -45,7 +45,7 @@ function Join() {
 
     return (
         <div className="join-content-div">
-            <p className="join-content-text">WELCOME!</p>
+            <h1>WELCOME!</h1>
             <p className="join-content-text">You've successfully joined the workspace [{workspaceName}] </p>
             <p className="join-content-text emphasis">Click on the button below to access your workspace</p>
 
@@ -69,10 +69,10 @@ function Join() {
                         workspaceUrl: workspaceUrl
                     }
                 })
-            }}>[{workspaceName}]</button>
+            }}>{workspaceName}</button>
         </div>
         
     );
 }
 
-export default Join;
+export default EmailJoinComplete;

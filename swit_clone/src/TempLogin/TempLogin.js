@@ -7,7 +7,7 @@ import './TempLogin.css';
 function TempLogin() {
     const localData = JSON.parse(localStorage.getItem("users"));
     const [userList, setUserList] = useState(localData ? localData : []);
-    const [userId, setUserId] = useState(localData ? localData.length : 1);
+    const [userId, setUserId] = useState(localData ? localData.length+1 : 1);
 
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");

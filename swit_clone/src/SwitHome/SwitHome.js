@@ -16,6 +16,7 @@ function SwitHome() {
   const [currentChattingIndex, setChattingIndex] = useState(1);
 
   const [workspaceLists, setWorkspaceLists] = useState([]);
+  const [newWorkspaceId, setNewWorkspaceId] = useState(1)
 
   const getWorkspaceInfo = () => {
     axios.get("http://localhost:8080/api/workspace/all", {
@@ -28,6 +29,7 @@ function SwitHome() {
 
       const wp = response.data.workspaceList.map(workspace => workspace);
       setWorkspaceLists(wp);
+      setNewWorkspaceId(response.data.workspaceList[response.data.workspaceList.length-1].workspace.id+1);
     })
     .catch(error=>{console.log(error.response);})
   }
@@ -63,7 +65,7 @@ function SwitHome() {
         userId: userId,
         userName: userName,
         userEmail: userEmail,
-        workspaceId: workspaceLists.length+1
+        workspaceId: newWorkspaceId
       }
     })
   }
@@ -84,14 +86,13 @@ function SwitHome() {
 
   useEffect(() => {
     getWorkspaceInfo();
-    axios.post("http://localhost:8080/api/user", {name: userName})
   }, [])
 
 
    return (
      <div className="SwitHome">
        <div className="swit-header">
-         <div className="swit-logo">
+         <div className="swit-logo" onClick={() => {history.push("/");}}>
            <img className="swit-symbol" src="https://swit.io/assets/images/home/brand/img_logo_symbol.png"></img>
            <span className="swit-title">Swit</span>
          </div>
@@ -107,7 +108,7 @@ function SwitHome() {
                  <h2 className="online-name">{userName}</h2>
                </div>
                <span className="profile-email">{userEmail}</span>
-               <span className="user-setting">User setting</span>
+               <span className="user-setting" onClick={() => {history.push("/");}}>LogOut</span>
              </div>
            </div>
            <div className="workspace-div">
