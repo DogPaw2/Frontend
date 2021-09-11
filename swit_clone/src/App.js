@@ -9,10 +9,15 @@ import IdeaScreen from './IdeaScreen/IdeaScreen';
 import TestScreen from './TestScreen/testscreen';
 import TempLogin from './TempLogin/TempLogin';
 
+import EmailJoin from './Join/EmailJoin';
+import LinkJoin from './Join/LinkJoin';
+
 function App() {
     return (
         <BrowserRouter>
             <Route exact path="/" component={TempLogin}/>
+            <Route path="/emailJoin/:userId/:workspaceId" component={EmailJoin}/>
+            <Route path="/linkJoin/:userId/:workspaceId" component={LinkJoin}/>
             <Route path="/swit-home/:userId" component={SwitHome}/>
             <Route path="/build-workspace1/:userId" component={BuildWorkspace1}/>
             <Route path="/build-workspace2/:userId/:workspaceUrl" component={BuildWorkspace2}/>

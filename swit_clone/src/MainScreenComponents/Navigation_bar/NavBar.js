@@ -8,7 +8,7 @@ function NavBar(props){
     
     return(
         <div className = "nav_bar">
-            <HomeBtn />
+            <HomeBtn userId={props.userId} userName={props.username} userEmail={props.userEmail}/>
             <WorkspaceOverall wpname = {props.workspacename} usname = {props.username}/>
             <MainScreenTopToolbar wpname = {props.workspacename} usname = {props.username}/>
         </div>

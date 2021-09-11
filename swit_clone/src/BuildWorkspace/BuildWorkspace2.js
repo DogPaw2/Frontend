@@ -121,14 +121,17 @@ function BuildWorkspace2() {
 
     const sendInvitation = () => {
         emailList.map(email => {
+            const invitedId = JSON.parse(localStorage.getItem("userList"));
+            console.log(invitedId);
+            /*
             axios.post("http://localhost:8080/api/mail", {
                 address: email,
-                title: `${userName} invited you to join the Swit workspace ${workspaceName}`, 
-                message: `You are invited to join the Swit team for ${workspaceName}\n${userName} ${userEmail} sent you this invitation\nClick onthis link: LINK` 
-                //본문에 link 생성해서 추가할 것
+                title: `[${userName}] invited you to join the Swit workspace [${workspaceName}]`, 
+                message: `You are invited to join the Swit team for ${workspaceName}\n${userName} ${userEmail} sent you this invitation\nClick on this link: http://localhost:3000/emailJoin/${invitedId}/${workspaceId}`
             })
             .then(function(response) {console.log(response);})
             .catch(error=>{console.log(error.response);})            
+            */
         })
 
         setEmailModalOpen(true);
@@ -136,12 +139,17 @@ function BuildWorkspace2() {
 
     const closeEmailModal = () => {
         setEmailModalOpen(false);
-        goChat();
+        //goChat();
     }
 
     const goHome = () => {
         history.push({
-            pathname: `/swit-home`
+            pathname: `/swit-home/${userId}`,
+            state: {
+                userId: userId,
+                userName: userName,
+                userEmail: userEmail
+            }
         })
     }
     

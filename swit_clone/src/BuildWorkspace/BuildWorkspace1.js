@@ -90,7 +90,12 @@ function BuildWorkspace1() {
 
     const goHome = () => {
         history.push({
-            pathname: `/swit-home`
+            pathname: `/swit-home/${userId}`,
+            state: {
+                userId: userId,
+                userName: userName,
+                userEmail: userEmail
+            }
         })
     }
 

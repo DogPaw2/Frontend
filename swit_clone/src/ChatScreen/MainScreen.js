@@ -66,7 +66,7 @@ function MainScreen(){
     return(
         <div className = "entire_webpage">
             {console.log(currentChannelIndex, currentChattingIndex)}
-            <NavBar workspacename = {workspaceName} username = {userName}/>
+            <NavBar workspacename = {workspaceName} username = {userName} userId={userId} userEmail={userEmail}/>
             <div className = "container">
                 <LeftBar />
                 <MainExplorer workspaceIndex = {workspaceId} setChannelIndex = {setChannelIndex} setChattingIndex = {setChattingIndex}/> 
