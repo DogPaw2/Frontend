@@ -20,7 +20,7 @@ function SwitHome() {
   const getWorkspaceInfo = () => {
     axios.get("http://localhost:8080/api/workspace/all", {
       params: {
-        userId: 1
+        userId: userId
       }
     })
     .then((response) => { 

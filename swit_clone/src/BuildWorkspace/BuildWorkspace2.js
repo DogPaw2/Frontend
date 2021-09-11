@@ -118,22 +118,30 @@ function BuildWorkspace2() {
     }
 
     const [emailModalOpen, setEmailModalOpen] = useState(false);
+    const [emailSuccess, setEmailSuccess] = useState(0);
 
     const sendInvitation = () => {
         emailList.map(email => {
-            const invitedId = JSON.parse(localStorage.getItem("userList"));
-            console.log(invitedId);
-            /*
-            axios.post("http://localhost:8080/api/mail", {
-                address: email,
-                title: `[${userName}] invited you to join the Swit workspace [${workspaceName}]`, 
-                message: `You are invited to join the Swit team for ${workspaceName}\n${userName} ${userEmail} sent you this invitation\nClick on this link: http://localhost:3000/emailJoin/${invitedId}/${workspaceId}`
-            })
-            .then(function(response) {console.log(response);})
-            .catch(error=>{console.log(error.response);})            
-            */
-        })
+            const userList = JSON.parse(localStorage.getItem("users"));
+            var invitedId;
+            Object.entries(userList).map((user) => {
+                if (user[1].userEmail == email) {
+                    invitedId = user[1].userId;
+                    setEmailSuccess(emailSuccess+1);
 
+                    axios.post("http://localhost:8080/api/mail", {
+                        address: email,
+                        title: `[${userName}] invited you to join the Swit workspace [${workspaceName}]`, 
+                        message: `You are invited to join the Swit team for ${workspaceName}\n${userName} ${userEmail} sent you this invitation\nClick on this link: http://localhost:3000/emailJoin/${invitedId}/${workspaceId}`
+                    })
+                    .then(function(response) {
+                        console.log(response);
+                    })
+                    .catch(error=>{console.log(error.response);})                    
+                }
+            })
+        })
+        
         setEmailModalOpen(true);
     }
 
@@ -152,7 +160,6 @@ function BuildWorkspace2() {
             }
         })
     }
-    
     
     return (
         <div className="BuildWorkspace">
@@ -192,7 +199,7 @@ function BuildWorkspace2() {
                         : null}
                         <button className="send-invitation-btn" disabled={!yesExist} onClick={sendInvitation}>Send invitation</button>
                         {emailModalOpen ? 
-                            <EmailModal open={emailModalOpen} close={closeEmailModal} number={emailList.length}></EmailModal>
+                            <EmailModal open={emailModalOpen} close={closeEmailModal} number={emailSuccess}></EmailModal>
                         : null}
                     </div>
                     <div className="link-invitation-div">
