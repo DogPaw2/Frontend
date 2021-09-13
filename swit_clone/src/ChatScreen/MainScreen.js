@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
+import axios from 'axios';
 import './MainScreen.css';
 
 //MainScreenComponents
@@ -17,7 +18,7 @@ import ChatBox from '../ChatComponents/ChatBox';
 import { useHistory, useLocation } from 'react-router-dom';
 
 function MainScreen(){
-    
+
     const location = useLocation();
     
     const userId = location.state.userId;
@@ -30,6 +31,24 @@ function MainScreen(){
     const [currentChattingIndex, setChattingIndex] = useState(1);
     
     const history = useHistory();
+
+    const getcurrentWorkspace = () =>
+    {
+        axios.get("http://localhost:8080/api/workspace/",{
+            params:{
+                workspaceId : workspaceId
+            }
+        }
+        ).then(response => {
+            const cur_channel_id = response.data.workspace.channels[0].id;
+            const cur_chatting_id = response.data.workspace.channels[0].chatting.id;
+            console.log("cur_channel_id  = " + cur_channel_id);
+            console.log("cur_channel_id  = " + cur_chatting_id);
+
+            setChannelIndex(cur_channel_id);
+            setChattingIndex(cur_chatting_id);
+        })
+    }
 
     const moveToChat = () => {
         history.push({
@@ -63,6 +82,10 @@ function MainScreen(){
         })
     }
 
+    useEffect(()=>{
+        getcurrentWorkspace();
+    },[]);
+    
     return(
         <div className = "entire_webpage">
             {console.log(currentChannelIndex, currentChattingIndex)}

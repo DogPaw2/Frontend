@@ -31,6 +31,24 @@ function IdeaScreen(){
     
     const history = useHistory();
 
+    const getcurrentWorkspace = () =>
+    {
+        axios.get("http://localhost:8080/api/workspace/",{
+            params:{
+                workspaceId : workspaceId
+            }
+        }
+        ).then(response => {
+            const cur_channel_id = response.data.workspace.channels[0].id;
+            const cur_chatting_id = response.data.workspace.channels[0].chatting.id;
+            console.log("cur_channel_id  = " + cur_channel_id);
+            console.log("cur_channel_id  = " + cur_chatting_id);
+
+            setChannelIndex(cur_channel_id);
+            setChattingIndex(cur_chatting_id);
+        })
+    }
+
     const moveToChat = () => {
         history.push({
             pathname: `/${userId}/${workspaceUrl}/${currentChannelIndex}/chat/${currentChattingIndex}`,
@@ -62,6 +80,8 @@ function IdeaScreen(){
             }
         })
     }
+
+
 
     const [isValid, setIsValid] = useState(false);
     const [ideaInput, setIdeaInput] = useState("");
@@ -166,6 +186,7 @@ function IdeaScreen(){
     }
 
     useEffect(() => {
+        getcurrentWorkspace();
         getIdeaBoardInfo();
         history.push({
             pathname: `/${userId}/${workspaceUrl}/${currentChannelIndex}/idea/${currentChattingIndex}`,

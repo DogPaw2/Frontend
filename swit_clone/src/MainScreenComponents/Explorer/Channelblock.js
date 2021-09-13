@@ -15,7 +15,8 @@ function Channelblock(props){
             }
         }
         ).then(response => {
-            console.log(response.data);
+            console.log(props.workspaceIndex);
+            console.log(response.data.workspace.channels);
             const cur_channel = response.data.workspace.channels.map(cur => cur);
             setWorkspaceChannelList(cur_channel)
         })
