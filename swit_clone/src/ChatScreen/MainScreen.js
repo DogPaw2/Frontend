@@ -75,7 +75,7 @@ function MainScreen(){
 
                     <div className = "main_chatting">
                         <ChattingInput userId = {userId} currentChattingIndex = {currentChattingIndex}/>
-                        <ChatBox  currentChattingIndex = {currentChattingIndex} />  
+                        <ChatBox  userId={userId} userName={userName} useremail={userEmail} workspaceId={workspaceId} workspaceName={workspaceName} workspaceURl={workspaceUrl} currentChannelIndex={currentChannelIndex} currentChattingIndex = {currentChattingIndex} />  
                         <DateLine />
                         <InvitationArea username = {userName} currentChannelIndex = {currentChannelIndex}/>     
                     </div>

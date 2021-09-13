@@ -1,8 +1,11 @@
 
 import React, {useEffect, useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import axios from "axios";
 
 function ChatBox(props){
+    const history = useHistory();
+    
     const [ChatList, setChatList] = useState([]);
 
     const getChat = async() => {
@@ -19,6 +22,21 @@ function ChatBox(props){
 
     useEffect(()=>{
         getChat();
+        
+        history.push({
+            pathname: `/${props.userId}/${props.workspaceUrl}/${props.currentChannelIndex}/chat/${props.currentChattingIndex}`,
+            state: {
+                userId: props.userId,
+                userName: props.userName,
+                userEmail: props.userEmail,
+                workspaceId: props.workspaceId,
+                workspaceName: props.workspaceName,
+                workspaceUrl: props.workspaceUrl,
+                currentChattingIndex : props.currentChattingIndex,
+                currentChannelIndex: props.currentChannelIndex
+            }
+        })
+
     },[props.currentChattingIndex]);
 
     return(

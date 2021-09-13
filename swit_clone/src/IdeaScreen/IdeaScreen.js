@@ -167,6 +167,19 @@ function IdeaScreen(){
 
     useEffect(() => {
         getIdeaBoardInfo();
+        history.push({
+            pathname: `/${userId}/${workspaceUrl}/${currentChannelIndex}/idea/${currentChattingIndex}`,
+            state: {
+                userId: userId,
+                userName: userName,
+                userEmail: userEmail,
+                workspaceId: workspaceId,
+                workspaceName: workspaceName,
+                workspaceUrl: workspaceUrl,
+                currentChattingIndex : currentChattingIndex,
+                currentChannelIndex: currentChannelIndex
+            }
+        })
     }, [currentChattingIndex])
 
 
