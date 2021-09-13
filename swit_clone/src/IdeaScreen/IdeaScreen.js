@@ -108,7 +108,7 @@ function IdeaScreen(){
         const formData = new FormData();
         if (ideaInput == "") {
             const data = {
-                ideaBoardId: currentChannelIndex,
+                ideaBoardId: currentChattingIndex,
                 userId: userId,
                 text: fileList.length + " Files"
             }            
@@ -119,7 +119,7 @@ function IdeaScreen(){
         }
         else {
             const data = {
-                ideaBoardId: currentChannelIndex,
+                ideaBoardId: currentChattingIndex,
                 userId: userId,
                 text: ideaInput
             }
@@ -153,7 +153,7 @@ function IdeaScreen(){
     const getIdeaBoardInfo = () => {
         axios.get("http://localhost:8080/api/ideaBoard", {
             params: {
-                ideaBoardId: currentChannelIndex
+                ideaBoardId: currentChattingIndex
             }
         })
         .then(function(response) { 
@@ -167,7 +167,7 @@ function IdeaScreen(){
 
     useEffect(() => {
         getIdeaBoardInfo();
-    }, [])
+    }, [currentChattingIndex])
 
 
     return(
