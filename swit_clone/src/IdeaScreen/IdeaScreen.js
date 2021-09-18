@@ -15,6 +15,7 @@ import IdeaPost from './IdeaPost';
 
 //React-Router
 import { useHistory, useLocation } from 'react-router-dom';
+import useDidMountEffect from '../TestScreen/useDidMountEffect';
 
 function IdeaScreen(){
 
@@ -124,6 +125,24 @@ function IdeaScreen(){
         setIdeaInput("");
     }
 
+    /*
+    const chatPostHandler = (e) => {
+        
+        const formData = new FormData();
+        const data = {
+            chattingId: currentChattingIndex,
+            userId: userId,
+            text: "Posted a new idea"
+        }
+        formData.append("dto", new Blob([JSON.stringify(data)], {type: "application/json"}))
+        formData.append("files", new Blob([]));
+
+        axios.post("http://localhost:8080/api/chat", formData, 
+        )
+        .then(function(response) { console.log(response); })
+        .catch((error) => { console.log(error.response); })
+        */
+
     const confirmHandler = (e) => {
         const formData = new FormData();
         if (ideaInput == "") {
@@ -160,11 +179,14 @@ function IdeaScreen(){
         )
         .then(function(response) { console.log(response); })
         .catch((error) => { console.log(error.response); })
-
+        //chatPostHandler();
+        
         setIsValid(false);
         setIdeaInput("");
         setFileExist(false);
         setFileList([]);
+
+
         history.go(0);
     }
 
@@ -185,8 +207,11 @@ function IdeaScreen(){
         .catch((error) => { console.log(error.response); })
     }
 
-    useEffect(() => {
+    useDidMountEffect(() => {
         getcurrentWorkspace();
+    }, []);
+
+    useEffect(() => {
         getIdeaBoardInfo();
         history.push({
             pathname: `/${userId}/${workspaceUrl}/${currentChannelIndex}/idea/${currentChattingIndex}`,
@@ -200,13 +225,13 @@ function IdeaScreen(){
                 currentChattingIndex : currentChattingIndex,
                 currentChannelIndex: currentChannelIndex
             }
-        })
+        })        
     }, [currentChattingIndex])
 
 
     return(
         <div className = "entire_webpage">
-            <NavBar workspacename = {workspaceName} username = {userName}/>
+            <NavBar workspacename = {workspaceName} username = {userName} userId={userId} userEmail={userEmail}/>
             
             <div className = "container">
                 <LeftBar />
@@ -257,7 +282,7 @@ function IdeaScreen(){
                     </div>
                     
                     {ideaLists.slice(0).reverse().map((cur) => (
-                        <IdeaPost userId={userId} ideaBoardId={currentChannelIndex} ideaId={cur.id} writer={cur.user.name} date={cur.date} time={cur.time} content={cur.text} files={cur.fileList} comments={cur.comments}/>
+                        <IdeaPost userId={userId} channelId={currentChannelIndex} ideaBoardId={currentChannelIndex} ideaId={cur.id} writer={cur.user.name} date={cur.date} time={cur.time} content={cur.text} files={cur.fileList} comments={cur.comments}/>
                     ))}
                 </div>
             </div>

@@ -9,6 +9,7 @@ import LinkModal from './LinkModal';
 import EmailModal from './EmailModal';
 import '../SwitHome/SwitHome.css';
 import './BuildWorkspace.css';
+import { useEffect } from 'react/cjs/react.development';
 
 function BuildWorkspace2() {
     /* 이동한 페이지에서 props 불러오기 */
@@ -157,6 +158,11 @@ function BuildWorkspace2() {
     }
     
     const invitationLink = `http://localhost:3000/link/join/${workspaceId}`;
+
+    useEffect(() => {
+        console.log(workspaceName);
+        console.log(workspaceUrl);
+    }, [])
     
     return (
         <div className="BuildWorkspace">

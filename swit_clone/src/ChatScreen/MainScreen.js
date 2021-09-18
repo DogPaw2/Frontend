@@ -26,7 +26,8 @@ function MainScreen(){
     const userEmail = location.state.userEmail; //props 추가
     const workspaceId = location.state.workspaceId; //props 추가
     const workspaceName = location.state.workspaceName;
-    const workspaceUrl = location.state.workspaceUrl;
+    //const workspaceUrl = location.state.workspaceUrl;
+    const [workspaceUrl, setWorkspaceUrl] = useState(location.state.workspaceUrl);
     const [currentChannelIndex, setChannelIndex] = useState(1);
     const [currentChattingIndex, setChattingIndex] = useState(1);
     
@@ -42,9 +43,9 @@ function MainScreen(){
         ).then(response => {
             const cur_channel_id = response.data.workspace.channels[0].id;
             const cur_chatting_id = response.data.workspace.channels[0].chatting.id;
+
             console.log("cur_channel_id  = " + cur_channel_id);
             console.log("cur_channel_id  = " + cur_chatting_id);
-
             setChannelIndex(cur_channel_id);
             setChattingIndex(cur_chatting_id);
         })
@@ -98,7 +99,7 @@ function MainScreen(){
 
                     <div className = "main_chatting">
                         <ChattingInput userId = {userId} currentChattingIndex = {currentChattingIndex}/>
-                        <ChatBox  userId={userId} userName={userName} useremail={userEmail} workspaceId={workspaceId} workspaceName={workspaceName} workspaceURl={workspaceUrl} currentChannelIndex={currentChannelIndex} currentChattingIndex = {currentChattingIndex} />  
+                        <ChatBox  userId={userId} userName={userName} useremail={userEmail} workspaceId={workspaceId} workspaceName={workspaceName} workspaceUrl={workspaceUrl} currentChannelIndex={currentChannelIndex} currentChattingIndex = {currentChattingIndex} />  
                         <DateLine />
                         <InvitationArea username = {userName} currentChannelIndex = {currentChannelIndex}/>     
                     </div>
