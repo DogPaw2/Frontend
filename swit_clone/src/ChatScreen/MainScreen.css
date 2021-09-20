@@ -548,6 +548,33 @@ body{
     align-items: center;
     
 }
+.comment_editor
+{
+    display: flex;
+    flex-direction: row;
+}
+.comment_input_area
+{
+    
+    width: 95%;
+    margin : 1.5rem;
+    margin-left:auto;
+    height : auto;
+    background-color: #FFFFFF;
+    border : 1px solid #E6E6E8;
+    display: flex;
+    flex-direction : row;
+    align-items: center;
+    
+}
+
+.file-upload-label {
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 30px;
+}
 
 .file-uploaded-div
 {
@@ -558,6 +585,13 @@ body{
 {
     background-color: blue;
 }
+
+.file-uploaded-name {
+    width: 600px;
+    line-height: 50px;
+    padding: 0 0 0 15px;
+}
+
 
 .content_add_btn_area
 {
@@ -677,6 +711,10 @@ body{
     margin-left:5px;
     margin-right:5px;
 }
+.delete_chat:hover
+{
+    cursor: pointer;
+}
 
 .chatting_room_name
 {
@@ -697,12 +735,12 @@ body{
 
 .profile_circle
 {
-    flex:none;
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 100%;
     background-color: blue;
     margin-right :1rem;
+    align-items: flex-start;
 }
 
 .chat_area
@@ -719,6 +757,32 @@ body{
     align-items: center;
 }
 
+.chat_files_area
+{
+    
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.chat_file
+{
+    margin-top: 0.5rem;
+    margin-left : 1rem;
+    display: flex;
+    flex-direction: row;
+    width : 8rem;
+    height: 2rem;
+    color : #8B8E95;
+    border : 1px solid #8B8E95;
+    border-radius: 2px;
+    background-color: white;
+    align-items: center;
+    justify-content:space-around;
+}
+.chat_file:hover{
+    cursor: pointer;
+}
 .chatter_name
 {
     font-weight: bold;
@@ -736,6 +800,161 @@ body{
     margin-top:0.5rem;
 }
 
+.add_comment:hover{
+    cursor: pointer;
+}
+
+
+.chat_text
+{
+
+}
+
+.chat_text_editmode
+{
+}
+
+
+.chat_editor
+{
+    width : 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    color:#B9BABE;
+    margin-left:auto;
+    margin-right : 1rem;
+    
+}
+
+.comment_btn
+{
+    color: #8B8E95;
+    width : 4.5rem;
+    height: 1rem;
+    background-color:white;
+    border-radius: 1px;
+    border : 1px solid #8B8E95;
+    text-align: center;
+    margin-left : 5rem;
+}
+.comment_btn_opened
+{
+    color: white;
+    width : 4.5rem;
+    height: 1rem;
+    background-color:#8B8E95;
+    border-radius: 1px;
+    border : 1px solid #8B8E95;
+    border-bottom: none;
+    text-align: center;
+    margin-left : 5rem;
+}
+
+.comment_btn:hover
+{
+    cursor: pointer;
+    background-color: #8B8E95;
+    color: white;
+}
+.comment_btn_opened:hover
+{
+    cursor: pointer;
+    background-color: #8B8E95;
+    color: white;
+}
+
+
+.comment_area
+{
+    width : 90%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5rem;
+    border: 1px solid #8B8E95;
+}
+
+.comment_things
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.comment_info
+{
+    margin-top : 0.5rem;
+    margin-left: 1rem;
+    width : 10rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.comment_user
+{
+    font-weight: bold;
+}
+
+.comment_time
+{
+    font-size: small;
+    color : #8B8E95;
+}
+
+.comment_content
+{
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment_text
+{
+    margin-top: 0.5rem;
+    margin-left:1rem;
+    margin-bottom: 0.5rem;
+}
+.comment_editing_btns
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: 1rem;
+    align-items: center;
+}
+.comment_delete
+{
+    color:#B9BABE;
+}
+.comment_delete:hover
+{
+    cursor: pointer;
+}
+
+.comment_files_area
+{
+
+    display: flex;
+    flex-direction: row;
+}
+
+.comment_file{
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+    background-color: white;
+    color : #8B8E95;
+    border: 1px solid #8B8E95;
+    align-items: center;
+    width : 5rem;
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    
+}
     /*====================right_panel========================*/
 
 .right_panel

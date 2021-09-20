@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
-import useDidMountEffect from '../TestScreen/useDidMountEffect';
 import axios from 'axios';
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faCaretSquareDown, faAt, faSmile, faCaretSquareRight } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from 'react/cjs/react.development';
+import { faCaretSquareDown, faAt, faSmile, faCaretSquareRight } from "@fortawesome/free-solid-svg-icons";
+
 
 function ChattingInput(props){
     
@@ -20,7 +17,7 @@ function ChattingInput(props){
 
     const changeHandler = (e) => {
         setChatInput(e.target.value);
-        if (e.target.value != "") {
+        if (e.target.value !== "") {
             setIsValid(true);
         }
         else {
@@ -28,35 +25,30 @@ function ChattingInput(props){
         }
     }
 
-    
     const fileUploadHandler = (e) => {
         const newFile = {
             name: e.target.files[0].name,
             file: e.target.files[0]
         }
         setFileList(fileList.concat(newFile));
-        if (fileList.length != -1) {
+        if (fileList.length !== -1) {
             setFileExist(true);
             setIsValid(true);
         }
     }
 
     const fileDeleteHandler = (e) => {
-        setFileList(fileList.filter(target => target.name != e.name))
-        if (fileList.length == 1) {
+        setFileList(fileList.filter(target => target.name !== e.name))
+        if (fileList.length === 1) {
             setFileExist(false);
         }
     }
     
-    const cancelHandler = (e) => {
-        setIsValid(false);
-        setChatInput("");
-    }
 
     const confirmHandler = (e) => {
         
         const formData = new FormData();
-        if (ChatInput == "") {
+        if (ChatInput === "") {
             const data = {
                 chattingId: props.currentChattingIndex,
                 userId: props.userId,
@@ -79,7 +71,7 @@ function ChattingInput(props){
             )
         }
 
-        if (fileList.length == 0) {
+        if (fileList.length === 0) {
             formData.append("files", new Blob([]));
         }
         else {
@@ -101,27 +93,22 @@ function ChattingInput(props){
 
     return(
         <div className = "chatting_input_area"> 
-                            
             <div className = "content_add_btn_area">
                 <label className="file-upload-label" for="chat-file-upload-input">+</label>
                 <input type="file" onChange={fileUploadHandler} className="file-upload-input" id ="chat-file-upload-input"></input>
             </div>
-
             <div className = "input_area">
-
                 <div className = "chat_text_input">     
                     <input
                         placeholder="Type your message"
                         value={ChatInput}
-                        //onFocus={focusOn}
-                        //onBlur={focusOff}
                         onChange={changeHandler}/>
                 </div>
                 
                 { fileExist ? 
                     <div>
-                        { fileList.map(list => (
-                            <div className="file-uploaded-div">
+                        { fileList.map((list,index) => (
+                            <div className="file-uploaded-div" key={index}>
                                 <div className="file-uploaded-name">{list.name}</div>
                                 <button className="file-uploaded-delete" type="button" onClick={() => fileDeleteHandler(list)}>X</button>
                             </div>

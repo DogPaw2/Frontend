@@ -44,8 +44,6 @@ function MainScreen(){
             const cur_channel_id = response.data.workspace.channels[0].id;
             const cur_chatting_id = response.data.workspace.channels[0].chatting.id;
 
-            console.log("cur_channel_id  = " + cur_channel_id);
-            console.log("cur_channel_id  = " + cur_chatting_id);
             setChannelIndex(cur_channel_id);
             setChattingIndex(cur_chatting_id);
         })
@@ -83,10 +81,37 @@ function MainScreen(){
         })
     }
 
-    useEffect(()=>{
-        getcurrentWorkspace();
-    },[]);
     
+    const [ChatList, setChatList] = useState([]);
+
+    const getChat = async() => {
+        await axios.get("http://localhost:8080/api/chatting",{
+            params:{
+                chattingId : currentChattingIndex
+            }
+        }
+        ).then(response => {
+            console.log(response.data.chats);
+            setChatList(response.data.chats.map(cur => cur));
+        })
+    }
+
+    useEffect(()=>{
+        getChat();
+        history.push({
+            pathname: `/${userId}/${workspaceUrl}/${currentChannelIndex}/chat/${currentChattingIndex}`,
+            state: {
+                userId: userId,
+                userName: userName,
+                userEmail: userEmail,
+                workspaceId: workspaceId,
+                workspaceName: workspaceName,
+                workspaceUrl: workspaceUrl,
+                currentChattingIndex : currentChattingIndex,
+                currentChannelIndex: currentChannelIndex
+            }
+        })
+    },[currentChattingIndex]);
     return(
         <div className = "entire_webpage">
             {console.log(currentChannelIndex, currentChattingIndex)}
@@ -99,7 +124,9 @@ function MainScreen(){
 
                     <div className = "main_chatting">
                         <ChattingInput userId = {userId} currentChattingIndex = {currentChattingIndex}/>
-                        <ChatBox  userId={userId} userName={userName} useremail={userEmail} workspaceId={workspaceId} workspaceName={workspaceName} workspaceUrl={workspaceUrl} currentChannelIndex={currentChannelIndex} currentChattingIndex = {currentChattingIndex} />  
+                        {ChatList.slice(0).reverse().map((cur,index)=>(
+                            <ChatBox  cur={cur} index = {index} userId={userId} userName={userName} useremail={userEmail} workspaceId={workspaceId} workspaceName={workspaceName} workspaceUrl={workspaceUrl} currentChannelIndex={currentChannelIndex} currentChattingIndex = {currentChattingIndex} />  
+                        ))}
                         <DateLine />
                         <InvitationArea username = {userName} currentChannelIndex = {currentChannelIndex}/>     
                     </div>

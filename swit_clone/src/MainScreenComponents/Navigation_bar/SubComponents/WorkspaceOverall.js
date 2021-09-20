@@ -6,27 +6,10 @@ import {faAngleDown} from "@fortawesome/free-solid-svg-icons";
 
 function WorkspaceOverall(props){
     
-    /*const [Workspacename, setWorkspacename] = useState("");
-
-    const getOneworkspace = () => {
-        axios.get("http://localhost:8080/api/workspace/",{
-            params:{
-                workspaceId : 1
-            }
-        }
-        ).then(response => {
-            setWorkspacename(response.data.workspace.name);
-        })
-    }
-
-    useEffect(()=>{
-        getOneworkspace();
-    },[]);
-    */
     return(
         <div className = "workspace_overall">
             <div className = "round_square_btn_area">
-                <div className = "big_round_square_btn" id = "Workspace_icon">D</div>
+                <div className = "big_round_square_btn" id = "Workspace_icon">{props.wpname.substring(0,1)}</div>
             </div>                
             <div className = "workspace_name_area">
                 <div className = "workspace_name">{props.wpname}</div>

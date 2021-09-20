@@ -1,69 +1,74 @@
-
 import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment, faCaretSquareRight, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import ChatCommentBox from './ChatCommentBox';
+import ChatFileBox from './ChatFileBox';
+import '../ChatScreen/MainScreen.css'
+import ChatCommentPost from './ChatCommentPost';
 
 function ChatBox(props){
     const history = useHistory();
     
-    const [ChatList, setChatList] = useState([]);
+//===========================================================================================
+    const [iscommentEditorOpened, setiscommentEditorOpened] = useState(false);
+    const [ischatEditorOpened, setischatEditorOpened] = useState(false);
 
-    const getChat = async() => {
-        await axios.get("http://localhost:8080/api/chatting",{
-            params:{
-                chattingId : props.currentChattingIndex
-            }
-        }
-        ).then(response => {
-            console.log(response.data.chats);
-            setChatList(response.data.chats.map(cur => cur));
-        })
+    const delChat = (id) => {
+        axios.delete("http://localhost:8080/api/chat",{params : {chatId : id}})
     }
 
-    useEffect(()=>{
-        getChat();
-        
-        history.push({
-            pathname: `/${props.userId}/${props.workspaceUrl}/${props.currentChannelIndex}/chat/${props.currentChattingIndex}`,
-            state: {
-                userId: props.userId,
-                userName: props.userName,
-                userEmail: props.userEmail,
-                workspaceId: props.workspaceId,
-                workspaceName: props.workspaceName,
-                workspaceUrl: props.workspaceUrl,
-                currentChattingIndex : props.currentChattingIndex,
-                currentChannelIndex: props.currentChannelIndex
-            }
-        })
-
-    },[props.currentChattingIndex]);
+    const commenteditorOpen = (e) => {
+        setiscommentEditorOpened(!iscommentEditorOpened);
+    }
 
     return(
-        <div>
-            {ChatList.map((cur,index)=>(
-                <div className = "chatbox" key={index}>
-                    <div className = "profile_circle"></div>
+        <div className = "chatbox_commentbox" key={props.index}>
+            <div className = "chatbox" >
+                <div className = "profile_circle"></div>
 
-                    <div className = "chat_area">
-                        <div className = "chatter_info_area">
-                            <div className = "chatter_name">
-                                    {cur.user.name}
-                            </div>
-
-                            <div className="wrote_time">
-                                    {cur.time}
-                            </div>
+                <div className = "chat_area">
+                    <div className = "chatter_info_area">
+                        <div className = "chatter_name">
+                                {props.cur.user.name}
                         </div>
 
-                        <div className = "chat_content">
-                            {cur.text}
+                        <div className="wrote_time">
+                                {props.cur.time}
                         </div>
                     </div>
-                </div>
-            ))}
-        </div>
 
+                    <div className = "chat_content">
+                        <div className = "chat_text">
+                            {props.cur.text}
+                        </div>
+                        
+                    </div>
+                    <ChatFileBox cur = {props.cur} currentChattingIndex={props.currentChattingIndex} /> 
+                </div>
+                <div className = "chat_editor">
+                    <div className = "delete_chat" onClick = {(event) => {
+                        delChat(props.cur.id);
+                        history.go(0);
+                    }}>
+                        <FontAwesomeIcon icon={faTrash} className = "search"/>
+                    </div>
+
+                    <div className = "add_comment" onClick = {(e) => {
+                        commenteditorOpen();
+                    }}>
+                        <FontAwesomeIcon icon={faComment} className = "search"/>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <ChatCommentBox cur={props.cur} currentChattingIndex={props.currentChattingIndex} />  
+                {iscommentEditorOpened ?
+                    <ChatCommentPost cur={props.cur} userId = {props.userId}/>
+                :null}
+            </div>     
+        </div>
     ); 
 }
 
