@@ -3,14 +3,14 @@ import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile, faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
-import CommentFileBox from './CommentFileBox';
+import MCommentFileBox from './MCommentFileBox';
 
 import '../ChatScreen/MainScreen.css'
 
 function ChatCommentBox(props){
     const history = useHistory();
-    const [currentChat, setCurrentChat] = useState(props.cur);
-    const [currentChatsComments, setCurrentChatsComments] = useState([]);
+    const [currentDM, setcurrentDM] = useState(props.cur);
+    const [currentDMsComments, setcurrentDMsComments] = useState([]);
     const [isThereChatComments, setisThereChatComments] = useState(false);
     const [isThereChatCommentfiles, setisThereChatCommentfiles] = useState(false);
     const [iscommentAreaOpened, setCommentAreaOpened] = useState(false);
@@ -19,23 +19,23 @@ function ChatCommentBox(props){
         setCommentAreaOpened(!iscommentAreaOpened);
     }
     const getComments = () => {   
-            if(currentChat.comments.length !== 0){
+            if(currentDM.comments.length !== 0){
                 setisThereChatComments(true);
-                setCurrentChatsComments(currentChat.comments.map(curcomment => curcomment));
-                //console.log("chatId " + currentChat.id + " has comments");
-                //console.log(currentChatsComments);
+                setcurrentDMsComments(currentDM.comments.map(curcomment => curcomment));
+                //console.log("chatId " + currentDM.id + " has comments");
+                //console.log(currentDMsComments);
                 
             }
             else
             {
                 setisThereChatComments(false);
-                //console.log("chatId " + currentChat.id + " has no comments");
+                //console.log("chatId " + currentDM.id + " has no comments");
             }
     }
 
     const delComment = (curcommentId) =>
     {
-        axios.delete("http://localhost:8080/api/chat/comment",{params : {chatCommentId : curcommentId}})
+        axios.delete("http://localhost:8080/api/message/comment",{params : {messageCommentId : curcommentId}})
     }
 
     useEffect(()=>{
@@ -53,7 +53,7 @@ function ChatCommentBox(props){
                     </div>
                     { iscommentAreaOpened ?
                         <div className = "comment_area">
-                            {currentChatsComments.map(curcomment=>(
+                            {currentDMsComments.map(curcomment=>(
                             <div className = "comment_things">
                                 <div>
                                     <div className = "comment_info">
@@ -62,7 +62,7 @@ function ChatCommentBox(props){
                                     </div>
                                     <div className = "comment_content">
                                         <div className = "comment_text">{curcomment.text}</div>
-                                        <CommentFileBox curcomment={curcomment}/>
+                                        <MCommentFileBox curcomment={curcomment}/>
                                     </div>
                                 </div>
                                 <div className="comment_editing_btns">

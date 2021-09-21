@@ -2,27 +2,13 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faAngleDown} from "@fortawesome/free-solid-svg-icons";
-//http://localhost:8080/api/channel
 
-function MainChannelInfo(props){
 
-    const [ChannelList, setChannelList] = useState({});
-
-    const getChannels = async() => {
-        await axios.get("http://localhost:8080/api/channel",{
-            params:{
-                channelId : props.currentChannelId
-            }
-        }
-        ).then(response => {
-            //console.log(response.data.channel);
-            setChannelList(response.data.channel);
-        })
-    }
+function MMainChannelInfo(props){
 
     useEffect(()=>{
-        getChannels();
-    },[props.currentChannelId]);
+        //console.log(props.currentMsgroom.user.name)
+    },[props.currentMsgroom]);
 
     return(
         <div className = "infos">
@@ -32,7 +18,7 @@ function MainChannelInfo(props){
                 </div>
             </div>
             <div className ="channel_name_area">
-                <div className = "channel_name">{ChannelList.name}</div>
+                <div className = "channel_name">{props.currentMsgroom.user.name}</div>
             </div>
             
             <div className = "toggle_btn_area">
@@ -45,5 +31,5 @@ function MainChannelInfo(props){
 
 }
 
-export default MainChannelInfo;
+export default MMainChannelInfo;
 

@@ -937,9 +937,14 @@ body{
 
 .comment_files_area
 {
-
     display: flex;
     flex-direction: row;
+    align-items: center;
+}
+
+.comment_files_area:hover
+{
+    cursor: pointer;
 }
 
 .comment_file{
@@ -949,10 +954,16 @@ body{
     color : #8B8E95;
     border: 1px solid #8B8E95;
     align-items: center;
-    width : 5rem;
+    justify-content: space-around;
+    min-width : 5rem;
     height: 2rem;
     display: flex;
     flex-direction: row;
+    
+}
+
+.comment_fileName
+{
     
 }
     /*====================right_panel========================*/

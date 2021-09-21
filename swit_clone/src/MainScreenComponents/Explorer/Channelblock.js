@@ -31,6 +31,7 @@ function Channelblock(props){
                 <div key={index} className = "explorer_lists" id = "channel" onClick ={(event) => {
                         props.setChannelIndex(cur.id)
                         props.setChattingIndex(cur.chatting.id)
+                        props.setischatareaOn(true)
                         }}>
                     <div className = "explorer_list_star">
                         <FontAwesomeIcon icon={faStar} className="search" />

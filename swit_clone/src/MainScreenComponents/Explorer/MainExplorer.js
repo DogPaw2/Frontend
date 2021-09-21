@@ -48,7 +48,7 @@ function MainExplorer(props){
                         </React.Fragment>
                         
                     </div>
-                    <Channelblock workspaceIndex = {props.workspaceIndex} setChannelIndex = {props.setChannelIndex} setChattingIndex={props.setChattingIndex}/>
+                    <Channelblock workspaceIndex = {props.workspaceIndex} setChannelIndex = {props.setChannelIndex} setChattingIndex={props.setChattingIndex} setischatareaOn={props.setischatareaOn}/>
 
                     <div className = "explorer_text_btn_area">
                         <div className = "explorer_text_btn" id ="Direct_message">Direct_message</div>
@@ -56,7 +56,7 @@ function MainExplorer(props){
                             <FontAwesomeIcon icon={faPlus} className="search" />
                         </div>
                     </div>
-                    <DMblock />
+                    <DMblock  userIndex = {props.userId} setcurrentMsgroom = {props.setcurrentMsgroom} setischatareaOn={props.setischatareaOn}/>
                     
                 </div>
             </div>

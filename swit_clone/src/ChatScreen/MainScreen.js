@@ -14,8 +14,16 @@ import InvitationArea from '../ChatComponents/InvitationArea';
 import ChattingInput from '../ChatComponents/ChattingInput';
 import ChatBox from '../ChatComponents/ChatBox';
 
+
+//MesaageComponents
+import MMainUpperBar from '../MessageComponents/M_MainArea_Upper_bar/MMainUpperBar';
+import MChattingInput from '../MessageComponents/MChattingInput';
+import MChatBox from '../MessageComponents/MChatBox';
+
+
 //React-Router
 import { useHistory, useLocation } from 'react-router-dom';
+import useDidMountEffect from '../TestScreen/useDidMountEffect';
 
 function MainScreen(){
 
@@ -27,27 +35,13 @@ function MainScreen(){
     const workspaceId = location.state.workspaceId; //props 추가
     const workspaceName = location.state.workspaceName;
     //const workspaceUrl = location.state.workspaceUrl;
+
     const [workspaceUrl, setWorkspaceUrl] = useState(location.state.workspaceUrl);
     const [currentChannelIndex, setChannelIndex] = useState(1);
     const [currentChattingIndex, setChattingIndex] = useState(1);
     
     const history = useHistory();
 
-    const getcurrentWorkspace = () =>
-    {
-        axios.get("http://localhost:8080/api/workspace/",{
-            params:{
-                workspaceId : workspaceId
-            }
-        }
-        ).then(response => {
-            const cur_channel_id = response.data.workspace.channels[0].id;
-            const cur_chatting_id = response.data.workspace.channels[0].chatting.id;
-
-            setChannelIndex(cur_channel_id);
-            setChattingIndex(cur_chatting_id);
-        })
-    }
 
     const moveToChat = () => {
         history.push({
@@ -84,6 +78,9 @@ function MainScreen(){
     
     const [ChatList, setChatList] = useState([]);
 
+    const [DMmsgList, setDMmsgList] = useState([]);
+    const [currentMsgroom, setcurrentMsgroom] = useState();
+
     const getChat = async() => {
         await axios.get("http://localhost:8080/api/chatting",{
             params:{
@@ -91,9 +88,24 @@ function MainScreen(){
             }
         }
         ).then(response => {
-            console.log(response.data.chats);
+            //console.log(response.data.chats);
             setChatList(response.data.chats.map(cur => cur));
         })
+    }
+
+
+
+    const getDM = async() => {
+        await axios.get("http://localhost:8080/api/messageroom",{
+            params:{
+                messageRoomId : currentMsgroom.messageRoom.id
+            }
+        }
+        ).then(response => {
+            console.log(response.data);
+            setDMmsgList(response.data.messages.map(cur => cur));
+        })
+        
     }
 
     useEffect(()=>{
@@ -112,30 +124,56 @@ function MainScreen(){
             }
         })
     },[currentChattingIndex]);
+
+    useDidMountEffect(()=>{
+        console.log(currentMsgroom)
+        getDM();
+        console.log(DMmsgList);
+    },[currentMsgroom]);
+
+    const [ischatareaOn, setischatareaOn] = useState(true);
+
     return(
         <div className = "entire_webpage">
             {console.log(currentChannelIndex, currentChattingIndex)}
             <NavBar workspacename = {workspaceName} username = {userName} userId={userId} userEmail={userEmail}/>
             <div className = "container">
                 <LeftBar />
-                <MainExplorer workspaceIndex = {workspaceId} setChannelIndex = {setChannelIndex} setChattingIndex = {setChattingIndex}/> 
-                <div className = "main_area">
-                    <MainUpperBar chatRouter={moveToChat} ideaRouter={moveToIdea} currentChannelIndex={currentChannelIndex}/>
+                <MainExplorer userId = {userId} workspaceIndex = {workspaceId} setChannelIndex = {setChannelIndex} setChattingIndex = {setChattingIndex} setcurrentMsgroom={setcurrentMsgroom} setischatareaOn={setischatareaOn}/> 
+                
+                    {ischatareaOn ?
+                        <div className = "main_area">
+                            <MainUpperBar chatRouter={moveToChat} ideaRouter={moveToIdea} currentChannelIndex={currentChannelIndex}/>
 
-                    <div className = "main_chatting">
-                        <ChattingInput userId = {userId} currentChattingIndex = {currentChattingIndex}/>
-                        {ChatList.slice(0).reverse().map((cur,index)=>(
-                            <ChatBox  cur={cur} index = {index} userId={userId} userName={userName} useremail={userEmail} workspaceId={workspaceId} workspaceName={workspaceName} workspaceUrl={workspaceUrl} currentChannelIndex={currentChannelIndex} currentChattingIndex = {currentChattingIndex} />  
-                        ))}
-                        <DateLine />
-                        <InvitationArea username = {userName} currentChannelIndex = {currentChannelIndex}/>     
-                    </div>
+                            <div className = "main_chatting">
+                                <ChattingInput userId = {userId} currentChattingIndex = {currentChattingIndex}/>
+                                {ChatList.slice(0).reverse().map((cur,index)=>(
+                                    <ChatBox  cur={cur} index = {index} userId={userId} userName={userName} useremail={userEmail} workspaceId={workspaceId} workspaceName={workspaceName} workspaceUrl={workspaceUrl} currentChannelIndex={currentChannelIndex} currentChattingIndex = {currentChattingIndex} />  
+                                ))}
+                                <DateLine />
+                                <InvitationArea username = {userName} currentChannelIndex = {currentChannelIndex}/>     
+                            </div>
+                        </div>
+                    
+                    :
+                        <div className = "main_area">
+                            <MMainUpperBar currentMsgroom={currentMsgroom}/>
 
-                </div>
+                            <div className = "main_chatting">
+                                <MChattingInput userId = {userId} currentMsgroom={currentMsgroom}/>
+                                {DMmsgList.slice(0).reverse().map((curmsg,index)=>(
+                                    <MChatBox index = {index} curMsg = {curmsg} currentMsgRoom = {currentMsgroom} userId = {userId}/>
+                                ))}
+                                <DateLine />
+                            </div>
+                        </div>
+                    
+                    }
+
+                
             </div>
         </div>
     );
 }
-
 
 export default MainScreen;

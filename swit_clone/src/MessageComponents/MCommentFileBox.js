@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile, faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 
-function CommentFileBox(props){
+function MCommentFileBox(props){
 
     const [currentComment, setcurrentComment] = useState(props.curcomment);
     const [CommentFileList, setCommentFileList] = useState([]);
@@ -15,7 +15,7 @@ function CommentFileBox(props){
             method: "GET",
 
             
-            url: "http://localhost:8080/api/chat/comment/download/",
+            url: "http://localhost:8080/api/message/comment/download/",
             params: {
                 fileId: e.id //fileId 매칭해서 params 넘겨줘야 함
             },
@@ -68,4 +68,4 @@ function CommentFileBox(props){
     )
 }
 
-export default CommentFileBox;
+export default MCommentFileBox;
