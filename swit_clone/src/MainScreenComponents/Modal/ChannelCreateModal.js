@@ -4,7 +4,7 @@ import axios from 'axios';
 import "./Modal.css";
 
 const ChannelCreateModal = ( props ) => {
-    const { open, close, header } = props;
+    const { open, close, header, workspaceIndex, userId } = props;
     const [ChannelName, setChannelName] = useState("");
     const [ChannelPurpose, setChannelPurpose] = useState("");
     const [activation, setActivation] = useState(1);
@@ -19,11 +19,11 @@ const ChannelCreateModal = ( props ) => {
 
     const POST_Channel = async() =>{
         await axios.post("http://localhost:8080/api/channel",
-            {"name" : ChannelName, "purpose" : ChannelPurpose , "userId":1, "workspaceId":1})
-        .then(console.log("Posted Channel in Workspace 1, UserId is 1."));
+            {"name" : ChannelName, "purpose" : ChannelPurpose , "userId":userId, "workspaceId": workspaceIndex});
     };
 
     useDidMountEffect(()=>{
+        console.log(workspaceIndex + ", " + userId)
         POST_Channel();
         refreshPage();
     },[activation]);
@@ -33,22 +33,22 @@ const ChannelCreateModal = ( props ) => {
             { open ? (  
                 <section>
                     <header>
-                        채널 생성
+                        Create new Channel
                     </header>
                     <main>
                         <div className= "section1">
-                            <div>채널 이름</div>
+                            <div>Channel Name</div>
                             <input type= "text" value={ChannelName} onChange={(event) => setChannelName(event.target.value)} className = "ChannelInfoinput"></input>
                         </div>
                         <div className = "section1">
-                            <div>설명 (선택사항)</div>
+                            <div>Channel Purpose</div>
                             <input type= "text" value={ChannelPurpose} onChange={(event) => setChannelPurpose(event.target.value)} className = "ChannelInfoinput"></input>
                         </div>
 
                     </main>
                     <footer>
-                        <button className="close" onClick={close}> 취소 </button>
-                        <button className="close" onClick={(event) => {Activate(); close();}}> 확인 </button>
+                        <button className="close" onClick={close}> Cancle </button>
+                        <button className="close" onClick={(event) => {Activate(); close();}}> Confirm </button>
                     </footer>
                 </section>
             ) : null }

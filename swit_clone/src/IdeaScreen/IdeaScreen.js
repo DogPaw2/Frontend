@@ -11,6 +11,12 @@ import MainUpperBarIdeaOn from '../MainScreenComponents/MainArea_Upper_bar/MainU
 import MainExplorer from '../MainScreenComponents/Explorer/MainExplorer';
 import RightPanel from '../MainScreenComponents/Right_panel/RightPanel';
 
+//MesaageComponents
+import MMainUpperBar from '../MessageComponents/M_MainArea_Upper_bar/MMainUpperBar';
+import MChattingInput from '../MessageComponents/MChattingInput';
+import MChatBox from '../MessageComponents/MChatBox';
+import DateLine from '../ChatComponents/DateLine';
+
 import IdeaPost from './IdeaPost';
 
 //React-Router
@@ -207,9 +213,28 @@ function IdeaScreen(){
         .catch((error) => { console.log(error.response); })
     }
 
+    //DM
+    const [ischatareaOn, setischatareaOn] = useState(true);
+    const [DMmsgList, setDMmsgList] = useState([]);
+    const [currentMsgroom, setcurrentMsgroom] = useState();
+
+    const getDM = async() => {
+        await axios.get("http://localhost:8080/api/messageroom",{
+            params:{
+                messageRoomId : currentMsgroom.messageRoom.id
+            }
+        }
+        ).then(response => {
+            console.log(response.data);
+            setDMmsgList(response.data.messages.map(cur => cur));
+        })
+        
+    }
+
     useDidMountEffect(() => {
         getcurrentWorkspace();
-    }, []);
+        getDM();
+    }, [currentMsgroom]);
 
     useEffect(() => {
         getIdeaBoardInfo();
@@ -229,62 +254,79 @@ function IdeaScreen(){
     }, [currentChattingIndex])
 
 
+
     return(
         <div className = "entire_webpage">
             <NavBar workspacename = {workspaceName} username = {userName} userId={userId} userEmail={userEmail}/>
             
             <div className = "container">
                 <LeftBar />
-                <MainExplorer workspaceIndex = {workspaceId} setChannelIndex = {setChannelIndex} setChattingIndex = {setChattingIndex}/> 
-                <div className = "main_area">
-                    <MainUpperBarIdeaOn chatRouter={moveToChat} ideaRouter={moveToIdea} currentChannelIndex={currentChannelIndex}/>
-
-                    <div className = "main-idea">
-                        <div className="idea-adding-div">
-                            <div className="idea-adding-text-div">
-                                <input
-                                    className="idea-adding-text-input"
-                                    placeholder="Share your idea to ask for feedback, collect data, or decide what to eat for lunch."
-                                    value={ideaInput}
-                                    //onFocus={focusOn}
-                                    //onBlur={focusOff}
-                                    onChange={changeHandler}/>
-                            </div>
-                            <div className="idea-adding-etc-div">
-                                <div className="vertical-line-div">
-                                    <label className="file-upload-label" for="idea-file-upload-input">+</label>
-                                    <input type="file" onChange={fileUploadHandler} className="file-upload-input" id ="idea-file-upload-input"></input>
+                <MainExplorer userId = {userId} workspaceIndex = {workspaceId} setChannelIndex = {setChannelIndex} setChattingIndex = {setChattingIndex} setcurrentMsgroom={setcurrentMsgroom} setischatareaOn={setischatareaOn}/> 
+                {ischatareaOn ?
+                    <div className = "main_area">
+                        <MainUpperBarIdeaOn chatRouter={moveToChat} ideaRouter={moveToIdea} currentChannelIndex={currentChannelIndex}/>
+                        <div className = "main-idea">
+                            <div className="idea-adding-div">
+                                <div className="idea-adding-text-div">
+                                    <input
+                                        className="idea-adding-text-input"
+                                        placeholder="Share your idea to ask for feedback, collect data, or decide what to eat for lunch."
+                                        value={ideaInput}
+                                        //onFocus={focusOn}
+                                        //onBlur={focusOff}
+                                        onChange={changeHandler}/>
                                 </div>
-                                <div className="white-space-div"></div>
-                                <div className="idea-adding-etc-icon-div">
-                                    <FontAwesomeIcon icon={faCaretSquareDown} className="search idea-adding-etc-icons" />
-                                    <FontAwesomeIcon icon={faAt} className="search idea-adding-etc-icons" />
-                                    <FontAwesomeIcon icon={faSmile} className="search idea-adding-etc-icons" />
+                                <div className="idea-adding-etc-div">
+                                    <div className="vertical-line-div">
+                                        <label className="file-upload-label" for="idea-file-upload-input">+</label>
+                                        <input type="file" onChange={fileUploadHandler} className="file-upload-input" id ="idea-file-upload-input"></input>
+                                    </div>
+                                    <div className="white-space-div"></div>
+                                    <div className="idea-adding-etc-icon-div">
+                                        <FontAwesomeIcon icon={faCaretSquareDown} className="search idea-adding-etc-icons" />
+                                        <FontAwesomeIcon icon={faAt} className="search idea-adding-etc-icons" />
+                                        <FontAwesomeIcon icon={faSmile} className="search idea-adding-etc-icons" />
+                                    </div>
                                 </div>
-                            </div>
-                            { fileExist ? 
-                                <div>
-                                    { fileList.map(list => (
-                                        <div className="file-uploaded-div">
-                                            <FontAwesomeIcon icon={faFileDownload} size="2x"/>
-                                            <div className="file-uploaded-name">{list.name}</div>
-                                            <button className="file-uploaded-delete" type="button" onClick={() => fileDeleteHandler(list)}>X</button>
-                                        </div>
-                                    ))}
+                                { fileExist ? 
+                                    <div>
+                                        { fileList.map(list => (
+                                            <div className="file-uploaded-div">
+                                                <FontAwesomeIcon icon={faFileDownload} size="2x"/>
+                                                <div className="file-uploaded-name">{list.name}</div>
+                                                <button className="file-uploaded-delete" type="button" onClick={() => fileDeleteHandler(list)}>X</button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                : null}
+                                                                
+                                <div className="idea-adding-btn-div">
+                                    <button className="idea-btn idea-cancel-btn" disabled={!isValid} onClick={cancelHandler}>Cancel</button>
+                                    <button className="idea-btn idea-confirm-btn" disabled={!isValid} onClick={confirmHandler}>Confirm</button>
                                 </div>
-                            : null}
-                                                            
-                            <div className="idea-adding-btn-div">
-                                <button className="idea-btn idea-cancel-btn" disabled={!isValid} onClick={cancelHandler}>Cancel</button>
-                                <button className="idea-btn idea-confirm-btn" disabled={!isValid} onClick={confirmHandler}>Confirm</button>
                             </div>
                         </div>
+                        
+                        {ideaLists.slice(0).reverse().map((cur) => (
+                            <IdeaPost userId={userId} channelId={currentChannelIndex} ideaBoardId={currentChannelIndex} ideaId={cur.id} writer={cur.user.name} date={cur.date} time={cur.time} content={cur.text} files={cur.fileList} comments={cur.comments}/>
+                        ))}
                     </div>
-                    
-                    {ideaLists.slice(0).reverse().map((cur) => (
-                        <IdeaPost userId={userId} channelId={currentChannelIndex} ideaBoardId={currentChannelIndex} ideaId={cur.id} writer={cur.user.name} date={cur.date} time={cur.time} content={cur.text} files={cur.fileList} comments={cur.comments}/>
-                    ))}
+                
+                
+                :
+                <div className = "main_area">
+                    <MMainUpperBar currentMsgroom={currentMsgroom}/>
+
+                    <div className = "main_chatting">
+                        <MChattingInput userId = {userId} currentMsgroom={currentMsgroom}/>
+                        {DMmsgList.slice(0).reverse().map((curmsg,index)=>(
+                            <MChatBox index = {index} curMsg = {curmsg} currentMsgRoom = {currentMsgroom} userId = {userId}/>
+                        ))}
+                        <DateLine />
+                    </div>
                 </div>
+            }
+                
             </div>
         </div>
     );

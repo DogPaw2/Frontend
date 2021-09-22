@@ -4,9 +4,10 @@ import { faLayerGroup, faPlus, faAngleRight, faAngleLeft } from "@fortawesome/fr
 
 import Channelblock from './Channelblock';
 import DMblock from './DMblock';
-import ChannelCreateModal from '../Modal/Modal';
-
+import ChannelCreateModal from '../Modal/ChannelCreateModal';
+import DMCreateModal from '../Modal/DMCreateModal';
 function MainExplorer(props){
+    
     //explorer itself
     const [isOpen, setExplorer] = useState(false);
 
@@ -23,6 +24,17 @@ function MainExplorer(props){
     const closeModal = () => {
         setModalOpen(false);
     }
+
+    //DMmodal
+    const [ DMmodalOpen, setDMModalOpen ] = useState(false);
+
+    const openDMModal = () => {
+        setDMModalOpen(true);
+    }
+    const closeDMModal = () => {
+        setDMModalOpen(false);
+    }
+
 
     return(
         <div className = "explorer_toggle_area">
@@ -43,7 +55,7 @@ function MainExplorer(props){
                             <FontAwesomeIcon icon={faPlus} className="search" />
                         </div>
                         <React.Fragment>
-                            <ChannelCreateModal open={ modalOpen } close={ closeModal } header="Modal heading">
+                            <ChannelCreateModal open={ modalOpen } close={ closeModal } workspaceIndex={props.workspaceIndex} userId={props.userId} header="Modal heading">
                             </ChannelCreateModal>
                         </React.Fragment>
                         
@@ -52,9 +64,13 @@ function MainExplorer(props){
 
                     <div className = "explorer_text_btn_area">
                         <div className = "explorer_text_btn" id ="Direct_message">Direct_message</div>
-                        <div className = "explorer_add_btn" id = "add_DM">
+                        <div className = "explorer_add_btn"onClick={openDMModal} id = "add_DM">
                             <FontAwesomeIcon icon={faPlus} className="search" />
                         </div>
+                        <React.Fragment>
+                            <DMCreateModal open={ DMmodalOpen } close={ closeDMModal } workspaceIndex={props.workspaceIndex} userId={props.userId} header="Modal heading">
+                            </DMCreateModal>
+                        </React.Fragment>
                     </div>
                     <DMblock  userIndex = {props.userId} setcurrentMsgroom = {props.setcurrentMsgroom} setischatareaOn={props.setischatareaOn}/>
                     

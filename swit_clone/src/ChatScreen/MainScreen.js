@@ -126,16 +126,13 @@ function MainScreen(){
     },[currentChattingIndex]);
 
     useDidMountEffect(()=>{
-        console.log(currentMsgroom)
         getDM();
-        console.log(DMmsgList);
     },[currentMsgroom]);
 
     const [ischatareaOn, setischatareaOn] = useState(true);
 
     return(
         <div className = "entire_webpage">
-            {console.log(currentChannelIndex, currentChattingIndex)}
             <NavBar workspacename = {workspaceName} username = {userName} userId={userId} userEmail={userEmail}/>
             <div className = "container">
                 <LeftBar />
