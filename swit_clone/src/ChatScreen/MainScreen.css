@@ -556,9 +556,9 @@ body{
 .comment_input_area
 {
     
-    width: 95%;
+    width: 90%;
     margin : 1.5rem;
-    margin-left:auto;
+    margin-left: 30px;
     height : auto;
     background-color: #FFFFFF;
     border : 1px solid #E6E6E8;
