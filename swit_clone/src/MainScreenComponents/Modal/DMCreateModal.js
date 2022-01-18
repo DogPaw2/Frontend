@@ -19,7 +19,7 @@ const DMCreateModal = ( props ) => {
 
     const getDMavailableUsers = async() =>{
         await axios.get("http://localhost:8080/api/workspace",
-        {params : {workspaceId : workspaceIndex}}
+        {params : {workspaceId : 2}}
         ).then(response => console.log(response.data))   
 
     }
@@ -40,7 +40,7 @@ const DMCreateModal = ( props ) => {
     }, []);
     
     return (
-        <div className={ open ? 'openModa2 modal2' : 'modal2' }>
+        <div className={ open ? 'openModal2 modal2' : 'modal2' }>
             { open ? (  
                 <section>
                     <header>

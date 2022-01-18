@@ -748,6 +748,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
 }
 
 .chatter_info_area
@@ -767,11 +768,12 @@ body{
 
 .chat_file
 {
-    margin-top: 0.5rem;
-    margin-left : 1rem;
+    margin-top: 15px;
+    margin-left : 5px;
     display: flex;
     flex-direction: row;
-    width : 8rem;
+    width : auto;
+    padding: 0px 10px 0px 10px;
     height: 2rem;
     color : #8B8E95;
     border : 1px solid #8B8E95;
@@ -782,6 +784,9 @@ body{
 }
 .chat_file:hover{
     cursor: pointer;
+}
+.chat_fileName {
+    margin: 0px 0px 0px 5px;
 }
 .chatter_name
 {
@@ -837,7 +842,7 @@ body{
     border-radius: 1px;
     border : 1px solid #8B8E95;
     text-align: center;
-    margin-left : 5rem;
+    margin-left : 30px;
 }
 .comment_btn_opened
 {
@@ -849,7 +854,7 @@ body{
     border : 1px solid #8B8E95;
     border-bottom: none;
     text-align: center;
-    margin-left : 5rem;
+    margin-left : 30px;
 }
 
 .comment_btn:hover
@@ -865,14 +870,13 @@ body{
     color: white;
 }
 
-
 .comment_area
 {
     width : 90%;
     background-color: white;
     display: flex;
     flex-direction: column;
-    margin-left: 5rem;
+    margin-left: 30px;
     border: 1px solid #8B8E95;
 }
 

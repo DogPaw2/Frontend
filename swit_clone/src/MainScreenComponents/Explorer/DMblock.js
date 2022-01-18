@@ -10,12 +10,14 @@ function DMblock(props){
     const [currentUserIndex, setcurrentUserIndex] = useState(props.userIndex);
 
     const getDMs = () => {
+
         axios.get("http://localhost:8080/api/messageroomall",{
             params:{
-                userId : currentUserIndex
+                userId : 1
             }
         }
         ).then(response => {
+            console.log(response.data);
             setDMList(response.data.userMessageRoomList.map(curmsgroom => curmsgroom));
             console.log(DMList);
         })

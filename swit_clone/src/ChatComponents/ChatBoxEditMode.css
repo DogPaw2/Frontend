@@ -1,0 +1,94 @@
+.chat-edit-mode-div {
+    width: 1650px;
+    margin: 10px 40px;
+    border: 1px solid gray;
+}
+
+.chat-edit-text-div {
+    width: 100%;
+    height: auto;
+}
+
+.chat-edit-mode-input {
+    width: 1637px;
+    height: 63px;
+    padding: 0px 5px 0px 5px;
+    border: none;
+}
+
+.chat-edit-mode-input::placeholder {
+    font-size :15px;
+    color: #D8D8D8;
+}
+
+.chat-edit-mode-input:focus {
+    outline: none;
+}
+
+.chat-edit-etc-div {
+    width: 1630px;
+    padding: 0px 10px;
+    height: 45px;
+    background-color: #F8F8F8;
+    color: #E6E6E8;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 0 0 2px 0;
+    border-bottom: 1px solid #E6E6E8;
+}
+
+.chat-edit-etc-icon-div {
+    width: 125px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.chat-edit-btn-div {
+    width: 95%;
+    height: 50px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.chat-edit-file-div {
+    width: 1650px;
+}
+
+.chat-edit-file-uploaded {
+    width: 1598px;
+    height: 50px;
+    padding: 0 25px 0 25px;
+    border: 1px solid #E6E6E8;
+    
+    background-color: #F8F8F8;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.chat-edit-file-uploaded-delete {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: white;
+    color: gray;
+    font-size: 10px;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    margin: 0px 0px 0px 950px;
+}
+
+.chat-edit-file-uploaded-delete:hover {
+    cursor: pointer;
+    background-color: #D8D8D8;
+}

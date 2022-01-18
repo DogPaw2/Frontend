@@ -6,7 +6,6 @@ import BuildWorkspace1 from './BuildWorkspace/BuildWorkspace1';
 import BuildWorkspace2 from './BuildWorkspace/BuildWorkspace2';
 import MainScreen from './ChatScreen/MainScreen';
 import IdeaScreen from './IdeaScreen/IdeaScreen';
-import TestScreen from './TestScreen/testscreen';
 import TempLogin from './TempLogin/TempLogin';
 
 import EmailJoinComplete from './Join/EmailJoinComplete';
@@ -25,7 +24,6 @@ function App() {
             <Route path="/build-workspace2/:userId/:workspaceUrl" component={BuildWorkspace2}/>
             <Route exact path="/:userId/:workspaceUrl/:currentChannelIndex/chat/:currentChattingIndex" component={MainScreen}/>
             <Route exact path="/:userId/:workspaceUrl/:currentChannelIndex/idea/:currentChattingIndex" component={IdeaScreen}/>
-            <Route path = "/test" component={TestScreen}/>
         </BrowserRouter>
     );
 }
