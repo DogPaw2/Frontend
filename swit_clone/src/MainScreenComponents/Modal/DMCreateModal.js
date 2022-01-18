@@ -1,7 +1,7 @@
 import React, {  useEffect, useState } from 'react';
 import useDidMountEffect from '../../TestScreen/useDidMountEffect';
 import axios from 'axios';
-import "./Modal.css";
+import "./Modal2.css";
 
 const DMCreateModal = ( props ) => {
     const { open, close, header, workspaceIndex, userId } = props;
@@ -40,7 +40,7 @@ const DMCreateModal = ( props ) => {
     }, []);
     
     return (
-        <div className={ open ? 'openModal modal' : 'modal' }>
+        <div className={ open ? 'openModa2 modal2' : 'modal2' }>
             { open ? (  
                 <section>
                     <header>
@@ -53,7 +53,7 @@ const DMCreateModal = ( props ) => {
                         </div>
                     </main>
                     <footer>
-                        <button className="close" onClick={close}> Cancle </button>
+                        <button className="close modal2-cancel-btn" onClick={close}> Cancel </button>
                     </footer>
                 </section>
             ) : null }

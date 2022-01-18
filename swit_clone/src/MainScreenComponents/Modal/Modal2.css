@@ -1,4 +1,59 @@
-.modal {
+.modal2-cancel-btn {
+    width: 125px;
+    height: 40px;
+    margin: 40px 5px 0 175px;
+    background-color: white;
+    border-style: double;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #D8D8DB;
+    color: #8b8e95;
+}
+
+.modal2-cancel-btn:hover {
+    border-color: #8b8e95;
+    cursor: pointer;
+}
+
+.modal2-confirm-btn {
+    width: 125px;
+    height: 40px;
+    margin: 40px 0 0 5px;
+    border-width: 0px;
+    border-radius: 5px;
+    color: white;
+
+    background-color: #478BFF;
+    border-color: #478BFF;
+
+}
+
+.modal2-confirm-btn:enabled:hover {
+    background-color: #1E68F6;
+    border-color: #1E68F6;
+    cursor: pointer;
+}
+
+.modal2-confirm-btn:disabled {
+    background-color: #D8D8DB;
+    border-color: #D8D8DB;
+}
+
+.modal2-input {
+    height: 30px;
+    border-style: double;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #D8D8DB;
+    margin: 10px 0 20px 0;
+}
+
+.modal2-invalid-input:focus {
+    outline: none;
+    border-color: brown;
+}
+
+.modal2 {
     display: none;
     position: fixed;
     top: 0;
@@ -8,12 +63,8 @@
     z-index: 99;
     background-color: rgba(0, 0, 0, 0.6);
 }
-.modal button {
-    outline: none;
-    cursor: pointer;
-    border: 0;
-}
-.modal > section {
+
+.modal2 > section {
     width: 90%;
     max-width: 450px;
     margin:0 auto;
@@ -23,7 +74,7 @@
     animation: modal-show .3s;
     overflow: hidden;
 }
-.modal > section > header {
+.modal2 > section > header {
     position: relative;
     padding: 16px 64px 16px 16px;
     background-color: #fff;
@@ -31,7 +82,7 @@
     font-size : 30px;
 }
 
-.modal > section > main {
+.modal2 > section > main {
     padding: 16px;
 }
 
@@ -42,19 +93,17 @@
     text-align: left;
 
 }
-.modal > section > footer {
+.modal2 > section > footer {
     padding: 12px 16px;
     text-align: right;
 }
-.modal > section > footer button {
+.modal2 > section > footer button {
     padding: 6px 12px;
-    color: #fff;
-    background-color: #6c757d;
     border-radius: 5px;
     font-size: 13px;
     margin-left : 2px;
 }
-.modal.openModal {
+.modal2.openModal2 {
     display: flex;
     align-items: center;
     /* 팝업이 열릴때 스르륵 열리는 효과 */
