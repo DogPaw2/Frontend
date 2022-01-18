@@ -6,8 +6,8 @@ import './IdeaPost.css';
 import './IdeaScreen.css';
 import { faCaretSquareDown, faAt, faSmile, faDownload, faFileDownload, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
-import DeleteModal from './DeleteModal';
-import EditCancelModal from './EditCancelModal';
+import DeleteModal from '../SharedComponents/DeleteModal';
+import EditCancelModal from '../SharedComponents/EditCancelModal';
 
 const CommentPost = (props) => {
 

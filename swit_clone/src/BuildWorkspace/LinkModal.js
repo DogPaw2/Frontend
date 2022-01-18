@@ -1,5 +1,5 @@
 import React from 'react';
-import "./LinkModal.css";
+import "../SharedComponents/Modal.css";
 
 const LinkModal = ( props ) => {
     const { open, cancel, del } = props;

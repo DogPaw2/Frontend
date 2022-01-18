@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faCaretSquareRight, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faComment, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import ChatCommentBox from './ChatCommentBox';
 import ChatFileBox from './ChatFileBox';
 import '../ChatScreen/MainScreen.css'
 import ChatCommentPost from './ChatCommentPost';
+import DeleteModal from '../SharedComponents/DeleteModal';
 
 function ChatBox(props){
     const history = useHistory();
@@ -15,9 +17,29 @@ function ChatBox(props){
     const [iscommentEditorOpened, setiscommentEditorOpened] = useState(false);
     const [ischatEditorOpened, setischatEditorOpened] = useState(false);
 
-    const delChat = (id) => {
-        axios.delete("http://localhost:8080/api/chat",{params : {chatId : id}})
+    /***** Delete Chat *****/
+    const [delModalOpen, setDelModalOpen] = useState(false);
+
+    const deleteChat = () => {
+        setDelModalOpen(true);
     }
+
+    const cancelDelete = () => {
+        setDelModalOpen(false);
+    }
+
+    const confirmDelete = () => {
+        axios.delete("http://localhost:8080/api/chat", {
+            params: {
+                chatId: props.cur.id
+            }
+        })
+        .then(function(response) { console.log(response); })
+        .catch((error) => { console.log(error.response); })
+        setDelModalOpen(false);
+        history.go(0);
+    }
+    /***********************/
 
     const commenteditorOpen = (e) => {
         setiscommentEditorOpened(!iscommentEditorOpened);
@@ -48,20 +70,28 @@ function ChatBox(props){
                     <ChatFileBox cur = {props.cur} currentChattingIndex={props.currentChattingIndex} /> 
                 </div>
                 <div className = "chat_editor">
-                    <div className = "delete_chat" onClick = {(event) => {
-                        delChat(props.cur.id);
-                        history.go(0);
-                    }}>
-                        <FontAwesomeIcon icon={faTrash} className = "search"/>
-                    </div>
-
                     <div className = "add_comment" onClick = {(e) => {
                         commenteditorOpen();
                     }}>
                         <FontAwesomeIcon icon={faComment} className = "search"/>
                     </div>
+                    <ContextMenuTrigger id={props.cur.id} holdToDisplay={0}>
+                        <FontAwesomeIcon icon={faEllipsisV} className="search delete_chat"/>
+                    </ContextMenuTrigger>
+                            
+                    <ContextMenu id={props.cur.id}>
+                        <MenuItem id="menu-item-one">
+                            <span>Edit</span>
+                        </MenuItem>
+                        <MenuItem id="menu-item-two" onClick={deleteChat}>
+                            <span>Delete</span>
+                        </MenuItem>
+                    </ContextMenu>
                 </div>
             </div>
+            { delModalOpen ? 
+                <DeleteModal open={delModalOpen} cancel={cancelDelete} del={confirmDelete}></DeleteModal>
+            : null}  
             <div>
                 <ChatCommentBox cur={props.cur} currentChattingIndex={props.currentChattingIndex} />  
                 {iscommentEditorOpened ?

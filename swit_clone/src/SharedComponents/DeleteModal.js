@@ -1,5 +1,5 @@
 import React from 'react';
-import "../BuildWorkspace/LinkModal.css";
+import "./Modal.css"
 
 
 const DeleteModal = ( props ) => {

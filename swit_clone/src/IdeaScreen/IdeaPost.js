@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSmile, faStar, faShare, faEllipsisV, faCaretSquareDown, faAt, faPaperPlane, faFileDownload, faDownload } from "@fortawesome/free-solid-svg-icons";
 import './IdeaPost.css';
 import './IdeaScreen.css';
-import './PopupMenu.css';
+import '../SharedComponents/PopupMenu.css';
 import axios from 'axios';
-import EditCancelModal from './EditCancelModal';
+import EditCancelModal from '../SharedComponents/EditCancelModal';
 import CommentPost from './CommentPost';
-import DeleteModal from './DeleteModal';
+import DeleteModal from '../SharedComponents/DeleteModal';
 
 const IdeaPost = (props) => {
     const history = useHistory();

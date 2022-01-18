@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
+import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile, faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import CommentFileBox from './CommentFileBox';
+import DeleteModal from '../SharedComponents/DeleteModal';
 
 import '../ChatScreen/MainScreen.css'
 
@@ -33,10 +35,31 @@ function ChatCommentBox(props){
             }
     }
 
-    const delComment = (curcommentId) =>
-    {
-        axios.delete("http://localhost:8080/api/chat/comment",{params : {chatCommentId : curcommentId}})
+    /***** Delete Comment *****/
+    const [delModalOpen, setDelModalOpen] = useState(false);
+    const [targetComment, setTargetComment] = useState(0);
+
+    const deleteComment = (id) => {
+        setDelModalOpen(true);
+        setTargetComment(id);
     }
+
+    const cancelDelete = () => {
+        setDelModalOpen(false);
+    }
+
+    const confirmDelete = () => {
+        axios.delete("http://localhost:8080/api/chat/comment", {
+            params: {
+                chatCommentId: targetComment
+            }
+        })
+        .then(function(response) { console.log(response); })
+        .catch((error) => { console.log(error.response); })
+        setDelModalOpen(false);
+        history.go(0);
+    }
+    /***********************/
 
     useEffect(()=>{
         setisThereChatComments(false);
@@ -66,13 +89,22 @@ function ChatCommentBox(props){
                                     </div>
                                 </div>
                                 <div className="comment_editing_btns">
-                                    <div className="comment_delete" onClick = {(event) => {
-                                        delComment(curcomment.id)
-                                        history.go(0);
-                                    }}>
-                                        <FontAwesomeIcon icon={faTrash} className = "search"/>
-                                    </div>
+                                    <ContextMenuTrigger id={curcomment.id} holdToDisplay={0}>
+                                        <FontAwesomeIcon icon={faEllipsisV} className="search comment_delete"/>
+                                    </ContextMenuTrigger>
+                                
+                                    <ContextMenu id={curcomment.id}>
+                                        <MenuItem id="menu-item-one">
+                                            <span>Edit</span>
+                                        </MenuItem>
+                                        <MenuItem id="menu-item-two" onClick={() => {deleteComment(curcomment.id)}}>
+                                            <span>Delete</span>
+                                        </MenuItem>
+                                    </ContextMenu>
                                 </div>
+                                { delModalOpen ? 
+                                    <DeleteModal open={delModalOpen} cancel={cancelDelete} del={confirmDelete}></DeleteModal>
+                                : null}
                             </div>
                         ))}
                         </div>

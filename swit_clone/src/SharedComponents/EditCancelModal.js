@@ -1,5 +1,5 @@
 import React from 'react';
-import "../BuildWorkspace/LinkModal.css";
+import "./Modal.css";
 
 const EditCancelModal = ( props ) => {
     const { open, back, discard } = props;
