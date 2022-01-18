@@ -72,7 +72,7 @@ function ChatCommentBox(props){
             { isThereChatComments ? 
                 <div>
                     <div className = {iscommentAreaOpened ? "comment_btn_opened" : "comment_btn"} onClick = {() => openCommentArea()} >
-                    comment
+                    {currentChatsComments.length} comment
                     </div>
                     { iscommentAreaOpened ?
                         <div className = "comment_area">

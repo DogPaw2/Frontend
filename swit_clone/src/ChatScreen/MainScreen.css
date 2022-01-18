@@ -831,8 +831,8 @@ body{
 .comment_btn
 {
     color: #8B8E95;
-    width : 4.5rem;
-    height: 1rem;
+    width : 6rem;
+    height: 1.25rem;
     background-color:white;
     border-radius: 1px;
     border : 1px solid #8B8E95;
@@ -842,8 +842,8 @@ body{
 .comment_btn_opened
 {
     color: white;
-    width : 4.5rem;
-    height: 1rem;
+    width : 6rem;
+    height: 1.25rem;
     background-color:#8B8E95;
     border-radius: 1px;
     border : 1px solid #8B8E95;
